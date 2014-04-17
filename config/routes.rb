@@ -1,6 +1,6 @@
 LeavesCom::Application.routes.draw do
 
-  mount LeavesCom::Leaves => '/'
+  mount Leaves::Api => '/'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
