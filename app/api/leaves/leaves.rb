@@ -1,8 +1,16 @@
 module Leaves
   class Leaves < Grape::API
-    #leaves
-    get '/leaves' do
-      leaves = Leaf.all
+    resource :leaves do
+      get do
+        leaves = Leaf.all
+      end
+
+      route_param :id, requirements: /[^\/]+/ do
+        desc 'Get a leaf'
+        get do
+          Leaf.find(params[:id])
+        end
+      end
     end
   end
 end
