@@ -11,6 +11,8 @@ module Leaves
       {version: '1'}
     end
 
+    mount Auth
     mount Leaves
+    mount Collage
   end
 end
