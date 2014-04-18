@@ -1,16 +1,15 @@
 module ApiHelper
   def authenticate_user_from_token!
-    user_email = params[:email].presence
-    user       = user_email && User.find_by_email(user_email)
+    token = request.headers['Authorization']
+    de_token = Base64::decode64(token).split(':')
+    email = de_token[0]
+    password = de_token[1]
+    user = User.find_by_email(email)
 
-    # Notice how we use Devise.secure_compare to compare the token
-    # in the database with the token given in the params, mitigating
-    # timing attacks.
-    if user && Devise.secure_compare(user.authentication_token, params[:auth_token])
-      # sign_in user, store: false
+    if user && user.valid_password?(password)
       user
     else
-      return false
+      false
     end
   end
 end
