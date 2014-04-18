@@ -2,7 +2,7 @@ module Leaves
   class Leaves < Grape::API
     resource :leaves do
       get do
-        leaves = Leaf.all
+        Leaf.all
       end
 
       route_param :id, requirements: /[^\/]+/ do

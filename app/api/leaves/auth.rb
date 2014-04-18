@@ -10,8 +10,8 @@ module Leaves
     end
 
     post 'sign_in' do
-      user = authenticate_user_from_token!
-      if user
+      user = User.find_by_email(params[:user][:email])
+      if (!user.nil? && user.valid_password?(params[:user][:password]))
         {success: true}
       else
         {:errors=>"Invalid email or password", :status=>401}

@@ -1,4 +1,3 @@
-include ApiHelper
 module Leaves
   class Products < Grape::API
     resource :products do
