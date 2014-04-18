@@ -13,6 +13,6 @@ module Leaves
 
     mount Auth
     mount Leaves
-    mount Collage
+    mount Products
   end
 end
