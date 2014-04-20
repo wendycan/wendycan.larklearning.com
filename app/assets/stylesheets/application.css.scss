@@ -9,5 +9,34 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  */
+
+@import "main/variables";
+@import "main/framework";
+@import "main/mixins";
+@import "main/fonts";
+@import "main/layout";
+@import "main/account";
+
+/**
+ * Generic css (forms, nav etc):
+ */
+@import "generic/alert";
+@import "generic/buttons";
+@import "generic/forms";
+@import "generic/links";
+@import "generic/typography";
+@import "generic/table";
+@import "generic/tags";
+
+/**
+ * Page specific styles:
+ */
+@import "sections/nav";
+@import "sections/footer";
+@import "sections/sidebar";
+
+/**
+  * Vendor
+ */
+// @import "simple";

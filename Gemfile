@@ -22,6 +22,13 @@ gem 'haml-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# Front-end framework
+gem 'foundation-rails'
+
+# Icons
+gem 'font-awesome-sass'
+
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
