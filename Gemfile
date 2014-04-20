@@ -37,6 +37,11 @@ gem 'grape'
 
 gem 'devise'
 
+group :production do
+  gem 'haml', '~> 4.0.3'
+  gem 'unicorn', '~> 4.7.0'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
