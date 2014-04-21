@@ -11,9 +11,10 @@ hr{
   margin: 0;
 }
 .default{
-  color: $primary-hover;
+  color: white;
+  font-weight: normal;
   &:hover{
-    color: black;
+    color: $white-dark;
   }
 }
 .reverse{
@@ -26,18 +27,6 @@ hr{
   font-family: monospace;
   background-color: $gray-bg;
   overflow: auto;
-}
-a.default, .button.default{
-  color: $gray-text;
-  &:hover{
-    color: black;
-  }
-  &.active{
-    color: black;
-    font-weight: bold;
-    padding-bottom: 8px;
-    border-bottom: solid 2px $primary;
-  }
 }
 ul.list{
   list-style: none;

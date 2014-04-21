@@ -1,0 +1,27 @@
+.brand{
+  height: 100%;
+  width: 100%;
+  padding: relative;
+  .bg{
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background: image-url("home_img_text.jpg");
+  }
+  .inline-list{
+    position: absolute;
+    bottom: 0;
+    width: 75%;
+    a{
+      font-size: 1.4rem;
+      text-align: center;
+    }
+    li{
+      width: 16%;
+    }
+  }
+}
