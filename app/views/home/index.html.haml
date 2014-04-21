@@ -1,18 +1,86 @@
 .brand
   .bg
+  .my-img
+    = image_tag("me.png")
   .content
     .row
       %ul.nav.inline-list
         %li
           %a.default{:href => "#about"} 关于
         %li
-          %a.default{:href => "/leaves/index.html"} 叶子
+          %a.default{:href => "/leaves/index.html"} 叶子拼图
         %li
-          %a.default{:href => "/temp/index.html"} 温度传感器
+          %a.default{:href => "/temp/index.html"} 温度监控
         %li
           %a.default{:href => "/projects/index.html"} 所有项目
         %li
           %a.default{:href => "/profile.html"} 简历
         %li
           %a.default{:href => "blog.wendycan.orog"} 博客
-
+.about#about.wrap
+  .row.text-center
+    .large-12.columns.text
+      %h2 关于我
+      %br
+      %p 一个大胆，新奇，激情的姑娘，热爱生活的点点滴滴
+    %ul.large-block-grid-4
+      %li
+        %i.fa.fa-book.brown-color
+        %br
+        书籍
+      %li
+        %i.fa.fa-leaf.green-color
+        %br
+        生物
+      %li
+        %i.fa.fa-code.blue-color
+        %br
+        编程
+      %li
+        %i.fa.fa-music.orange-color
+        %br
+        音乐
+.blogs.wrap.gray-bg
+  .row.text-center
+    .large-6.columns
+    .large-6.columns
+      %h2 博客
+      %br
+      %p 分享技术，经历，想法
+.projects.wrap
+  .row.text-center
+    .large-6.columns
+      %h2 项目
+      %br
+      %p 展示我经营的项目
+      %p 希望得到反馈
+    .large-6.columns
+.footer.wrap.gray-dark-bg
+  .row.text-center
+    .large-4.columns.large-offset-4
+      %h4
+        %small by
+        %a.reverse{:href => "/"}
+          王欣
+      %br
+  .row.text-center
+    .large-4.columns.large-offset-4
+      %ul.inline-list
+        %li
+          %a{:href => "/"}
+            %i.fa.fa-weibo
+        %li
+          %a{:href => "/"}
+            %i.fa.fa-github
+        %li
+          %a{:href => "/"}
+            %i.fa.fa-bitbucket
+        %li
+          %a{:href => "/"}
+            %i.fa.fa-google-plus
+        %li
+          %a{:href => "/"}
+            %i.fa.fa-renren
+        %li
+          %a{:href => "/"}
+            %i.fa.fa-envelope

@@ -12,6 +12,18 @@
     background-size: cover;
     background: image-url("home_img_text.jpg");
   }
+  .my-img{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    img{
+      border-radius: 50%;
+      width: 80px;
+      &:hover{
+        opacity: 0.8;
+      }
+    }
+  }
   .inline-list{
     position: absolute;
     bottom: 0;
@@ -25,4 +37,36 @@
       width: 14%;
     }
   }
+}
+.about{
+  .text{
+    padding-bottom: 30px;
+  }
+  ul i{
+    font-size: 8rem;
+    &:hover{
+      opacity: 0.8;
+    }
+  }
+  li{
+    color: $gray-text;
+    &:hover{
+      color: black;
+    }
+  }
+}
+.brown-color{
+  color: $brown;
+}
+.green-color{
+  color: $green;
+}
+.blue-color{
+  color: $blue;
+}
+.orange-color{
+  color: $orange;
+}
+.gray-dark-bg{
+  background-color: $gray-darkest;
 }
