@@ -43,86 +43,141 @@
       .large-12.columns
         %ul.large-block-grid-3
           %li
-            %p.date 2011-9 至 2011-10
-            %p.name MFC 电子相册管理系统
-            %p.desc 要求实现用户相册的管理
-            %p.role 组长
-            %p.count 3人
-            %p.skill VC++，MFC
-            %p.property 课程项目
+            .project
+              %p.date 2011-9  -  2011-10
+              %p.name.tip-left{:'data-tooltip' => true, title: '课程项目'} MFC 电子相册管理系统
+              %p.desc 要求实现用户相册的管理
+              %p.role
+                %small 共3人
+                %span.label 任组长
+              %p.skill
+                %span.label.success VC++
+                %span.label.success MFC
           %li
-            %p.date 2012-5 至 2012-7
-            %p.name ICC(Integrated Considerate Calendar)
-            %p.desc 产品可以从心理、运动等方面来记录用户的信息，从而提供合理的建议
-            %p.role 组长
-            %p.count 3人
-            %p.skill Java+sqlite3+android2.3.1
-            %p.property 比赛（获三等奖）
-
+            .project
+              %p.date 2012-5  -  2012-7
+              %p.name.tip-left{:'data-tooltip' => true, title: '比赛（获三等奖）'} ICC
+              %p.desc
+                Integrated Considerate Calendar
+                %br
+                产品可以从心理、运动等方面来记录用户的信息，从而提供合理的建议
+              %p.role
+                %small
+                  共3人
+                %span.label 任组长
+              %p.skill
+                %span.label.success Java
+                %span.label.success sqlite3
+                %span.label.success Eclipse
           %li
-            %p.date 2012-3至2013-3
-            %p.name PECK 医疗服务网站
-            %p.desc 网站主要实现预诊断功能、健康生活和医患交流平台
-            %p.role 组长
-            %p.count 4人
-            %p.skill 后台架构Linux+Nginx+Mysql+Ruby，前台Html5,Css3,Javascript
-            %p.property 课外研学项目（评审获良）
-
+            .project
+              %p.date 2012-3 - 2013-3
+              %p.name.tip-left{:'data-tooltip' => true, title: '课外研学项目（评审获良）'} PECK 医疗服务网站
+              %p.desc 网站主要实现预诊断功能、健康生活和医患交流平台
+              %p.role
+                %small
+                  共4人
+                %span.label 任组长
+              %p.skill
+                %span.label.success Html5
+                %span.label.success Css3
+                %span.label.success Javascript
+                %span.label.success Mysql
+                %span.label.success Ruby
+                %span.label.success Nginx
+                %span.label.success Linux
           %li
-            %p.date 2013-5 至 2013-6
-            %p.name 极客行动官方网站
-            %p.role 前端开发
-            %p.count 4人
-            %p.skill Html + Javascript + Css3, 框架： Bootstrap
-            %p.link
-              可访问(
-              %a{:href => "http://geekon.geekstack.org"} 极客行动
-              )
-            %p.property 公司项目
+            .project
+              %p.date 2013-5  -  2013-6
+              %p.name.tip-left{:'data-tooltip' => true, title: '公司项目'} 极客行动官方网站
+              %p.role
+                %small
+                  共4人
+                %span.label 任前端开发
+              %p.skill
+                %span.label.success Html5
+                %span.label.success Css3
+                %span.label.success Javascript
+                %span.label.success Bootstrap
+              %p.link
+                %small
+                  可访问(
+                  %a{:href => "http://geekon.geekstack.org"} 极客行动
+                  )
           %li
-            %p.date 2013-6 至 2013-7
-            %p.name 电商网站
-            %p.count 1人
-            %p.skill Html + Javascript + Css3, 框架： Wordpress
-            %p.property 兼职
+            .project
+              %p.date 2013-6  -  2013-7
+              %p.name.tip-left{:'data-tooltip' => true, title: '兼职'} 电商网站
+              %p.role
+                %small 1人
+              %p.skill
+                %span.label.success Html5
+                %span.label.success Css3
+                %span.label.success Javascript
+                %span.label.success Wordpress
           %li
-            %p.date 2014-2 至 2014-3
-            %p.name OBU船舶项目
-            %p.desc 可以显示船舶地理位置等信息，并能查看船舶轨迹
-            %p.role 前端开发
-            %p.count 4人
-            %p.skill Html + Javascript + Css3, 框架：Middleman + Backbone + Foundation + Leaflet
-            %p.link
-              可访问(
-              %a{:href => "http://obu.dotide.com"} OBU
-              )
-            %p.property 公司合作项目
-
+            .project
+              %p.date 2014-2  -  2014-3
+              %p.name.tip-left{:'data-tooltip' => true, title: '公司合作项目'} OBU船舶项目
+              %p.desc 可以显示船舶地理位置等信息，并能查看船舶轨迹
+              %p.role
+                %small
+                  共4人
+                %span.label 任前端开发
+              %p.skill
+                %span.label.success Html5
+                %span.label.success Css3
+                %span.label.success Javascript
+                %span.label.success Middleman
+                %span.label.success Backbone
+                %span.label.success Foundation
+                %span.label.success Leaflet
+              %p.link
+                %small
+                  可访问(
+                  %a{:href => "http://obu.dotide.com"} OBU
+                  )
           %li
-            %p.date 2013-7 至今
-            %p.name Dotide
-            %p.desc 时序数据存储和显示
-            %p.role 前端开发
-            %p.count 4人
-            %p.skill 后台:Ruby，前台:Html5,Css3,Javascript,Angular
-            %p.link
-              可访问(
-              %a{:href => "http://dotide.com"} Dotide
-              )
-            %p.property 公司项目
-
+            .project
+              %p.date 2013-7 至今
+              %p.name.tip-left{:'data-tooltip' => true, title: '公司项目'} Dotide
+              %p.desc 时序数据存储和显示
+              %p.role
+                %small
+                  共4人
+                %span.label 任前端开发
+              %p.skill
+                %span.label.success Ruby
+                %span.label.success Html5
+                %span.label.success Css3
+                %span.label.success Angular
+              %p.link
+                %small
+                  可访问(
+                  %a{:href => "http://dotide.com"} Dotide
+                  )
           %li
-            %p.date 2014-4 至今
-            %p.name Leaves Collage
-            %p.desc 叶子图像处理，可进行拼图
-            %p.role 组长
-            %p.count 2人
-            %p.skill 后台:Ruby，前台:Html5,Css3,Javascript,Angular，软件：Qt, OpenCV
-            %p.link
-              可访问(
-              = link_to "Leaves Collage", leaves_path
-              )
-            %p.property 比赛
+            .project
+              %p.date 2014-4 至今
+              %p.name.tip-left{:'data-tooltip' => true, title: '比赛'} Leaves Collage
+              %p.desc 叶子图像处理，可进行拼图
+              %p.role
+                %small
+                  共2人
+                %span.label 任组长
+              %p.skill
+                %span.label.success Ruby
+                %span.label.success Html5
+                %span.label.success Css3
+                %span.label.success Javascript
+                %span.label.success Angular
+                %span.label.success Qt
+                %span.label.success OpenCV
+              %p.link
+                %small
+                  可访问(
+                  = link_to "Leaves Collage", leaves_path
+                  )
   .row
     %hr
   .skills.wrap
@@ -132,11 +187,19 @@
     .row
       .large-6.columns
         %p
-          %strong IT技能
-          熟练使用C++，ruby，html5+css3；熟悉java、汇编、Mysql，android开发。熟悉网站开发架构，熟悉软件开发（MFC，android平台)，有两年web前端开发经验；具备Linux/Unix平台开发经验.
+          %strong IT
+        %p
+          熟练使用C++，Ruby，Html5, Css3， Javascript, 及前端框架如Bootstrap, Foundation, Jquery, Backbone, Angular
+          %br
+          使用Java（Eclipse）、汇编、Mysql进行过Android及单片机的开发
+          %br
+          具备Linux/Unix平台开发经验
+          %br
+          熟悉网站开发架构，有两年web前端开发经验
       .large-6.columns
         %p
-          %strong 英语技能
+          %strong 英语
+        %p
           大学英语四级
   .row
     %hr
@@ -148,13 +211,13 @@
       .large-12.columns
         %ul
           %li
-            %p.date 2011-8 至 2012-9
+            %p.date 2011-8  -  2012-9
             %p.job 东南大学棋牌协会宣传部长
           %li
-            %p.date 2011-9 至 2012-9
+            %p.date 2011-9  -  2012-9
             %p.job 东南大学院学生会任职
           %li
-            %p.date 2011-9 至 2012-9
+            %p.date 2011-9  -  2012-9
             %p.job 班委
           %li
             %p.date 2013-5 至今
@@ -202,8 +265,11 @@
     .row
       .large-12.columns
         %p
-          %strong 爱好
-          琴,中国象棋,围棋,武术,编程
+          %span.label.success 琴
+          %span.label.success 中国象棋
+          %span.label.success 围棋
+          %span.label.success 武术
+          %span.label.success 编程
   .row
     %hr
   .nature.wrap
