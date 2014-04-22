@@ -3,7 +3,7 @@ LeavesCom::Application.routes.draw do
   devise_for :users
   root to: "home#index"
   mount Leaves::Api => '/'
-  get 'home/index'
+  get 'home/index', :layout => 'home'
   get 'home/profile'
   resources :leaves, only: [:index, :show]
   resources :projects, only: [:index, :show]
