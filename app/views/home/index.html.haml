@@ -1,22 +1,23 @@
 .brand
   .bg
   .my-img
-    = image_tag("me.png")
+    = link_to home_profile_path do
+      = image_tag("me.png")
   .content
     .row
       %ul.nav.inline-list
         %li
           %a.default{:href => "#about"} 关于
         %li
-          %a.default{:href => "/leaves/index.html"} 叶子拼图
+          = link_to "叶子拼图", leaves_path, :class => "default"
         %li
-          %a.default{:href => "/temp/index.html"} 温度监控
+          = link_to "温度监控", temp_index_path, :class => "default"
         %li
-          %a.default{:href => "/projects/index.html"} 所有项目
+          = link_to "所有项目", projects_path, :class => "default"
         %li
-          %a.default{:href => "/profile.html"} 简历
+          = link_to "简历", home_profile_path, :class => "default"
         %li
-          %a.default{:href => "blog.wendycan.orog"} 博客
+          %a.default{:href => "http://blog.wendycan.org"} 博客
 .about#about.wrap
   .row.text-center
     .large-12.columns.text
@@ -61,8 +62,7 @@
       %h4
         %br
         %small by
-        %a.reverse{:href => "/"}
-          王欣
+        = link_to "王欣", home_profile_path, :class => "reverse"
       %br
       %ul.inline-list
         %li

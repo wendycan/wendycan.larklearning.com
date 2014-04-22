@@ -4,6 +4,11 @@ LeavesCom::Application.routes.draw do
   root to: "home#index"
   mount Leaves::Api => '/'
   get 'home/index'
+  get 'home/profile'
+  resources :leaves, only: [:index, :show]
+  resources :projects, only: [:index, :show]
+  resources :temp, only: [:index]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
