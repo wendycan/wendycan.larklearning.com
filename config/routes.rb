@@ -3,7 +3,6 @@ LeavesCom::Application.routes.draw do
   root to: "home#index"
 
   get 'home/index', :layout => 'home'
-  get 'leaves/search'
   resources :leaves, only: [:index, :show]
   resources :projects, only: [:index, :show]
   resources :temp, only: [:index]

@@ -13,7 +13,7 @@ module Leaves
               query_phrase_slop 1
             end
           end
-          results = leaves.results
+          leaves.results
         end
       end
 
