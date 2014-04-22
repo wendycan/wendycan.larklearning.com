@@ -28,7 +28,11 @@ gem 'foundation-rails'
 # Icons
 gem 'font-awesome-sass'
 
-
+gem 'sunspot_rails'
+group :development do
+  gem 'sunspot_solr'
+end
+gem 'progress_bar'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 
