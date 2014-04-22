@@ -1,0 +1,20 @@
+%nav.top-bar{:'data-topbar' => true}
+  %ul.title-area
+    %li.name
+      %h1
+        = link_to home_index_path do
+          = image_tag("me.png")
+  %section.top-bar-section
+    %ul.right
+      %li
+        %a.default{:href => "/#about"} 关于
+      %li
+        = link_to "叶子拼图", leaves_path, :class => "default"
+      %li
+        = link_to "温度监控", temp_index_path, :class => "default"
+      %li
+        = link_to "所有项目", projects_path, :class => "default"
+      %li
+        = link_to "简历", info_profile_path, :class => "default"
+      %li
+        %a.default{:href => "http://blog.wendycan.org"} 博客
