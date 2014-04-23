@@ -1,0 +1,8 @@
+%form.row
+.large-12.columns
+  %input#query{:'ng-model' => 'query', :type => 'text', autofocus: true}
+%ul.row
+.large-12.columns
+  %li{:'ng-repeat' => "leaf in leaves | filter:query | orderBy:orderProp"}
+    %a{:href => "#/leaves/{{leaf.id}}"} {{leaf.name}}
+    %p {{leaf.desc}}

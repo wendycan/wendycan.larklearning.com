@@ -6,3 +6,6 @@ leafControllers.controller 'leafListCtrl', ['$scope', '$http', ($scope, $http)->
 
   $scope.orderProp = 'create_at'
 ]
+
+leafControllers.controller 'LeafDetailCtrl', ($scope, $routeParams)->
+  $scope.leafId = $routeParams.leafId
