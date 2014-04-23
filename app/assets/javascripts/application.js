@@ -14,5 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require vendor
+//= require temp
+//= require leaves
 
 $(document).foundation();
