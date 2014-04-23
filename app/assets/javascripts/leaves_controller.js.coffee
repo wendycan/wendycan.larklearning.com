@@ -1,11 +1,11 @@
-leafControllers = angular.module('leafControllers', [])
+LeafControllers = angular.module('LeafControllers', [])
 
-leafControllers.controller 'leafListCtrl', ['$scope', '$http', ($scope, $http)->
+LeafControllers.controller 'LeafListCtrl', ['$scope', '$http', ($scope, $http)->
   $http.get('/v1/leaves').success (data)->
     $scope.leaves = data
 
   $scope.orderProp = 'create_at'
 ]
 
-leafControllers.controller 'LeafDetailCtrl', ($scope, $routeParams)->
+LeafControllers.controller 'LeafDetailCtrl', ($scope, $routeParams)->
   $scope.leafId = $routeParams.leafId

@@ -1,0 +1,13 @@
+<form class="row">
+  <div class="large-12 columns">
+    <input id="query" ng-model='query' type='text' autofocus />
+  </div>
+</form>
+<ul class="row">
+  <div class="large-12 columns">
+    <li ng-repeat="leaf in leaves | filter:query | orderBy:orderProp">
+      <a href="#/{{leaf.id}}">{{leaf.name}}</a>
+      <p>{{leaf.desc}}</p>
+    </li>
+  </div>
+</ul>

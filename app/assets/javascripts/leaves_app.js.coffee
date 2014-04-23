@@ -1,17 +1,17 @@
-phoneApp = angular.module 'leafApp', [
+LeafApp = angular.module 'LeafApp', [
   'ngRoute',
-  'leafControllers'
+  'LeafControllers'
 ]
 
-phoneApp.config ['$routeProvider',
+LeafApp.config ['$routeProvider',
   ($routeProvider)->
-    $routeProvider.when('/leaves', {
-      templateUrl: 'leaves-list.html',
+    $routeProvider.when('/all', {
+      templateUrl: '/templates/leaves_list.html',
       controller: 'LeafListCtrl'
       }).when('/:leafId', {
-        templateUrl: 'leaf-detail.html'
+        templateUrl: '/templates/leaf_detail.html'
         controller: 'LeafDetailCtrl'
         }).otherwise({
-          redirectTo: '/leaves'
+          redirectTo: '/all'
           })
   ]
