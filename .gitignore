@@ -20,3 +20,6 @@
 /log/*.log
 /tmp
 
+# Ignore sunspot index files
+/solr/development/data
+
