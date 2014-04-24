@@ -8,6 +8,9 @@
     margin-bottom: 12px;
   }
   .projects{
+    li{
+      width: 100%;
+    }
     .project{
       padding: 20px;
       background-color: $gray-bg;
