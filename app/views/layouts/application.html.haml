@@ -2,11 +2,43 @@
 %head
   = render :partial => 'layouts/head'
 %body
-  = render :partial => 'layouts/nav'
-  = if !notice.nil?
-    %p.notice= notice
-  = if !alert.nil?
-    %p.alert= alert
+  .off-canvas-wrap{:'data-offcanvas' => true}
+    .visible-for-large-only
+      = render :partial => 'layouts/nav'
+    .inner-wrap
+      / %a.left-off-canvas-toggle.visible-for-small-only
+      /   %i.fa.fa-bars
+      %aside.left-off-canvas-menu
+        %ul.right
+          %li
+            %a.default{:href => "/"}
+              %i.fa.fa-home
+              首页
+          %li
+            = link_to leaves_path, :class => "default" do
+              %i.fa.fa-leaf
+              叶子拼图
+          %li
+            = link_to temp_index_path, :class => "default" do
+              %i.fa.fa-bar-chart-o
+              温度监控
+          %li
+            = link_to projects_path, :class => "default" do
+              %i.fa.fa-th-large
+              所有项目
+          %li
+            = link_to info_profile_path, :class => "default" do
+              %i.fa.fa-user
+              简历
+          %li
+            %a.default{:href => "http://blog.wendycan.org"}
+              %i.fa.fa-bookmark
+              博客
+      = if !notice.nil?
+        %p.notice= notice
+      = if !alert.nil?
+        %p.alert= alert
 
-  = yield
-  = render :partial => 'layouts/footer'
+      = yield
+      = render :partial => 'layouts/footer'
+      %a.exit-off-canvas
