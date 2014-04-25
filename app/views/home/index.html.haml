@@ -4,7 +4,7 @@
     = link_to info_profile_path do
       = image_tag("me.png")
   .content
-    .row
+    .row.show-for-medium-up
       %ul.nav.large-block-grid-6
         %li
           %a.default{:href => "/#about"} 关于
@@ -12,6 +12,14 @@
           = link_to "叶子拼图", leaves_path, :class => "default"
         %li
           = link_to "温度监控", temp_index_path, :class => "default"
+        %li
+          = link_to "所有项目", projects_path, :class => "default"
+        %li
+          = link_to "简历", info_profile_path, :class => "default"
+        %li
+          %a.default{:href => "http://blog.wendycan.org"} 博客
+    .row.show-for-small
+      %ul.small-block-grid-3.text-center
         %li
           = link_to "所有项目", projects_path, :class => "default"
         %li
