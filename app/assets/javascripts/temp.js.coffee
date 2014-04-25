@@ -1,4 +1,5 @@
 $(document).ready ->
+  $(document).foundation()
   palette = new Rickshaw.Color.Palette()
   data = [
     {
