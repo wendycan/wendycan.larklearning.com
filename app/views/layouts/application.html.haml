@@ -3,13 +3,18 @@
   = render :partial => 'layouts/head'
 %body
   .off-canvas-wrap{:'data-offcanvas' => true}
-    .visible-for-large-only
+    .show-for-medium-up
       = render :partial => 'layouts/nav'
     .inner-wrap
-      / %a.left-off-canvas-toggle.visible-for-small-only
-      /   %i.fa.fa-bars
+      %nav.tab-bar.show-for-small-only
+        %section.left-small.text-center
+          %a.left-off-canvas-toggle
+            %span
+              %i.fa.fa-bars.default
+        %section.middle.tab-bar-section
+          %h1.title Wendycan
       %aside.left-off-canvas-menu
-        %ul.right
+        %ul.off-canvas-list
           %li
             %a.default{:href => "/"}
               %i.fa.fa-home
