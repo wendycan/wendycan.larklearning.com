@@ -3,42 +3,9 @@
   = render :partial => 'layouts/head'
 %body
   .off-canvas-wrap{:'data-offcanvas' => true}
-    .show-for-medium-up
-      = render :partial => 'layouts/nav'
+    = render :partial => "layouts/nav"
     .inner-wrap
-      %nav.tab-bar.show-for-small-only
-        %section.left-small.text-center
-          %a.left-off-canvas-toggle
-            %span
-              %i.fa.fa-bars.defaultg
-        %section.middle.tab-bar-section
-          %h1.title Wendycan
-      %aside.left-off-canvas-menu
-        %ul.off-canvas-list
-          %li
-            %a.default{:href => "/"}
-              %i.fa.fa-home
-              首页
-          %li
-            = link_to leaves_path, :class => "default" do
-              %i.fa.fa-leaf
-              叶子拼图
-          %li
-            = link_to temp_index_path, :class => "default" do
-              %i.fa.fa-bar-chart-o
-              温度监控
-          %li
-            = link_to projects_path, :class => "default" do
-              %i.fa.fa-th-large
-              所有项目
-          %li
-            = link_to info_profile_path, :class => "default" do
-              %i.fa.fa-user
-              简历
-          %li
-            %a.default{:href => "http://blog.wendycan.org"}
-              %i.fa.fa-bookmark
-              博客
+      = render :partial => "layouts/small_nav"
       = if !notice.nil?
         %p.notice= notice
       = if !alert.nil?
