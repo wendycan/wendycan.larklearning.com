@@ -1,6 +1,6 @@
 tempApp = angular.module('tempApp',[])
 
-tempApp.controller 'TempCtrl', ($scope, $http)->
+tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   url = "#{Temp.ApiPrefix}/#{Temp.DotideDb}/datastreams/temp/datapoints?order=asc"
   config =
     method: "GET"
@@ -65,3 +65,4 @@ tempApp.controller 'TempCtrl', ($scope, $http)->
       graph.series[0].data = $scope.points
       graph.render()
   , 103000
+]
