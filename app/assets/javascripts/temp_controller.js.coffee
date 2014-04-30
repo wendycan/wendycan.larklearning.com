@@ -39,13 +39,15 @@ tempApp.controller 'TempCtrl', ($scope, $http)->
     axes = new Rickshaw.Graph.Axis.Time( { graph: graph } )
     y_axis = new Rickshaw.Graph.Axis.Y( {
       graph: graph,
-      orientation: 'left',
-      # tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
-      element: document.getElementById('y_axis'),
+      tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
+      ticksTreatment: 'glow'
     } )
-
     hoverDetail = new Rickshaw.Graph.HoverDetail( {
       graph: graph
+    } )
+    legend = new Rickshaw.Graph.Legend( {
+      graph: graph
+      element: document.getElementById('legend')
     } )
     graph.render()
 
