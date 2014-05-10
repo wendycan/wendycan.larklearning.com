@@ -64,5 +64,5 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
           $scope.points.push tmp
       graph.series[0].data = $scope.points
       graph.render()
-  , 103000
+  , 3000
 ]
