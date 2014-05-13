@@ -18,13 +18,17 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   $scope.filterDate = (clickevent)->
     start = $('#datetimestart').val()
     end = $('#datetimeend').val()
+    $('#loader').show()
     fetchTempData(new Date(start), new Date(end), ->
       $scope.graph.series[0].data = $scope.points
       $scope.graph.render()
+      $('#loader').hide()
     )
 
   $scope.exportData = (clickevent)->
     data = []
+    $scope.starttime = $('#datetimestart').val()
+    $scope.endtime = $('#datetimeend').val()
     for point in $scope.points
       do(point)->
         tmp = {}
@@ -75,6 +79,8 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
       lang: 'ch',
       value: end
       })
+    $scope.starttime = $('#datetimestart').val()
+    $scope.endtime = $('#datetimeend').val()
     fetchTempData(new Date(start), new Date(end), =>
       initGraph()
     )

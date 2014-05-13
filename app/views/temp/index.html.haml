@@ -16,5 +16,18 @@
         .wrap
       .large-4.columns
         %br
-        %span.btn.button.tiny.blue{:'ng-click' => "filterDate($event)"}= "确定"
-        %span.btn.button.tiny.blue{:'data-tooltip' => true, title: 'Save as data.json , UTC format', :'ng-click' => "exportData($event)"}= "导出"
+        .row
+          .large-2.columns
+            #loader.hide
+              %i.fa.fa-spinner.fa-spin
+          .large-10.columns
+            %span.btn.button.tiny.blue{:'ng-click' => "filterDate($event)"}= "确定"
+            %span.btn.button.tiny.blue{:'data-reveal-id' => "exportModal", :'data-tooltip' => true, title: 'Save as data.json , UTC format'}= "导出"
+    #exportModal.reveal-modal.text-center{:'data-reveal' => true}
+      %p= "您确定导出所选数据吗?"
+      %p
+        %span {{starttime}}
+        %span -
+        %span {{endtime}}
+      %span.btn.button.tiny.blue{:'ng-click' => "exportData($event)"}= "确定"
+      %a.close-reveal-modal &#215;
