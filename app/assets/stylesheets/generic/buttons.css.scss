@@ -14,6 +14,12 @@
     color: black;
   }
 }
+.button.blue{
+  background-color: $blue;
+  &:hover{
+    background-color: $blue-dark1;
+  }
+}
 .button.alert {
   background-color: $gray-bg;
   border: solid 1px $gray-border;

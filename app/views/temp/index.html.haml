@@ -8,13 +8,13 @@
         #temp-graph
     .wrap.row
       .large-3.columns
-        %label.label.sencondary= 'Start'
+        %label.blue.label= '起始'
         %input#datetimestart{type: 'text'}
       .large-3.columns
-        %label.label.sencondary= 'End'
+        %label.label.blue= '终止'
         %input#datetimeend{type: 'text'}
         .wrap
       .large-4.columns
         %br
-        %span.btn.button.tiny{:'ng-click' => "filterDate($event)"}= "Submit"
-        %span.btn.button.tiny{:'ng-click' => "imortData($event)"}= "Import"
+        %span.btn.button.tiny.blue{:'ng-click' => "filterDate($event)"}= "确定"
+        %span.btn.button.tiny.blue{:'data-tooltip' => true, title: 'Save as data.json , UTC format', :'ng-click' => "exportData($event)"}= "导出"

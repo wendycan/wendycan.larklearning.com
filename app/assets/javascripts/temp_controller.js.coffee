@@ -8,17 +8,31 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     url: url
     headers:
       "Authorization": "Bearer #{Temp.ReadToken}"
-
   $scope.points = []
   $scope.graph = {}
+
+  $(document).foundation ->
+    tooltips:
+      disable_for_touch: true
 
   $scope.filterDate = (clickevent)->
     start = $('#datetimestart').val()
     end = $('#datetimeend').val()
-    fetchTempData(new Date(start), new Date(end), =>
+    fetchTempData(new Date(start), new Date(end), ->
       $scope.graph.series[0].data = $scope.points
       $scope.graph.render()
     )
+
+  $scope.exportData = (clickevent)->
+    data = []
+    for point in $scope.points
+      do(point)->
+        tmp = {}
+        tmp.t = moment(point.x * 1000).utc()
+        tmp.v = point.y
+        data.push tmp
+    blob = new Blob([JSON.stringify(data)], {type: "text/plain;charset=utf-8"})
+    saveAs(blob,"data.json")
 
   initGraph = ->
     $scope.graph = new Rickshaw.Graph {

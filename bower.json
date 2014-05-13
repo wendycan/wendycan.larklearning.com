@@ -8,7 +8,9 @@
     "angular-mocks": "~1.2.15",
     "d3": "~3.4.6",
     "rickshaw": "~1.4.6",
-    "datetimepicker": "~2.1.9"
+    "datetimepicker": "~2.1.9",
+    "FileSaver": "master",
+    "moment": "~2.5.0"
   },
   "private": true
 }
