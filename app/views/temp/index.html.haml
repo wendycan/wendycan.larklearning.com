@@ -23,6 +23,11 @@
           .large-10.columns
             %span.btn.button.tiny.blue{:'ng-click' => "filterDate($event)"}= "确定"
             %span.btn.button.tiny.blue{:'data-reveal-id' => "exportModal", :'data-tooltip' => true, title: 'Save as data.json , UTC format'}= "导出"
+            %span.btn.button.tiny#data-sync
+              %i.fa.fa-refresh.fa-spin
+            %span.btn.button.tiny#data-stop{:'ng-click' => "startSync($event)"}
+              %i.fa.fa-refresh
+
     #exportModal.reveal-modal.text-center{:'data-reveal' => true}
       %p= "您确定导出所选数据吗?"
       %p

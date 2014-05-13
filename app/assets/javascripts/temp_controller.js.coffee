@@ -10,7 +10,8 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
       "Authorization": "Bearer #{Temp.ReadToken}"
   $scope.points = []
   $scope.graph = {}
-
+  interalId = {}
+  $('#data-stop').css 'display', 'none'
   $(document).foundation ->
     tooltips:
       disable_for_touch: true
@@ -19,11 +20,19 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     start = $('#datetimestart').val()
     end = $('#datetimeend').val()
     $('#loader').show()
+    clearInterval(interalId)
+    console.log 'hi'
+    $('#data-sync').css 'display', 'none'
+    $('#data-stop').css 'display', 'inline-block'
     fetchTempData(new Date(start), new Date(end), ->
       $scope.graph.series[0].data = $scope.points
       $scope.graph.render()
       $('#loader').hide()
     )
+  $scope.startSync = (clickevent)->
+    $('#data-sync').css 'display', 'inline-block'
+    $('#data-stop').css 'display', 'none'
+    setRefresh()
 
   $scope.exportData = (clickevent)->
     data = []
@@ -37,6 +46,16 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
         data.push tmp
     blob = new Blob([JSON.stringify(data)], {type: "text/plain;charset=utf-8"})
     saveAs(blob,"data.json")
+
+  setRefresh = ->
+    interalId = setInterval ->
+      result = initTimePicker()
+      console.log result.end
+      fetchTempData(new Date(result.start), new Date(result.end), =>
+        $scope.graph.series[0].data = $scope.points
+        $scope.graph.render()
+      )
+    , 3000
 
   initGraph = ->
     $scope.graph = new Rickshaw.Graph {
@@ -68,9 +87,17 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     $scope.graph.render()
 
   initTemp = =>
+    result = initTimePicker()
+    fetchTempData(new Date(result.start), new Date(result.end), =>
+      initGraph()
+      setRefresh()
+    )
+
+  initTimePicker = ->
     now = new Date()
-    end = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}"
-    start = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate() - 1} #{now.getHours()}:#{now.getMinutes()}"
+    console.log now
+    end = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds()}"
+    start = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate() - 1} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds()}"
     $('#datetimestart').datetimepicker({
       lang: 'ch',
       value: start
@@ -81,9 +108,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
       })
     $scope.starttime = $('#datetimestart').val()
     $scope.endtime = $('#datetimeend').val()
-    fetchTempData(new Date(start), new Date(end), =>
-      initGraph()
-    )
+    {start: start,end: end}
 
   fetchTempData = (start, end, onSuccess = false)->
     endIso = end.toISOString()
@@ -111,19 +136,4 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
 
   # function call
   initTemp()
-
-  setInterval ->
-    $http(config).success (data)->
-      $scope.data = data
-      $scope.points = []
-      for point in $scope.data.datapoints
-        do(point) ->
-          tmp = {}
-          date = new Date(point.t)
-          tmp.x = Date.parse(date)/1000
-          tmp.y = point.v
-          $scope.points.push tmp
-      $scope.graph.series[0].data = $scope.points
-      $scope.graph.render()
-  , 3000
 ]
