@@ -1,7 +1,19 @@
 .temp-app.temp{:'ng-app' => "tempApp"}
-  .wrap.row{:'ng-controller' => "TempCtrl"}
-    %h3.wrap 温度实时查看
-    #legend.right
-    %br
-    #temp-graph
-    .wrap
+  .ng-controller{:'ng-controller' => "TempCtrl"}
+    .wrap.row
+      .large-12.columns
+        %h3.wrap 温度实时查看
+        #legend.right
+        %br
+        #temp-graph
+    .wrap.row
+      .large-3.columns
+        %label.label.sencondary= 'Start'
+        %input#datetimestart{type: 'text'}
+      .large-3.columns
+        %label.label.sencondary= 'End'
+        %input#datetimeend{type: 'text'}
+        .wrap
+      .large-2.columns
+        %br
+        %span.btn.button.tiny{:'ng-click' => "filterDate($event)"}= "Submit"

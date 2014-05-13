@@ -1,7 +1,8 @@
 tempApp = angular.module('tempApp',[])
 
 tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
-  url = "#{Temp.ApiPrefix}/#{Temp.DotideDb}/datastreams/temp/datapoints?order=asc"
+  # functin and variable define
+  url = "#{Temp.ApiPrefix}/#{Temp.DotideDb}/datastreams/temp/datapoints"
   config =
     method: "GET"
     url: url
@@ -9,17 +10,18 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
       "Authorization": "Bearer #{Temp.ReadToken}"
 
   $scope.points = []
-  graph = {}
-  $http(config).success (data)->
-    $scope.data = data
-    for point in $scope.data.datapoints
-      do(point) ->
-        tmp = {}
-        date = new Date(point.t)
-        tmp.x = Date.parse(date)/1000
-        tmp.y = point.v
-        $scope.points.push tmp
-    graph = new Rickshaw.Graph {
+  $scope.graph = {}
+
+  $scope.filterDate = (clickevent)->
+    start = $('#datetimestart').val()
+    end = $('#datetimeend').val()
+    fetchTempData(new Date(start), new Date(end), =>
+      $scope.graph.series[0].data = $scope.points
+      $scope.graph.render()
+    )
+
+  initGraph = ->
+    $scope.graph = new Rickshaw.Graph {
       element: document.querySelector('#temp-graph'),
       renderer: 'line',
       interpolation: 'linear',
@@ -27,29 +29,67 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
         color: "#ff0059",
         name: '温度',
         data: $scope.points
-      }]
-      # series: new Rickshaw.Series.FixedDuration([{
-      #   name: 'temp', color: 'gold'
-      #   }], undefined, {
-      #     timeInterval: 3,
-      #     maxDataPoints: 100,
-      #     timeBase: new Date().getTime() / 1000
-      #   })
+        }]
     }
-    axes = new Rickshaw.Graph.Axis.Time( { graph: graph } )
+    axes = new Rickshaw.Graph.Axis.Time( {
+      # timeUnit: days,
+      graph: $scope.graph
+     } )
     y_axis = new Rickshaw.Graph.Axis.Y( {
-      graph: graph,
+      graph: $scope.graph,
       tickFormat: Rickshaw.Fixtures.Number.formatKMBT,
       ticksTreatment: 'glow'
     } )
     hoverDetail = new Rickshaw.Graph.HoverDetail( {
-      graph: graph
+      graph: $scope.graph
     } )
     legend = new Rickshaw.Graph.Legend( {
-      graph: graph
-      element: document.getElementById('legend')
+      element: document.querySelector('#legend'),
+      graph: $scope.graph
     } )
-    graph.render()
+    $scope.graph.render()
+
+  initTemp = =>
+    now = new Date()
+    end = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}"
+    start = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate() - 1} #{now.getHours()}:#{now.getMinutes()}"
+    $('#datetimestart').datetimepicker({
+      lang: 'ch',
+      value: start
+      })
+    $('#datetimeend').datetimepicker({
+      lang: 'ch',
+      value: end
+      })
+    fetchTempData(new Date(start), new Date(end), =>
+      initGraph()
+    )
+
+  fetchTempData = (start, end, onSuccess = false)->
+    endIso = end.toISOString()
+    startIso = start.toISOString()
+    config.params =
+      start: startIso
+      end: endIso
+      order: 'asc'
+    $http(config).success (data)->
+      $scope.data = data
+      for point in $scope.data.datapoints
+        do(point) ->
+          tmp = {}
+          date = new Date(point.t)
+          tmp.x = Date.parse(date)/1000
+          tmp.y = point.v
+          $scope.points.push tmp
+      if !!onSuccess
+        onSuccess()
+
+  renderGraph = ()->
+    $scope.graph.series[0].data = $scope.points
+    $scope.graph.render()
+
+  # function call
+  initTemp()
 
   setInterval ->
     $http(config).success (data)->
@@ -62,7 +102,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
           tmp.x = Date.parse(date)/1000
           tmp.y = point.v
           $scope.points.push tmp
-      graph.series[0].data = $scope.points
-      graph.render()
+      $scope.graph.series[0].data = $scope.points
+      $scope.graph.render()
   , 3000
 ]
