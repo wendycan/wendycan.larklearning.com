@@ -21,11 +21,11 @@
             #loader.hide
               %i.fa.fa-spinner.fa-spin
           .large-10.columns
-            %span.btn.button.tiny.blue{:'ng-click' => "filterDate($event)"}= "确定"
-            %span.btn.button.tiny.blue{:'data-reveal-id' => "exportModal", :'data-tooltip' => true, title: 'Save as data.json , UTC format'}= "导出"
-            %span.btn.button.tiny#data-sync
+            %span.btn.button.tiny.blue{:'ng-click' => "filterDate($event)", :'data-tooltip' => true, title: '刷新数据，暂停同步'}= "确定"
+            %span.btn.button.tiny.blue{:'data-reveal-id' => "exportModal", :'data-tooltip' => true, title: '保存数据，UTC格式'}= "导出"
+            %span.btn.button.tiny#data-sync{:'data-tooltip' => true, title: '数据同步中'}
               %i.fa.fa-refresh.fa-spin
-            %span.btn.button.tiny#data-stop{:'ng-click' => "startSync($event)"}
+            %span.btn.button.tiny#data-stop{:'ng-click' => "startSync($event)", :'data-tooltip' => true, title: '点击进行同步'}
               %i.fa.fa-refresh
 
     #exportModal.reveal-modal.text-center{:'data-reveal' => true}
