@@ -74,6 +74,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
       order: 'asc'
     $http(config).success (data)->
       $scope.data = data
+      $scope.points = []
       for point in $scope.data.datapoints
         do(point) ->
           tmp = {}
