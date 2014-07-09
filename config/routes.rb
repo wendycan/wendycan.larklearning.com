@@ -3,10 +3,12 @@ LeavesCom::Application.routes.draw do
   root to: "home#index"
 
   get 'home/index', :layout => 'home'
+  get 'home/sales'
+  get 'info/profile'
+
   resources :leaves, only: [:index, :show]
   resources :projects, only: [:index, :show]
   resources :temp, only: [:index]
-  get 'info/profile'
 
   devise_for :users
 

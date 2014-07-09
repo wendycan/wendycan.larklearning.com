@@ -19,10 +19,14 @@
           = link_to temp_index_path, :class => "default" do
             %i.fa.fa-bar-chart-o
             温度监控
+        / %li
+        /   = link_to projects_path, :class => "default" do
+        /     %i.fa.fa-th-large
+        /     所有项目
         %li
-          = link_to projects_path, :class => "default" do
+          = link_to home_sales_path, :class => "default" do
             %i.fa.fa-th-large
-            所有项目
+            售卖
         %li
           = link_to info_profile_path, :class => "default" do
             %i.fa.fa-user

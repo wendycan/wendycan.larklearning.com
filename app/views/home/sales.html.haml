@@ -1,13 +1,9 @@
-.brand
-  .bg
-  .my-img
-    = link_to info_profile_path do
-      = image_tag("me.png")
+.sales
   .content
     .row.show-for-medium-up
       %ul.nav.large-block-grid-6
         %li
-          %a.default{:href => "/#about"} 关于
+          %a.default{:href => "/"} 首页
         %li
           = link_to "叶子拼图", leaves_path, :class => "default"
         %li
@@ -15,7 +11,7 @@
         / %li
         /   = link_to "所有项目", projects_path, :class => "default"
         %li
-          = link_to "售卖", home_sales_path, :class => "default"
+          = link_to "售卖", home_sales_path, :class => "default current"
         %li
           = link_to "简历", info_profile_path, :class => "default"
         %li
@@ -28,29 +24,34 @@
           = link_to "简历", info_profile_path, :class => "default"
         %li
           %a.default{:href => "http://yuetai.wendycan.org"} 阅台
+    .row.text-center.text
+      %br
+      %br
+      %h2 订制属于你的布艺
+  .bg
 .about#about.wrap
   .row.text-center
     .large-12.columns.text
-      %h2 关于我
+      %h2 What Do We Need
       %br
-      %p 一个大胆，新奇，激情的姑娘，热爱生活的点点滴滴
+      %p 平凡的工具，制作不平凡的美妙
     %ul.large-block-grid-4.small-block-grid-2
       %li
-        %i.fa.fa-book.brown-color
+        %i.fa.fa-scissors.brown-color
         %br
-        书籍
+        剪刀
       %li
-        %i.fa.fa-leaf.green-color
+        %i.fa.fa-thumb-tack.orange-color
         %br
-        生物
+        针线
       %li
-        %i.fa.fa-code.blue-color
+        %i.fa.fa-square-o.green-color
         %br
-        编程
+        布料
       %li
-        %i.fa.fa-music.orange-color
+        %i.fa.fa-asterisk.blue-color
         %br
-        音乐
+        棉花
 .blogs.wrap.gray-bg
   .row.text-center
     .large-6.columns
