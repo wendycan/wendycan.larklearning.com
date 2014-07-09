@@ -28,6 +28,7 @@
       %br
       %br
       %h2 订制属于你的布艺
+      %h4 Mr. Yu, Ms. Wang and Mrs. Wei
   .bg
 .about#about.wrap
   .row.text-center
@@ -52,18 +53,134 @@
         %i.fa.fa-asterisk.blue-color
         %br
         棉花
-.blogs.wrap.gray-bg
+.sales-products.wrap.gray-bg
   .row.text-center
     .large-6.columns
-      = image_tag("blogs.png")
+      = image_tag("products.png")
     .large-6.columns
       %br
-      %h2 阅台
+      %h2 What Do We Make
       %br
-      %p 分享技术，经历，想法
-.projects.wrap
+      %p 桌布，布垫，枕头 ……
+.tasks-title.wrap
   .row.text-center
     .large-12.columns
-      %h2 项目
+      %h2 How Do We Make
       %br
-      %p 展示我经营的项目,希望得到你的反馈
+      %p 从选材，设计，加工到出售，我们做了什么
+.tasks
+  .task.wrap.gray-bg
+    .row
+      .large-12.columns
+        %h3 1选材
+  .task.wrap
+    .row
+      .large-12.columns
+        %h3 2设计
+  .task.wrap.gray-bg
+    .row
+      .large-12.columns
+        %h3 3加工
+  .task.wrap
+    .row
+      .large-12.columns
+        %h3 4售后
+.sales-show
+  .wrap.gray-bg
+    .row
+      .large-12.columns.text-center
+        %h2 成品展示
+        %br
+    .row
+      .large-12.columns
+        %ul{:'data-orbit' => true}
+          %li
+            = image_tag "product1.jpg"
+            .orbit-caption
+              椅垫
+          %li
+            = image_tag "product2.jpg"
+            .orbit-caption
+              椅垫
+.members-title
+  .wrap
+    .row
+      .large-12.columns.text-center
+        %h2 成员介绍
+        %p 布艺家族： Mr. Yu, Ms. Wang and Mrs. Wei
+.members
+  .wrap.member.gray-bg
+    .row
+      .large-6.columns
+        = image_tag 'yu.png'
+      .large-6.columns
+        %h3
+          于小心
+          %small Mr. Yu
+        %p
+          %strong 年龄
+          28
+        %p
+          %strong 负责
+          设计，销售
+        %p
+          %strong 爱好
+          工作
+  .wrap.member
+    .row
+      .large-6.columns
+        %h3
+          王小心
+          %small Ms. Wang
+        %p
+          %strong 年龄
+          22
+        %p
+          %strong 负责
+          设计，选材，加工，销售
+        %p
+          %strong 爱好
+          布艺，电子，Web，音乐
+      .large-6.columns
+        = image_tag 'xin.png'
+  .wrap.member.gray-bg
+    .row
+      .large-6.columns
+        = image_tag 'wei.png'
+      .large-6.columns
+        %h3
+          魏小心
+          %small Mrs. Wei
+        %p
+          %strong 年龄
+          48
+        %p
+          %strong 负责
+          设计，选材，加工
+        %p
+          %strong 爱好
+          布艺，斗地主
+.contact-us
+  .wrap
+    .row.wrap
+      .large-5.columns.text-center
+        %p.button.blue
+          %i.fa-phone.fa
+          %span +86 152 9836 7901
+      .large-2.columns.text-center
+        %p
+          %strong OR
+      .large-5.columns.text-center
+        %p.button.blue
+          %i.fa-envelope.fa
+          %span wendy@wendycan.org
+:javascript
+  $(document).foundation({
+  orbit: {
+      animation: 'slide',
+      pause_on_hover: false,
+      resume_on_mouseout: false,
+      timer_speed: 2000,
+      animation_speed: 10
+    }
+  })

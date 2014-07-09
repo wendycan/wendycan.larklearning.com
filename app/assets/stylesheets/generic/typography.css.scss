@@ -72,3 +72,9 @@ td.clipboard-group .js-zeroclipboard {
   position: absolute;
   right: 0;
 }
+.button.blue{
+  background-color: $pri-blue;
+  &:hover{
+    background-color: $primary;
+  }
+}
