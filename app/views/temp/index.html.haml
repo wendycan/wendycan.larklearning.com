@@ -2,10 +2,19 @@
   .ng-controller{:'ng-controller' => "TempCtrl"}
     .wrap.row
       .large-12.columns
-        %h3.wrap 温度实时查看
+        %h3.wrap 心电实时显示
         #legend.right
         %br
         #temp-graph
+    .wrap.row.panel
+      .label.secondary.radius 心率（HR）
+      %span{:'ng-model' => 'heart_rate' } {{heart_rate}}
+      &nbsp;
+      %small bpm
+      %br
+      .label.secondary.radius QRS时间
+      &nbsp;
+      %span{:'ng-model' => 'qrs_time' } {{qrs_time}}
     .wrap.row
       .large-3.columns
         %label.blue.label= '起始'

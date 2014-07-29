@@ -15,13 +15,14 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   $(document).foundation ->
     tooltips:
       disable_for_touch: true
+  $scope.heart_rate = '空'
+  $scope.qrs_time = '空'
 
   $scope.filterDate = (clickevent)->
     start = $('#datetimestart').val()
     end = $('#datetimeend').val()
     $('#loader').show()
     clearInterval(interalId)
-    console.log 'hi'
     $('#data-sync').css 'display', 'none'
     $('#data-stop').css 'display', 'inline-block'
     fetchTempData(new Date(start), new Date(end), ->
@@ -50,7 +51,6 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   setRefresh = ->
     interalId = setInterval ->
       result = initTimePicker()
-      console.log result.end
       fetchTempData(new Date(result.start), new Date(result.end), =>
         $scope.graph.series[0].data = $scope.points
         $scope.graph.render()
@@ -62,8 +62,6 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
       data = $scope.points
     else
       data = [{x:0, y:0}]
-    console.log $scope.points
-    console.log data
     $scope.graph = new Rickshaw.Graph {
       element: document.querySelector('#temp-graph'),
       renderer: 'line',
@@ -94,17 +92,59 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     } )
     $scope.graph.render()
 
+  getAverage= (i, data)->
+    sum = 0
+    k = 0
+    for j in [-1..1]
+      do(j)=>
+        if data[j+i]
+          k++
+          sum += data[j+i].y
+    result = sum/k
+    result
+
+  getSlope = (i, j, data)->
+    slop = (data[i] - data[j])/(i - j)
+
+  getLR = (i, data)->
+
+  addAnalysis = ->
+    data = $scope.points
+    max_avr = {
+      index: -1,
+      v: 0
+    }
+    for i in [0..data.length]
+      do(i)=>
+        avr = getAverage(i, data)
+        if avr >= max_avr.v
+          max_avr.index = i
+          max_avr.v = avr
+    max_avr_t = {
+      index: -1,
+      v: 0
+    }
+    for i in [0..data.length]
+      do(i)=>
+        if i != max_avr.index
+          avr = getAverage(i, data)
+          if avr >= max_avr_t.v
+            max_avr_t.index = i
+            max_avr_t.v = avr
+    $scope.heart_rate = Math.round(60/((max_avr.index - max_avr_t.index) * 1/80))
+    # getLR(i, data)
+
   initTemp = =>
     result = initTimePicker()
 
     fetchTempData(new Date(result.start), new Date(result.end), =>
       initGraph()
+      addAnalysis()
       # setRefresh()
     )
 
   initTimePicker = ->
     now = new Date()
-    console.log now
     end = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds()}"
     start = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds() - 5}"
     $('#datetimestart').datetimepicker({
