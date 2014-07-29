@@ -104,9 +104,31 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     result
 
   getSlope = (i, j, data)->
-    slop = (data[i] - data[j])/(i - j)
+    slop = (data[i].y - data[j].y)/(i - j)
 
-  getLR = (i, data)->
+  getLP = (i, data, max)->
+    if (i <= 0 || i>= data.length)
+      return -1
+    for m in [i..1]
+      slop = getSlope(m, m-1, data)
+      if slop < 0
+        break
+    if (Math.abs(data[m+1].y - data[max].y) > 400 )
+      return m+1
+    else
+      return getLP(m - 1, data, max)
+
+  getRP = (i, data, max)->
+    if (i <= 0 || i >= data.length)
+      return -1
+    for m in [i..(data.length-1)]
+      slop = getSlope(m, m+1, data)
+      if slop > 0
+        break
+    if (Math.abs(data[m-1].y - data[max].y) > 400 )
+      return m-1
+    else
+      return getRP(m + 1, data, max)
 
   addAnalysis = ->
     data = $scope.points
@@ -132,7 +154,9 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
             max_avr_t.index = i
             max_avr_t.v = avr
     $scope.heart_rate = Math.round(60/((max_avr.index - max_avr_t.index) * 1/80))
-    # getLR(i, data)
+    l_index = getLP(max_avr.index, data, max_avr.index)
+    r_index = getRP(max_avr.index, data, max_avr.index)
+    $scope.qrs_time = (r_index - l_index)/80 * 1000
 
   initTemp = =>
     result = initTimePicker()
