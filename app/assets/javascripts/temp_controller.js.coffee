@@ -2,7 +2,7 @@ tempApp = angular.module('tempApp',[])
 
 tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   # functin and variable define
-  url = "http://localhost:3000/data.json"
+  url = "#{Temp.ApiPrefix}/#{Temp.DotideDb}/datastreams/ecg/datapoints"
   config =
     method: "GET"
     url: url
@@ -170,7 +170,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   initTimePicker = ->
     now = new Date()
     end = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds()}"
-    start = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds() - 5}"
+    start = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds() - 3}"
     $('#datetimestart').datetimepicker({
       lang: 'ch',
       value: start
