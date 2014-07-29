@@ -2,7 +2,7 @@ tempApp = angular.module('tempApp',[])
 
 tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   # functin and variable define
-  url = "#{Temp.ApiPrefix}/#{Temp.DotideDb}/datastreams/temp/datapoints"
+  url = "#{Temp.ApiPrefix}/#{Temp.DotideDb}/datastreams/ecg/datapoints"
   config =
     method: "GET"
     url: url
@@ -58,18 +58,26 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     , 3000
 
   initGraph = ->
+    if $scope.points.length > 0
+      data = $scope.points
+    else
+      data = [{x:0, y:0}]
+    console.log $scope.points
+    console.log data
     $scope.graph = new Rickshaw.Graph {
       element: document.querySelector('#temp-graph'),
       renderer: 'line',
       interpolation: 'linear',
       series: [{
         color: "#ff0059",
-        name: '温度',
-        data: $scope.points
+        name: '心电',
+        data: data
         }]
     }
+    time = new Rickshaw.Fixtures.Time()
+    seconds = time.unit('seconds')
     axes = new Rickshaw.Graph.Axis.Time( {
-      # timeUnit: days,
+      timeUnit: seconds,
       graph: $scope.graph
      } )
     y_axis = new Rickshaw.Graph.Axis.Y( {
@@ -88,6 +96,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
 
   initTemp = =>
     result = initTimePicker()
+
     fetchTempData(new Date(result.start), new Date(result.end), =>
       initGraph()
       setRefresh()
@@ -97,7 +106,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     now = new Date()
     console.log now
     end = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds()}"
-    start = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate() - 1} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds()}"
+    start = "#{now.getFullYear()}/#{now.getMonth() + 1}/#{now.getDate()} #{now.getHours()}:#{now.getMinutes()}:#{now.getSeconds() - 5}"
     $('#datetimestart').datetimepicker({
       lang: 'ch',
       value: start
