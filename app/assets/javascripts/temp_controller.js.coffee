@@ -2,7 +2,7 @@ tempApp = angular.module('tempApp',[])
 
 tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   # functin and variable define
-  url = "#{Temp.ApiPrefix}/#{Temp.DotideDb}/datastreams/ecg/datapoints"
+  url = "http://localhost:3000/data.json"
   config =
     method: "GET"
     url: url
@@ -99,7 +99,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
 
     fetchTempData(new Date(result.start), new Date(result.end), =>
       initGraph()
-      setRefresh()
+      # setRefresh()
     )
 
   initTimePicker = ->
