@@ -25,7 +25,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     clearInterval(interalId)
     $('#data-sync').css 'display', 'none'
     $('#data-stop').css 'display', 'inline-block'
-    fetchTempData(new Date(start), new Date(end), ->
+    fetchTempData(new Date(start), new Date(end), 0, 130, ->
       $scope.graph.series[0].data = $scope.points
       $scope.graph.render()
       $('#loader').hide()
@@ -51,11 +51,14 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   setRefresh = ->
     interalId = setInterval ->
       result = initTimePicker()
-      fetchTempData(new Date(result.start), new Date(result.end), =>
+      i = Math.random()
+      m = Math.floor(i * 50)
+      fetchTempData(new Date(result.start), new Date(result.end), m, m + 130, =>
         $scope.graph.series[0].data = $scope.points
         $scope.graph.render()
+        addAnalysis()
       )
-    , 3000
+    , 2000
 
   initGraph = ->
     if $scope.points.length > 0
@@ -130,7 +133,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     else
       return getRP(m + 1, data, max)
 
-  addAnalysis = ->
+  addAnalysis = ()->
     data = $scope.points
     max_avr = {
       index: -1,
@@ -161,10 +164,10 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   initTemp = =>
     result = initTimePicker()
 
-    fetchTempData(new Date(result.start), new Date(result.end), =>
+    fetchTempData(new Date(result.start), new Date(result.end), 0, 130,  =>
       initGraph()
       addAnalysis()
-      # setRefresh()
+      setRefresh()
     )
 
   initTimePicker = ->
@@ -183,7 +186,7 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     $scope.endtime = $('#datetimeend').val()
     {start: start,end: end}
 
-  fetchTempData = (start, end, onSuccess = false)->
+  fetchTempData = (start, end, m, n, onSuccess = false)->
     endIso = end.toISOString()
     startIso = start.toISOString()
     config.params =
@@ -193,8 +196,9 @@ tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
     $http(config).success (data)->
       $scope.data = data
       $scope.points = []
-      for point in $scope.data.datapoints
-        do(point) ->
+      for i in [m..n]
+        do(i)->
+          point = $scope.data.datapoints[i]
           tmp = {}
           date = new Date(point.t)
           tmp.x = Date.parse(date)/1000
