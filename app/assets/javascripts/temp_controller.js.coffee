@@ -2,7 +2,7 @@ tempApp = angular.module('tempApp',[])
 
 tempApp.controller 'TempCtrl', ['$scope', '$http', ($scope, $http)->
   # functin and variable define
-  url = "#{Temp.ApiPrefix}/#{Temp.DotideDb}/datastreams/ecg/datapoints"
+  url = "/data.json"
   config =
     method: "GET"
     url: url
