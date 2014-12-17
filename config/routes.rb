@@ -5,6 +5,8 @@ LeavesCom::Application.routes.draw do
   get 'home/index', :layout => 'home'
   get 'home/sales'
   get 'info/profile'
+  get 'data/companies', :layout => 'data'
+  get 'data/investevents', :layout => 'data'
 
   resources :leaves, only: [:index, :show]
   resources :projects, only: [:index, :show]
