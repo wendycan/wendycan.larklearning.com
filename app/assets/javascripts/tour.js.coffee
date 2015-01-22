@@ -1,22 +1,29 @@
 $(document).ready ->
+  stage = ''
+
   animate = ->
     requestAnimFrame( animate )
     renderer.render(stage)
 
   onAssetsLoaded = ->
-    frames = []
+    # frames = []
+    loaderGraphic = new PIXI.DisplayObjectContainer()
+    loaderMoon = PIXI.Sprite.fromFrame("moon.png")
+    loaderGraphic.addChild(loaderMoon)
+    loaderMoon.position.x = 300
+    loaderMoon.position.y = 300
+    stage.addChild(loaderGraphic)
+    # frames.push(PIXI.Texture.fromFrame("moon.png"))
 
-    frames.push(PIXI.Texture.fromFrame("rollSequence0000" + ".png"))
+    # movie = new PIXI.MovieClip(frames)
 
-    movie = new PIXI.MovieClip(frames)
+    # movie.position.x = 300
+    # movie.position.y = 300
 
-    movie.position.x = 300
-    movie.position.y = 300
-
-    movie.anchor.x = movie.anchor.y =  0.5
-    movie.play()
-    movie.animationSpeed = 0.5
-    stage.addChild(movie)
+    # movie.anchor.x = movie.anchor.y =  0.5
+    # movie.play()
+    # movie.animationSpeed = 0.5
+    # stage.addChild(movie)
 
     # // start animating
     requestAnimFrame(animate)
@@ -24,7 +31,7 @@ $(document).ready ->
   viewWidth = 1024
   viewHeight = 840
 
-  stage = new PIXI.Stage(0x66FF99)
+  stage = new PIXI.Stage(0x0d011a)
   pondFloorTexture = PIXI.Texture.fromImage($("#manifest ul li.space_bg").text())
   pondFloorSprite = new PIXI.Sprite(pondFloorTexture)
   stage.addChild(pondFloorSprite)
