@@ -10,7 +10,8 @@
     "rickshaw": "~1.4.6",
     "datetimepicker": "~2.1.9",
     "FileSaver": "master",
-    "moment": "~2.5.0"
+    "moment": "~2.5.0",
+    "phaser": "2.2.2"
   },
   "private": true
 }

@@ -13,6 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require vendor
+//= require phaser/build/phaser
 
 $(document).foundation();
