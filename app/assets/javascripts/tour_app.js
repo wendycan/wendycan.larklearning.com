@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require phaser/build/phaser
+//= require pixi/bin/pixi.dev
+//= require tour
 
 $(document).foundation();

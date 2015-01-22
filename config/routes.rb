@@ -7,8 +7,8 @@ LeavesCom::Application.routes.draw do
   get 'info/profile'
   get 'data/companies', :layout => 'data'
   get 'data/investevents', :layout => 'data'
-  get 'tour/index', :layout => 'home'
-  get 'tour/show', :layout => 'home'
+  get 'tour/index', :layout => 'tour'
+  get 'tour/show', :layout => 'tour'
 
   resources :leaves, only: [:index, :show]
   resources :projects, only: [:index, :show]

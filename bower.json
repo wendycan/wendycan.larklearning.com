@@ -11,7 +11,7 @@
     "datetimepicker": "~2.1.9",
     "FileSaver": "master",
     "moment": "~2.5.0",
-    "phaser": "2.2.2"
+    "pixi": "2.2.3"
   },
   "private": true
 }
