@@ -5,13 +5,18 @@ $(document).ready ->
   stars = []
   width = $(window).outerWidth()
   height = $(window).outerHeight()
+  step = 0.2
+  maleSprite = ''
+  femailSprite = ''
 
   animate = ->
     for i in [0...star_count]
       stars[i].sprite.position.y = stars[i].y
-      stars[i].y = stars[i].y - 0.1
-      if stars[i].y < 20
+      stars[i].y = stars[i].y - step
+      if stars[i].y < 0
         stars[i].y += height
+      if stars[i].y > height
+        stars[i].y -= height
     renderer.render(stage)
     requestAnimFrame( animate )
 
@@ -19,6 +24,7 @@ $(document).ready ->
     ratio = width / height
     loaderGraphic.position.x = width/2
     loaderGraphic.position.y = height/2
+
 
   drawStars = ->
     starTexture = new PIXI.Texture.fromImage("spacedust.png")
@@ -37,6 +43,7 @@ $(document).ready ->
     loaderGraphic = new PIXI.DisplayObjectContainer()
     loaderGraphic.position.x = 0
     loaderGraphic.position.y = 0
+
     # spacedust.png
     loaderMoon = PIXI.Sprite.fromFrame("moon.png")
     loaderMoon.scale.x = 0.8
@@ -44,8 +51,17 @@ $(document).ready ->
     loaderMoon.position.x = ($(window).outerWidth() - 540*0.8)/2
     loaderMoon.position.y = ($(window).outerHeight() - 540*0.8)/2
     loaderGraphic.addChild(loaderMoon)
+
     stage.addChild(loaderGraphic)
     drawStars()
+
+    $(window).scroll ->
+      delta = $(window).scrollTop()
+      if Math.abs(delta) > 1
+        step = delta / 10 + 0.2
+      else
+        step = 0.1
+
     requestAnimFrame(animate)
 
     # loaderMoon.anchor.x = 0.5
@@ -76,7 +92,7 @@ $(document).ready ->
   # stage.addChild(pondFloorSprite)
 
   renderer = PIXI.autoDetectRenderer(width, height)
-  # renderer.view.className = "rendererView"
+  renderer.view.className = "rendererView"
 
   document.body.appendChild(renderer.view)
 
