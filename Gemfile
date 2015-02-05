@@ -28,7 +28,7 @@ gem 'jquery-rails'
 gem 'foundation-rails'
 
 # Icons
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '~> 4.3.0'
 
 gem 'sunspot_rails'
 group :development do

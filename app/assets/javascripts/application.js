@@ -16,5 +16,6 @@
 //= require vendor
 //= require temp
 //= require leaves
+//= require stars
 
 $(document).foundation();

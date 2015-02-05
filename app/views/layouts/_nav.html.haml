@@ -18,7 +18,7 @@
         %li
           = link_to temp_index_path, :class => "default" do
             %i.fa.fa-bar-chart-o
-            温度监控
+            心电
         / %li
         /   = link_to projects_path, :class => "default" do
         /     %i.fa.fa-th-large
@@ -32,9 +32,13 @@
             %i.fa.fa-user
             简历
         %li
-          = link_to tour_index_path, :class => "default" do
+          = link_to projects_stars_path, :class => "default" do
             %i.fa.fa-heart
-            The Couple
+            收藏
+        %li
+          = link_to tour_index_path, :class => "default" do
+            %i.fa.fa-paw
+            Tour
         %li
           %a.default{:href => "http://yuetai.wendycan.org"}
             %i.fa.fa-bookmark
