@@ -4,5 +4,6 @@
 //= require rickshaw/rickshaw
 //= require datetimepicker/jquery.datetimepicker
 //= require FileSaver/FileSaver
+//= require async/lib/async
 //= require underscore/underscore
 //= require moment/moment
