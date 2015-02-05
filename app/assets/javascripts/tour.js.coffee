@@ -55,12 +55,26 @@ $(document).ready ->
     stage.addChild(loaderGraphic)
     drawStars()
 
-    $(window).scroll ->
-      delta = $(window).scrollTop()
-      if Math.abs(delta) > 1
-        step = delta / 10 + 0.2
-      else
+    # $(window).scroll ->
+    #   console.log 'hihi'
+    #   alert('1')
+    #   delta = $(window).scrollTop()
+    #   if Math.abs(delta) > 1
+    #     step = delta / 10 + 0.2
+    #   else
+    #     step = 0.1
+
+    $(window).keydown (e)->
+      # up
+      if e.which == 38
+        e.preventDefault()
+        step = step + 0.1
+      # down
+      if e.which == 40
+        e.preventDefault
         step = 0.1
+     $(window).keyup (e)->
+        step = 0.2
 
     requestAnimFrame(animate)
 
@@ -84,8 +98,6 @@ $(document).ready ->
 
   # viewWidth = 1024
   # viewHeight = 800
-  width = $(window).outerWidth()
-  height = $(window).outerHeight()
   stage = new PIXI.Stage(0x000000)
   # pondFloorTexture = PIXI.Texture.fromImage($("#manifest ul li.space_bg").text())
   # pondFloorSprite = new PIXI.Sprite(pondFloorTexture)
