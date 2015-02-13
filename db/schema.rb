@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418040107) do
+ActiveRecord::Schema.define(version: 20150213091926) do
 
   create_table "leafs", force: true do |t|
     t.string   "name"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20140418040107) do
     t.string   "name"
     t.text     "desc"
     t.string   "image_url"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "todos", force: true do |t|
+    t.string   "field"
+    t.text     "value"
+    t.boolean  "status"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,6 +1,6 @@
 Dir["#{Rails.root}/app/api/*.rb"].each { |file| require file }
 
-module Leaves
+module Todos
   class Api < Grape::API
     #api
     version 'v1', using: :path
@@ -11,7 +11,6 @@ module Leaves
       {version: '1'}
     end
 
-    mount Auth
-    mount Leaves
+    mount Todos
   end
 end
