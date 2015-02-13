@@ -11,9 +11,12 @@ LeavesCom::Application.routes.draw do
   get 'tour/index', :layout => 'tour'
   get 'tour/show', :layout => 'tour'
 
+  get 'tools/index'
+  get 'tools/ecg'
+  get 'tools/todos'
+
   resources :leaves, only: [:index, :show]
   resources :projects, only: [:index, :show]
-  resources :temp, only: [:index]
 
   devise_for :users
 

@@ -8,19 +8,16 @@
       %ul.nav.large-block-grid-6
         %li
           %a.default{:href => "/#about"} 关于
-        / %li
-        /   = link_to "叶子拼图", leaves_path, :class => "default"
         %li
-          = link_to "温度监控", temp_index_path, :class => "default"
-        / %li
-        /   = link_to "所有项目", projects_path, :class => "default"
+          = link_to "售卖", home_sales_path, :class => "default current"
         %li
-          = link_to "售卖", home_sales_path, :class => "default"
+          = link_to "项目", projects_stars_path, :class => "default"
+        %li
+          = link_to "工具", tools_index_path, :class => "default"
+        %li
+          = link_to "旅程", tour_index_path, :class => "default"
         %li
           = link_to "简历", info_profile_path, :class => "default"
-        %li
-          = link_to tour_index_path, :class => "default" do
-            The Couple
         %li
           %a.default{:href => "http://yuetai.wendycan.org"} 阅台
     .row.show-for-small
