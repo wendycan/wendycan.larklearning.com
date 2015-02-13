@@ -129,7 +129,7 @@ input[type="checkbox"] {
   border-top: 1px dotted #adadad;
 }
 
-label[for='toggle-all'] {
+.todos label[for='toggle-all'] {
   display: none;
 }
 
@@ -220,10 +220,12 @@ label[for='toggle-all'] {
 }
 
 #todo-list li label {
-  white-space: pre;
+  // white-space: pre;
+  font-size: 24px;
   word-break: break-word;
   padding: 15px 60px 15px 15px;
   margin-left: 45px;
+  font-weight: 200;
   display: block;
   line-height: 1.2;
   -webkit-transition: color 0.4s;
