@@ -1,0 +1,20 @@
+.tools {
+  li a {
+    display: block;
+    text-align: center;
+    border: solid 1px $gray-border;
+
+    img {
+      width: 70%;
+    }
+
+    small {
+      color: $gray-text;
+    }
+
+    &:hover {
+      opacity: .7;
+      background-color: $gray-bg;
+    }
+  }
+}
