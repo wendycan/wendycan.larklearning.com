@@ -20,7 +20,6 @@ var app = app || {};
 		// Delegated events for creating new items, and clearing completed ones.
 		events: {
 			'keypress #new-todo': 'createOnEnter',
-			'click #clear-completed': 'clearCompleted',
 			'click #toggle-all': 'toggleAllComplete'
 		},
 
@@ -108,14 +107,16 @@ var app = app || {};
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
 				app.todos.create(this.newAttributes());
+				$.ajax({
+					type: 'POST',
+					url: '/api/v1/todos',
+					data: this.newAttributes(),
+					success: function(data){
+						// console.log(data);
+					}
+				});
 				this.$input.val('');
 			}
-		},
-
-		// Clear all completed todo items, destroying their models.
-		clearCompleted: function () {
-			_.invoke(app.todos.completed(), 'destroy');
-			return false;
 		},
 
 		toggleAllComplete: function () {

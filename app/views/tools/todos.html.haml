@@ -18,7 +18,7 @@
     %label
       <%-  title %>
     %button.destroy
-  %input.edit{value: "<%- title %>"}
+  %input.edit{value: '<%- title %>'}
 
 %script{id: 'stats-template', type: 'text/template'}
   %span#todo-count
@@ -33,9 +33,5 @@
       %a{:href => "#/active"} Active
     %li
       %a{:href => "#/completed"} Completed
-  <% if (completed) { %>
-  %button#clear-completed
-    Clear completed (<%= completed %>)
-  <% } %>
 
 = javascript_include_tag "backbone"

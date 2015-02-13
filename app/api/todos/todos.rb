@@ -24,8 +24,8 @@ module Todos
         # if user
           # create todo
         todo = Todo.new(params[:todo])
-        todo.field = params[:field]
-        todo.value = params[:value]
+        todo.title = params[:title]
+        todo.group = params[:group]
         todo.user = User.last
         if todo.save
           {status: 201}
