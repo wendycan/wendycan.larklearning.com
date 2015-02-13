@@ -1,13 +1,17 @@
 .top-bar{
+  height: 3.8rem;
   a{
     font-weight: bold !important;
+  }
+  .name {
+    height: 3.8rem;
   }
   .title-area{
     a{
       img{
-        height: 50px;
+        height: 45px;
         width: auto;
-        margin-top: -10px;
+        margin-top: -25px;
         border-radius: 50%;
       }
       &:hover{
@@ -19,6 +23,12 @@
   }
   li a{
     padding-left: 0 !important;
+  }
+  .top-bar-section ul {
+    font-size: 18px;
+  }
+  .top-bar-section li:not(.has-form) a:not(.button) {
+    line-height: 3.8rem;
   }
 }
 .tab-bar img{
