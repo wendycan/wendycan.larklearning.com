@@ -6,4 +6,5 @@
 //= require FileSaver/FileSaver
 //= require async/lib/async
 //= require underscore/underscore
+//= require backbone/backbone
 //= require moment/moment
