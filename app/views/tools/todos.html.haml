@@ -14,11 +14,11 @@
 
 %script{id: 'item-template', type: 'text/template'}
   .view
-    %input.toggle{type: 'checkbox', checked: '<%- completed ? "checked" : "" %>'}
+    %input.toggle{type: 'checkbox', 'checked' => "<%- completed ? 'checked' : '' %>"}
     %label
       <%-  title %>
     %button.destroy
-  %input.edit{value: '<%- title %>'}
+  %input.edit{value: '<%= title %>'}
 
 %script{id: 'stats-template', type: 'text/template'}
   %span#todo-count

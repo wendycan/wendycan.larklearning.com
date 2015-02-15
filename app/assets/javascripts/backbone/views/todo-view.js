@@ -47,7 +47,9 @@ var app = app || {};
 			if (this.model.changed.id !== undefined) {
 				return;
 			}
-
+			if (this.model.get('completed') !== true) {
+				this.model.set('completed', false);
+			}
 			this.$el.html(this.template(this.model.toJSON()));
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.toggleVisible();
