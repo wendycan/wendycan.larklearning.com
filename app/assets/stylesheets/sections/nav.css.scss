@@ -30,6 +30,9 @@
   .top-bar-section li:not(.has-form) a:not(.button) {
     line-height: 3.8rem;
   }
+  .top-bar-section li:not(.has-form) a:not(.button) {
+    padding-right: 1.5rem;
+  }
 }
 .tab-bar img{
   height: 50px;
