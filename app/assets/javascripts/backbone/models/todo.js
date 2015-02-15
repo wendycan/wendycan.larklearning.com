@@ -17,8 +17,9 @@ var app = app || {};
 		},
 
 		// Toggle the `completed` state of this todo item.
-		toggle: function () {
+		toggle: function (auth_token) {
 			this.save({
+				auth_token: auth_token,
 				completed: !this.get('completed')
 			});
 		}

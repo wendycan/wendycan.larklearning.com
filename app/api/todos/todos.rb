@@ -36,6 +36,7 @@ module Todos
           todo = Todo.find(params[:id])
           todo.title = params[:title]
           todo.group = params[:group]
+          todo.completed = params[:completed]
           if todo.save
             {status: 200}
           else
@@ -51,6 +52,7 @@ module Todos
         todo = Todo.new(params[:todo])
         todo.title = params[:title]
         todo.group = params[:group]
+        todo.completed = params[:completed]
         todo.user = User.last
         if todo.save
           {status: 201}

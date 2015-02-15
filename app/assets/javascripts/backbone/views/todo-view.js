@@ -69,7 +69,7 @@ var app = app || {};
 
 		// Toggle the `"completed"` state of the model.
 		toggleCompleted: function () {
-			this.model.toggle();
+			this.model.toggle(app.user.auth_token);
 		},
 
 		// Switch this view into `"editing"` mode, displaying the input field.
