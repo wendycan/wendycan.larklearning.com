@@ -19,6 +19,7 @@ module Todos
 
       def authenticate!
         error!('401 Unauthorized', 401) unless current_user
+        error!('400 Not found', 400) unless current_user.has_todos
       end
 
       def locate_user

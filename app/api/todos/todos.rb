@@ -5,9 +5,8 @@ module Todos
       desc 'Get all todos'
       get do
         authenticate!
-        user = User.find_by_email(params[:email])
-        if !user.nil?
-          todos = user.todos
+        if !@current_user.nil?
+          todos = @current_user.todos
         else
           todos = Todo.all
         end
@@ -53,7 +52,7 @@ module Todos
         todo.title = params[:title]
         todo.group = params[:group]
         todo.completed = params[:completed]
-        todo.user = User.last
+        todo.user = @current_user
         if todo.save
           {status: 201}
         else
