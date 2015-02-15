@@ -2,18 +2,19 @@
   <div class="row">
     <div class="large-8 large-centered columns">
       <h3>登录</h3>
+      <br>
     </div>
   </div>
   <div class="row">
     <div class="large-8 large-centered columns">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.label :email %><br />
+          <%= f.label :email, '邮箱' %>
           <%= f.email_field :email, autofocus: true %>
         </div>
 
         <div class="field">
-          <%= f.label :password %><br />
+          <%= f.label :password, '密码' %>
           <%= f.password_field :password, autocomplete: "off" %>
         </div>
 
@@ -25,7 +26,9 @@
         <% end -%>
 
         <div class="actions">
-          <%= f.submit "Log in", 'class' => 'button' %>
+          <%= f.submit "登录", 'class' => 'button' %>
+          &nbsp;
+          <%= link_to "注册", new_registration_path(resource_name) %>
         </div>
       <% end %>
     </div>
