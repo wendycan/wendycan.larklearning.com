@@ -48,7 +48,10 @@ var app = app || {};
 				dataType: 'json',
 				success: function (data) {
 					app.user = data;
-					app.todos.fetch({reset: true});
+					app.todos.fetch({
+						reset: true,
+						headers: {'Auth-Token' : app.user.auth_token}
+					});
 				}
 			});
 		},
@@ -113,7 +116,7 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.todos.create(this.newAttributes());
+				app.todos.create(this.newAttributes(), {headers: {'Auth-Token' : app.user.auth_token}});
 				this.$input.val('');
 			}
 		},
@@ -124,7 +127,7 @@ var app = app || {};
 			app.todos.each(function (todo) {
 				todo.save({
 					completed: completed
-				});
+				}, {headers: {'Auth-Token' : app.user.auth_token}});
 			});
 		}
 	});

@@ -22,7 +22,7 @@ module Todos
       end
 
       def locate_user
-        token = params['auth_token']
+        token = params['auth_token'] || headers['Auth-Token']
         User.find_by(authentication_token: token) if token.present?
       end
     end

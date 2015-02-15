@@ -7,5 +7,4 @@
 //= require async/lib/async
 //= require underscore/underscore
 //= require backbone/backbone
-//= require backbone.localStorage/backbone.localStorage
 //= require moment/moment
