@@ -16,13 +16,17 @@
             %i.fa.fa-cny
             售卖
         %li
-          = link_to projects_stars_path, :class => "default" do
-            %i.fa.fa-github-alt
-            项目
+          = link_to todos_index_path, :class => "default" do
+            %i.fa.fa-tasks
+            Todos
+        / %li
+        /   = link_to projects_stars_path, :class => "default" do
+        /     %i.fa.fa-github-alt
+        /     项目
         %li
           = link_to tools_index_path, :class => "default" do
-            %i.fa.fa-wrench
-            工具
+            %i.fa.fa-th
+            项目
         %li
           = link_to tour_index_path, :class => "default" do
             %i.fa.fa-paw

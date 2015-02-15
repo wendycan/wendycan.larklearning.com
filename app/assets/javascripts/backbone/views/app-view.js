@@ -46,7 +46,7 @@ var app = app || {};
 			// event is triggered at the end of the fetch.
 			// console.log(app.todos);
 			$.ajax({
-				url: '/tools/todos',
+				url: '/todos/index',
 				dataType: 'json',
 				success: function (data) {
 					app.user = data;
