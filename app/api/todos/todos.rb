@@ -13,9 +13,29 @@ module Todos
       end
 
       route_param :id, requirements: /[^\/]+/ do
+        desc  'Get a todo'
         get do
           todo = Todo.find(params[:id])
           {todo: todo}
+        end
+
+        desc 'Delete a todo'
+        delete do
+          todo = Todo.find(params[:id])
+          todo.destroy!
+          status 204
+        end
+
+        desc 'Update a domain'
+        put do
+          todo = Todo.find(params[:id])
+          todo.title = params[:title]
+          todo.group = params[:group]
+          if todo.save
+            {status: 200}
+          else
+            {errors: 'todo update failed'}
+          end
         end
       end
 
