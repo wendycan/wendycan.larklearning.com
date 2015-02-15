@@ -1,2 +1,2 @@
 json.email @user.email
-json.token @user.encrypted_password
+json.auth_token @user.authentication_token

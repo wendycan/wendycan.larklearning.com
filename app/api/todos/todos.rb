@@ -4,6 +4,7 @@ module Todos
     resource :todos do
       desc 'Get all todos'
       get do
+        authenticate!
         user = User.find_by_email(params[:email])
         if !user.nil?
           todos = user.todos
@@ -16,12 +17,14 @@ module Todos
       route_param :id, requirements: /[^\/]+/ do
         desc  'Get a todo'
         get do
+          authenticate!
           todo = Todo.find(params[:id])
           {todo: todo}
         end
 
         desc 'Delete a todo'
         delete do
+          authenticate!
           todo = Todo.find(params[:id])
           todo.destroy!
           status 204
@@ -29,6 +32,7 @@ module Todos
 
         desc 'Update a domain'
         put do
+          authenticate!
           todo = Todo.find(params[:id])
           todo.title = params[:title]
           todo.group = params[:group]
