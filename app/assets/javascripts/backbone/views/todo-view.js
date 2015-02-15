@@ -17,6 +17,7 @@ var app = app || {};
 
 		// The DOM events specific to an item.
 		events: {
+			'change select': 'updateGroup',
 			'click .toggle': 'toggleCompleted',
 			'dblclick label': 'edit',
 			'click .destroy': 'clear',
@@ -71,7 +72,11 @@ var app = app || {};
 		toggleCompleted: function () {
 			this.model.toggle(app.user.auth_token);
 		},
-
+		updateGroup: function (e) {
+			var $this = $(e.currentTarget);
+			this.model.set('group', $this.val());
+			this.model.save({auth_token: app.user.auth_token});
+		},
 		// Switch this view into `"editing"` mode, displaying the input field.
 		edit: function () {
 			this.$el.addClass('editing');

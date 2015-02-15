@@ -94,6 +94,7 @@ input[type="checkbox"] {
 .edit {
   position: relative;
   margin: 0;
+  margin-left: 100px;
   width: 100%;
   font-size: 24px;
   font-family: inherit;
@@ -203,6 +204,19 @@ input[type="checkbox"] {
   appearance: none;
 }
 
+.todos select {
+  width: 100px;
+  position: absolute;
+  left: 47px;
+  margin-top: 10px;
+  opacity: 0;
+}
+
+.todos span.group {
+  position: absolute;
+  left: 47px;
+  z-index: -1;
+}
 #todo-list li .toggle:after {
   content: '✔';
   /* 40 + a couple of pixels visual adjustment */
@@ -224,7 +238,7 @@ input[type="checkbox"] {
   font-size: 24px;
   word-break: break-word;
   padding: 15px 60px 15px 15px;
-  margin-left: 45px;
+  margin-left: 145px;
   font-weight: 200;
   display: block;
   line-height: 1.2;
