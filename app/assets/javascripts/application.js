@@ -15,6 +15,6 @@
 //= require foundation
 //= require vendor
 //= require temp
-//= require leaves
+//= require app-backbone
 
 $(document).foundation();
