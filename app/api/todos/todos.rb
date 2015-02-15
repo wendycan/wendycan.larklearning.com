@@ -9,7 +9,7 @@ module Todos
         else
           todos = Todo.all
         end
-        {todos: todos}
+        todos
       end
 
       route_param :id, requirements: /[^\/]+/ do

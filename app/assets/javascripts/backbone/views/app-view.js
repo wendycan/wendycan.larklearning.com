@@ -71,7 +71,6 @@ var app = app || {};
 
 			this.allCheckbox.checked = !remaining;
 		},
-
 		// Add a single todo item to the list by creating a view for it, and
 		// appending its element to the `<ul>`.
 		addOne: function (todo) {
