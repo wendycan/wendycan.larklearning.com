@@ -1,5 +1,6 @@
 module Todos
   class Todos < Grape::API
+
     resource :todos do
       desc 'Get all todos'
       get do
@@ -40,7 +41,7 @@ module Todos
       end
 
       post do
-        # user = authenticate_user_from_token!
+        authenticate!
         # if user
           # create todo
         todo = Todo.new(params[:todo])
