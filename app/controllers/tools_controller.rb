@@ -4,5 +4,6 @@ class ToolsController < ApplicationController
   end
 
   def todos
+    @user = current_user
   end
 end

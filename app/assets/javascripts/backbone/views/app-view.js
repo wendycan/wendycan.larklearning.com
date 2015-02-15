@@ -38,11 +38,19 @@ var app = app || {};
 			this.listenTo(app.todos, 'change:completed', this.filterOne);
 			this.listenTo(app.todos, 'filter', this.filterAll);
 			this.listenTo(app.todos, 'all', this.render);
-
+			app.user = {};
 			// Suppresses 'add' events with {reset: true} and prevents the app view
 			// from being re-rendered for every model. Only renders when the 'reset'
 			// event is triggered at the end of the fetch.
-			app.todos.fetch({reset: true});
+			// console.log(app.todos);
+			$.ajax({
+				url: '/tools/todos',
+				dataType: 'json',
+				success: function (data) {
+					app.user = data;
+					app.todos.fetch({reset: true});
+				}
+			});
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest
@@ -106,14 +114,6 @@ var app = app || {};
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
 				app.todos.create(this.newAttributes());
-				$.ajax({
-					type: 'POST',
-					url: '/api/v1/todos',
-					data: this.newAttributes(),
-					success: function(data){
-						// console.log(data);
-					}
-				});
 				this.$input.val('');
 			}
 		},
