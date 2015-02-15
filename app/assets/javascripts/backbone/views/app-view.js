@@ -19,6 +19,7 @@ var app = app || {};
 
 		// Delegated events for creating new items, and clearing completed ones.
 		events: {
+			'change #new-todo-group': 'updateTodoGroup',
 			'keypress #new-todo': 'createOnEnter',
 			'click #toggle-all': 'toggleAllComplete'
 		},
@@ -83,6 +84,12 @@ var app = app || {};
 
 			this.allCheckbox.checked = !remaining;
 		},
+
+		updateTodoGroup: function (e) {
+			var $this = $(e.currentTarget);
+			$this.siblings('.group').text($this.val());
+		},
+
 		// Add a single todo item to the list by creating a view for it, and
 		// appending its element to the `<ul>`.
 		addOne: function (todo) {

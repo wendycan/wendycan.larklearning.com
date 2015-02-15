@@ -90,12 +90,20 @@ input[type="checkbox"] {
   border-top-right-radius: 1px;
 }
 
+#header .group {
+  z-index: 2;
+}
+
+#header select {
+  z-index: 3;
+}
+
 #new-todo,
 .edit {
   position: relative;
   margin: 0;
-  margin-left: 100px;
-  width: 100%;
+  margin-left: 120px;
+  width: 86%;
   font-size: 24px;
   font-family: inherit;
   line-height: 1.4em;
@@ -117,7 +125,7 @@ input[type="checkbox"] {
 }
 
 #new-todo {
-  padding: 16px 16px 16px 60px;
+  padding: 16px;
   border: none;
   background: rgba(0, 0, 0, 0.02);
   z-index: 2;
@@ -215,8 +223,15 @@ input[type="checkbox"] {
 .todos span.group {
   position: absolute;
   left: 47px;
+  color: #6f625d;
   z-index: -1;
+  line-height: 58px;
+  font-size: 14px;
+  font-style: italic;
+  font-family: monospace;
+  text-indent: 10px;
 }
+
 #todo-list li .toggle:after {
   content: '✔';
   /* 40 + a couple of pixels visual adjustment */
@@ -238,7 +253,7 @@ input[type="checkbox"] {
   font-size: 24px;
   word-break: break-word;
   padding: 15px 60px 15px 15px;
-  margin-left: 145px;
+  margin-left: 122px;
   font-weight: 200;
   display: block;
   line-height: 1.2;
@@ -262,6 +277,7 @@ input[type="checkbox"] {
   margin: auto 0;
   font-size: 22px;
   color: #a88a8a;
+  background: none;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
