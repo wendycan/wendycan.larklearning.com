@@ -1,0 +1,9 @@
+= if !notice.nil?
+  .alert-box{'data-alert' => true}
+    %p.info= notice
+    %a{href:"#", class: "close"} &times;
+
+= if !alert.nil?
+  .alert-box{'data-alert' => true}
+    %p.warnning= alert
+    %a{href:"#", class: "close"} &times;

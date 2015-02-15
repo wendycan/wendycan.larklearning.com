@@ -3,10 +3,7 @@
   = render :partial => 'layouts/head'
 
 %body
-  = if !notice.nil?
-    %p.notice= notice
-  = if !alert.nil?
-    %p.alert= alert
+  //= render :partial => 'layouts/hint'
 
   = yield
   = render :partial => 'layouts/footer'
