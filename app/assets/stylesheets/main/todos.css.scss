@@ -1,21 +1,31 @@
-button {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  font-size: 100%;
-  vertical-align: baseline;
-  font-family: inherit;
-  color: inherit;
-  -webkit-appearance: none;
-  -ms-appearance: none;
-  -o-appearance: none;
-  appearance: none;
-}
-
 button,
 input[type="checkbox"] {
   outline: none;
+}
+
+.time-pickers {
+  position: absolute;
+  bottom: 7px;
+  right: 80px;
+
+  span, input {
+    color: #7e5b4e;
+    font-size: 15px;
+  }
+
+  input {
+    height: 40px;
+    width: 60px;
+    text-align: center;
+    font-family: monospace;
+    border: none;
+
+    &:hover {
+      cursor: default;
+      color: #472e24;
+      font-size: 17px;
+    }
+  }
 }
 
 #todoapp {
@@ -223,7 +233,7 @@ input[type="checkbox"] {
 .todos span.group {
   position: absolute;
   left: 47px;
-  color: #6f625d;
+  color: #7e5b4e;
   z-index: -1;
   line-height: 58px;
   font-size: 14px;
@@ -269,9 +279,8 @@ input[type="checkbox"] {
 #todo-list li .destroy {
   display: none;
   position: absolute;
-  top: 0;
   right: 10px;
-  bottom: 0;
+  bottom: 15px;
   width: 40px;
   height: 40px;
   margin: auto 0;

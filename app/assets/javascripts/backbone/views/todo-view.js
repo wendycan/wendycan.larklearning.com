@@ -52,6 +52,31 @@ var app = app || {};
 				this.model.set('completed', false);
 			}
 			this.$el.html(this.template(this.model.toJSON()));
+			var _this = this;
+			var start_date = new Date(this.model.get('start_at'));
+			var end_date = new Date(this.model.get('end_at'));
+			var start_input = $(this.$el.find('.time-pickers input')[0]).datetimepicker({
+				datepicker: false,
+				format:'H:i',
+				value: start_date.getHours() + ':' +start_date.getMinutes(),
+				onChangeDateTime: function(dp,$input){
+					start_date.setHours($input.val().split(':')[0]);
+					start_date.setMinutes($input.val().split(':')[1]);
+					_this.model.set({start_at: start_date.toISOString()});
+					_this.model.save({auth_token: app.user.auth_token});
+				}
+			});
+			var end_input = $(this.$el.find('.time-pickers input')[1]).datetimepicker({
+				datepicker: false,
+				format:'H:i',
+				value: end_date.getHours() + ':' +end_date.getMinutes(),
+				onChangeDateTime: function(dp,$input){
+					end_date.setHours($input.val().split(':')[0]);
+					end_date.setMinutes($input.val().split(':')[1]);
+					_this.model.set({end_at: end_date.toISOString()});
+					_this.model.save({auth_token: app.user.auth_token});
+				}
+			});
 			this.$el.toggleClass('completed', this.model.get('completed'));
 			this.toggleVisible();
 			this.$input = this.$('.edit');

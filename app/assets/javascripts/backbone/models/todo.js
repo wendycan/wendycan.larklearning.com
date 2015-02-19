@@ -14,7 +14,10 @@ var app = app || {};
 		defaults: {
 			title: '',
 			group: 'work',
-			completed: false
+			completed: false,
+			created_at: '',
+			start_at: '',
+			end_at: ''
 		},
 
 		// Toggle the `completed` state of this todo item.

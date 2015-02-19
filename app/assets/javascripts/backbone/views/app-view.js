@@ -117,6 +117,8 @@ var app = app || {};
 				title: this.$input.val().trim(),
 				order: app.todos.nextOrder(),
 				group: $('#header select').val(),
+				start_at: new Date(),
+				end_at: new Date(),
 				completed: false
 			};
 		},

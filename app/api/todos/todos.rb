@@ -35,6 +35,8 @@ module Todos
           todo = Todo.find(params[:id])
           todo.title = params[:title]
           todo.group = params[:group]
+          todo.start_at = params[:start_at]
+          todo.end_at = params[:end_at]
           todo.completed = params[:completed]
           if todo.save
             {status: 200}
@@ -51,6 +53,8 @@ module Todos
         todo = Todo.new(params[:todo])
         todo.title = params[:title]
         todo.group = params[:group]
+        todo.start_at = params[:start_at]
+        todo.end_at = params[:end_at]
         todo.completed = params[:completed]
         todo.user = @current_user
         if todo.save
