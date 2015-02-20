@@ -1,0 +1,24 @@
+!!!5
+%head
+  = render :partial => 'layouts/head'
+
+%body
+  %nav.top-bar{'data-topbar' => true, 'role' => 'navigation'}
+    %ul.title-area
+      %li.name
+        %h1
+          %a{:href => "#"} Cherish
+    .top-bar-section
+      %ul.right
+        %li
+          %a{:href => "#todos"} Todos
+        %li
+          %a{:href => "#history"} History
+        %li
+          %a{:href => "#long_term"} Long-term
+        %li
+          %a{:href => "#"} Logout
+  //= render :partial => 'layouts/hint'
+
+  = yield
+  = render :partial => 'layouts/footer'

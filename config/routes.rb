@@ -2,14 +2,14 @@ LeavesCom::Application.routes.draw do
 
   root to: "home#index"
 
-  get 'home/index', :layout => 'home'
+  get 'home/index'
   get 'home/sales'
   get 'projects/stars', :path => 'stars'
   get 'info/profile'
-  get 'data/companies', :layout => 'data'
-  get 'data/investevents', :layout => 'data'
-  get 'tour/index', :layout => 'tour'
-  get 'tour/show', :layout => 'tour'
+  get 'data/companies'
+  get 'data/investevents'
+  get 'tour/index'
+  get 'tour/show' #, :layout => 'tour'
 
   get 'tools/index'
   get 'tools/ecg'
