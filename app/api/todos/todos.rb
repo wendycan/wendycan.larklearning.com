@@ -39,7 +39,7 @@ module Todos
           todo.end_at = params[:end_at]
           todo.completed = params[:completed]
           if todo.save
-            {status: 200}
+            todo
           else
             {errors: 'todo update failed'}
           end
@@ -58,7 +58,7 @@ module Todos
         todo.completed = params[:completed]
         todo.user = @current_user
         if todo.save
-          {status: 201}
+          todo
         else
           {errors: 'todo create failed'}
         end
