@@ -10,8 +10,6 @@ var app = app || {};
   // The DOM element for a todo item...
   app.LongTermView = app.BaseView.extend({
 
-    template: _.template($('#t-long-term').html()),
-
     // The DOM events specific to an item.
     events: {
       'change select': 'updateGroup',
@@ -23,14 +21,9 @@ var app = app || {};
       // 'blur .edit': 'close'
     },
 
-    initialize: function () {
-      // this.listenTo(this.model, 'change', this.render);
-      // this.listenTo(this.model, 'destroy', this.remove);
-      // this.listenTo(this.model, 'visible', this.toggleVisible);
-    },
-
     // Re-render the titles of the todo item.
     render: function () {
+      $('#todoapp').html(_.template($('#t-long-term').html()));
       return this;
     },
   });

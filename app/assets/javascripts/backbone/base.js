@@ -23,6 +23,8 @@ var app = app || {};
             window.location.href = '/users/sign_in';
           }
         });
+      } else {
+        _this.render();
       }
     },
 

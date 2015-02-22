@@ -20,7 +20,7 @@ var app = app || {};
 			'change select': 'updateGroup',
 			'click .toggle': 'toggleCompleted',
 			'dblclick label': 'edit',
-			'click .destroy': 'clear',
+			'click .destroy': 'destroyTodo',
 			'keypress .edit': 'updateOnEnter',
 			'keydown .edit': 'revertOnEscape',
 			'blur .edit': 'close'
@@ -149,7 +149,11 @@ var app = app || {};
 				this.$input.val(this.model.get('title'));
 			}
 		},
-
+		destroyTodo: function () {
+			if(confirm('确定删除这条 todo ?')){
+				this.clear();
+			}
+		},
 		// Remove the item, destroy the model from *localStorage* and delete its view.
 		clear: function () {
 			this.model.destroy({headers: {'Auth-Token' : this.auth_token}});

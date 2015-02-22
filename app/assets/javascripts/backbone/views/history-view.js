@@ -12,13 +12,7 @@ var app = app || {};
 
     // The DOM events specific to an item.
     events: {
-      'change select': 'updateGroup',
-      // 'click .toggle': 'toggleCompleted',
-      // 'dblclick label': 'edit',
-      // 'click .destroy': 'clear',
-      // 'keypress .edit': 'updateOnEnter',
-      // 'keydown .edit': 'revertOnEscape',
-      // 'blur .edit': 'close'
+      'change select': 'updateGroup'
     },
 
     // Re-render the titles of the todo item.

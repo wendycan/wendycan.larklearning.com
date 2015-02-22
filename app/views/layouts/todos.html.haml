@@ -17,7 +17,7 @@
         %li
           %a{:href => "#long_term"} Long-term
         %li
-          %a{:href => "#"} Logout
+          = link_to 'Logout', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
   //= render :partial => 'layouts/hint'
 
   = yield
