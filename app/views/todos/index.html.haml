@@ -1,10 +1,10 @@
 .wrap
   .row
     .large-10.columns-large-center
-      %section#todoapp
+      #todoapp
 
 %script{id: 't-todos', type: 'text/template'}
-  %header#header
+  #header
     %h1 Todos
     %span.group work
     %select#new-todo-group
@@ -63,6 +63,11 @@
 
 %script{id: 't-history', type: 'text/template'}
   %h1 History
+  #records
+  #paginator
+
+%script{id: 't-record', type: 'text/template'}
+  %li <%= title %>
 
 %script{id: 't-long-term', type: 'text/template'}
   %h1 Long Term

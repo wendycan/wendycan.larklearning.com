@@ -19,6 +19,7 @@ var app = app || {};
 			start_at: '',
 			end_at: ''
 		},
+		urlRoot: '/api/v1/todos',
 
 		// Toggle the `completed` state of this todo item.
 		toggle: function (auth_token) {

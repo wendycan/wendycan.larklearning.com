@@ -10,15 +10,39 @@ var app = app || {};
   // The DOM element for a todo item...
   app.HistoryView = app.BaseView.extend({
 
-    // The DOM events specific to an item.
-    events: {
-      'change select': 'updateGroup'
-    },
-
-    // Re-render the titles of the todo item.
     render: function () {
+      this.listenTo(app.records, 'reset', this.renderRecords);
       $('#todoapp').html(_.template($('#t-history').html()));
+      var _this = this;
+      app.records.fetch({
+        reset: true,
+        data: {
+          paging: true
+        },
+        headers: {'Auth-Token' : this.account.get('auth_token')},
+        success: function (records) {
+          console.log(app.records);
+          _this.renderRecords();
+          _this.renerPaginator();
+        }
+      });
       return this;
     },
+
+    renerPaginator: function () {
+      var paginator = new Paginator({
+        collection: app.records
+      });
+      $("#paginator").append(paginator.render().$el);
+    },
+
+    renderRecords: function () {
+      $('#records').html('');
+      app.records.each(this.renderRecord, this);
+    },
+
+    renderRecord: function (record) {
+      $('#records').append(_.template($('#t-record').html())(record.toJSON()));
+    }
   });
 })(jQuery);

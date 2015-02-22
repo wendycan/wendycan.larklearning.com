@@ -7,10 +7,15 @@ module Todos
         authenticate!
         if !@current_user.nil?
           todos = @current_user.todos
+          paging = params[:paging]
+          if paging
+            {total_count: todos.count , todos: todos = todos.paginate(:page => params[:page])}
+          else
+            todos = Todo.all
+          end
         else
-          todos = Todo.all
+          {errors: 'user not found'}
         end
-        todos
       end
 
       route_param :id, requirements: /[^\/]+/ do

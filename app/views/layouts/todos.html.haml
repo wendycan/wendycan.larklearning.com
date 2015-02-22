@@ -13,9 +13,9 @@
         %li
           %a{:href => "#todos"} Todos
         %li
-          %a{:href => "#history"} 历史
+          %a{:href => "#history"} 历史记录
         %li
-          %a{:href => "#long_term"} 长期
+          %a{:href => "#long_term"} 长期目标
         %li
           = link_to '登出', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
   //= render :partial => 'layouts/hint'

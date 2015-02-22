@@ -7,4 +7,6 @@
 //= require async/lib/async
 //= require underscore/underscore
 //= require backbone/backbone
+//= require backbone.paginator/lib/backbone.paginator
+//= require paginator
 //= require moment/moment

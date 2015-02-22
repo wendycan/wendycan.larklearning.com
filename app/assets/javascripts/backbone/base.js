@@ -17,6 +17,7 @@ var app = app || {};
       if (this.account.get('unsync')) {
         this.account.fetch_account({
           success: function (data) {
+            app.auth_token = data.auth_token;
             _this.render();
           },
           error: function () {

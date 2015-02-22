@@ -1,7 +1,7 @@
 //= require_self
+//= require ./backbone/base
 //= require_tree ./backbone/models
 //= require_tree ./backbone/collections
-// = require ./backbone/base
 //= require ./backbone/views/todo-view
 //= require ./backbone/views/app-view
 //= require ./backbone/views/history-view
