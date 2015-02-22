@@ -2,7 +2,7 @@
 %head
   = render :partial => 'layouts/head'
 
-%body
+%body.todos
   %nav.top-bar{'data-topbar' => true, 'role' => 'navigation'}
     %ul.title-area
       %li.name
@@ -13,11 +13,11 @@
         %li
           %a{:href => "#todos"} Todos
         %li
-          %a{:href => "#history"} History
+          %a{:href => "#history"} 历史
         %li
-          %a{:href => "#long_term"} Long-term
+          %a{:href => "#long_term"} 长期
         %li
-          = link_to 'Logout', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
+          = link_to '登出', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
   //= render :partial => 'layouts/hint'
 
   = yield
