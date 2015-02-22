@@ -8,7 +8,15 @@ var app = app || {};
 	// ----------
 	var TodoRouter = Backbone.Router.extend({
 		routes: {
-			'*filter': 'setFilter'
+			'': 'setTodos',
+			'order/*filter': 'setFilter',
+			'todos' : 'setTodos',
+			'history' : 'setHistory',
+			'long_term' : 'setLongTerm',
+		},
+
+		initialize: function () {
+
 		},
 
 		setFilter: function (param) {
@@ -18,9 +26,23 @@ var app = app || {};
 			// Trigger a collection filter event, causing hiding/unhiding
 			// of Todo view items
 			app.todos.trigger('filter');
+		},
+
+		setTodos: function () {
+			var todos_view = new app.AppView();
+			todos_view.render();
+		},
+
+		setHistory: function () {
+			var history_view = new app.HistoryView();
+			history_view.render();
+		},
+
+		setLongTerm: function () {
+			var long_term_view = new app.LongTermView();
+			long_term_view.render();
 		}
 	});
 
-	app.TodoRouter = new TodoRouter();
-	Backbone.history.start();
+	app.TodoRouter = TodoRouter;
 })();
