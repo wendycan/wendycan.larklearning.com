@@ -11,7 +11,7 @@ module Todos
           if paging
             {total_count: todos.count , todos: todos = todos.paginate(:page => params[:page])}
           else
-            todos = Todo.all
+            todos = @current_user.todos.where("created_at > ?", Date.today)
           end
         else
           {errors: 'user not found'}

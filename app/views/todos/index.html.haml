@@ -4,23 +4,23 @@
       #todoapp
 
 %script{id: 't-todos', type: 'text/template'}
-  #header
-    %h1 Todos
-    %span.group work
-    %select#new-todo-group
-      %option{value: 'work'} work
-      %option{value: 'family'} family
-      %option{value: 'personal'} personal
-      %option{value: 'study'} study
-      %option{value: 'daodao'} daodao
-      %option{value: 'wendycan'} wendycan
-      %option{value: 'others'} others
-    %input#new-todo{placeholder: 'What needs to be done?', autofocus: true}
-  %section#main
-    %input#toggle-all{type: 'checkbox'}
-    %label{'for' => 'toggle-all'} Mark all as complete
-    %ul#todo-list
-  %footer#footer
+  .todos-body
+    #header
+      %span.group work
+      %select#new-todo-group
+        %option{value: 'work'} work
+        %option{value: 'family'} family
+        %option{value: 'personal'} personal
+        %option{value: 'study'} study
+        %option{value: 'daodao'} daodao
+        %option{value: 'wendycan'} wendycan
+        %option{value: 'others'} others
+      %input#new-todo{placeholder: 'What needs to be done?', autofocus: true}
+    %section#main
+      %input#toggle-all{type: 'checkbox'}
+      %label{'for' => 'toggle-all'} Mark all as complete
+      %ul#todo-list
+    %footer#footer
 
 %script{id: 'item-template', type: 'text/template'}
   .view
@@ -62,15 +62,39 @@
       %a{:href => "#order/completed"} Completed
 
 %script{id: 't-history', type: 'text/template'}
-  %h1 History
-  #records
+  %table
+    %thead
+      %tr
+        %th.id Id
+        %th.title 标题
+        %th.group 类别
+        %th.time 创建时间
+        %th.time 开始时间
+        %th.time 结束时间
+        %th.distance 用时
+        %th.completed 是否完成
+    %tbody#records
   #paginator
 
 %script{id: 't-record', type: 'text/template'}
-  %li <%= title %>
+  %tr
+    %td <%= id %>
+    %td <%= title %>
+    %td <%= group %>
+    %td <%= created_at %>
+    %td <%= start_at %>
+    %td <%= end_at %>
+    %td <%= distance %>
+    %td
+      <% if (completed) { %>
+      %span.fa.fa-check
+      <% } else { %>
+      %span.fa.fa-close
+      <% } %>
+
 
 %script{id: 't-long-term', type: 'text/template'}
-  %h1 Long Term
+  %h3 敬请期待
 
 = javascript_include_tag "app-backbone"
 

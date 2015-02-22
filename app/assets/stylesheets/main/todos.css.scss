@@ -3,6 +3,27 @@ input[type="checkbox"] {
   outline: none;
 }
 
+.todos table {
+  tr th, tr td {
+    text-align: center;
+  }
+  .id {
+    width: 5%;
+  }
+  .group {
+    width: 8%;
+  }
+  .time {
+    width: 15%;
+  }
+  .completed {
+    width: 6%;
+  }
+  .distance {
+    width: 10%;
+  }
+}
+
 .time-pickers {
   position: absolute;
   bottom: 7px;
@@ -28,10 +49,10 @@ input[type="checkbox"] {
   }
 }
 
-#todoapp {
+.todos-body {
   background: #fff;
   background: rgba(255, 255, 255, 0.9);
-  margin: 130px 0 40px 0;
+  margin-bottom: 40px;
   border: 1px solid #ccc;
   position: relative;
   border-top-left-radius: 2px;
@@ -40,7 +61,7 @@ input[type="checkbox"] {
         0 25px 50px 0 rgba(0, 0, 0, 0.15);
 }
 
-#todoapp:before {
+.todos-body:before {
   content: '';
   border-left: 1px solid #f5d6d6;
   border-right: 1px solid #f5d6d6;
@@ -51,16 +72,16 @@ input[type="checkbox"] {
   height: 100%;
 }
 
-#todoapp input::-webkit-input-placeholder {
+.todos-body input::-webkit-input-placeholder {
   font-style: italic;
 }
 
-#todoapp input::-moz-placeholder {
+.todos-body input::-moz-placeholder {
   font-style: italic;
   color: #a9a9a9;
 }
 
-#todoapp h1 {
+.todos-body h1 {
   position: absolute;
   top: -120px;
   width: 100%;
@@ -568,7 +589,7 @@ hr {
     left: 8px;
   }
 
-  .learn-bar #todoapp {
+  .learn-bar .todos-body {
     width: 550px;
     margin: 130px auto 40px auto;
   }

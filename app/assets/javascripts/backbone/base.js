@@ -49,6 +49,12 @@ app.api_sync = function (method, model, options) {
       e.preventDefault();
       e.stopPropagation();
       window.history.back();
+    },
+
+    handleDate: function (date) {
+      var d = new Date(date);
+      var d_s = d.getHours() + ':' +d.getMinutes() + ' ' + d.getMonth() + 1 + '月' + d.getDate() + '日 ';
+      return d_s;
     }
   });
 })(jQuery);
