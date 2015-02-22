@@ -2,6 +2,14 @@ var ENTER_KEY = 13;
 var ESC_KEY = 27;
 
 var app = app || {};
+app.api_sync = function (method, model, options) {
+  var params = {
+    headers: {
+      'Auth-Token': app.auth_token
+    }
+  };
+  Backbone.sync(method, model, _.extend(params, options));
+};
 
 (function ($) {
   'use strict';

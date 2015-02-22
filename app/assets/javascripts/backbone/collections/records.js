@@ -15,14 +15,7 @@ var app = app || {};
 
     url: '/api/v1/todos',
 
-    sync: function (method, model, options) {
-      var params = {
-        headers: {
-          'Auth-Token': app.auth_token
-        }
-      };
-      Backbone.sync(method, model, _.extend(params, options));
-    },
+    sync: app.api_sync,
 
     state: {
       pageSize: 5

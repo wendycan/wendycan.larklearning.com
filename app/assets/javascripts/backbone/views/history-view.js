@@ -19,9 +19,7 @@ var app = app || {};
         data: {
           paging: true
         },
-        headers: {'Auth-Token' : this.account.get('auth_token')},
         success: function (records) {
-          console.log(app.records);
           _this.renderRecords();
           _this.renerPaginator();
         }

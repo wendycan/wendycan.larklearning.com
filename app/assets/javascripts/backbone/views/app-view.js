@@ -40,8 +40,7 @@ var app = app || {};
 			this.listenTo(app.todos, 'all', this.renderTodos);
 
 			app.todos.fetch({
-				reset: true,
-				headers: {'Auth-Token' : this.account.get('auth_token')}
+				reset: true
 			});
 		},
 		// Re-rendering the App just means refreshing the statistics -- the rest
@@ -79,7 +78,7 @@ var app = app || {};
 		// Add a single todo item to the list by creating a view for it, and
 		// appending its element to the `<ul>`.
 		addOne: function (todo) {
-			var view = new app.TodoView({ model: todo, auth_token: this.account.get('auth_token') });
+			var view = new app.TodoView({ model: todo});
 			this.$list.append(view.render().el);
 		},
 
@@ -113,7 +112,7 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.todos.create(this.newAttributes(), {headers: {'Auth-Token' : this.account.get('auth_token')}});
+				app.todos.create(this.newAttributes());
 				this.$input.val('');
 			}
 		},
@@ -124,7 +123,7 @@ var app = app || {};
 			app.todos.each(function (todo) {
 				todo.save({
 					completed: completed
-				}, {headers: {'Auth-Token' : this.account.get('auth_token')}});
+				});
 			});
 		}
 	});

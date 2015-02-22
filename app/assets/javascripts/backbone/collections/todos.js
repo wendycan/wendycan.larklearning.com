@@ -16,6 +16,9 @@ var app = app || {};
 		// Save all of the todo items under the `"todos"` namespace.
 		// localStorage: new Backbone.LocalStorage('todos-backbone'),
 		url: '/api/v1/todos',
+
+		sync: app.api_sync,
+
 		// Filter down the list of all todo items that are finished.
 		completed: function () {
 			return this.where({completed: true});

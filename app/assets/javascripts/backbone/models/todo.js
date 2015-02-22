@@ -21,10 +21,11 @@ var app = app || {};
 		},
 		urlRoot: '/api/v1/todos',
 
+		sync: app.api_sync,
+
 		// Toggle the `completed` state of this todo item.
-		toggle: function (auth_token) {
+		toggle: function () {
 			this.save({
-				auth_token: auth_token,
 				completed: !this.get('completed')
 			});
 		}
