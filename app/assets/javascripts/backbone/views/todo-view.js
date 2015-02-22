@@ -30,7 +30,8 @@ var app = app || {};
 		// there's a one-to-one correspondence between a **Todo** and a
 		// **TodoView** in this app, we set a direct reference on the model for
 		// convenience.
-		initialize: function () {
+		initialize: function (option) {
+			this.auth_token = option.auth_token;
 			this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
 			this.listenTo(this.model, 'visible', this.toggleVisible);
@@ -38,13 +39,6 @@ var app = app || {};
 
 		// Re-render the titles of the todo item.
 		render: function () {
-			// Backbone LocalStorage is adding `id` attribute instantly after
-			// creating a model.  This causes our TodoView to render twice. Once
-			// after creating a model and once on `id` change.  We want to
-			// filter out the second redundant render, which is caused by this
-			// `id` change.  It's known Backbone LocalStorage bug, therefore
-			// we've to create a workaround.
-			// https://github.com/tastejs/todomvc/issues/469
 			if (this.model.changed.id !== undefined) {
 				return;
 			}
@@ -63,7 +57,7 @@ var app = app || {};
 					start_date.setHours($input.val().split(':')[0]);
 					start_date.setMinutes($input.val().split(':')[1]);
 					_this.model.set({start_at: start_date.toISOString()});
-					_this.model.save({auth_token: app.user.auth_token});
+					_this.model.save({auth_token: this.auth_token});
 				}
 			});
 			var end_input = $(this.$el.find('.time-pickers input')[1]).datetimepicker({
@@ -74,7 +68,7 @@ var app = app || {};
 					end_date.setHours($input.val().split(':')[0]);
 					end_date.setMinutes($input.val().split(':')[1]);
 					_this.model.set({end_at: end_date.toISOString()});
-					_this.model.save({auth_token: app.user.auth_token});
+					_this.model.save({auth_token: this.auth_token});
 				}
 			});
 			this.$el.toggleClass('completed', this.model.get('completed'));
@@ -95,12 +89,12 @@ var app = app || {};
 
 		// Toggle the `"completed"` state of the model.
 		toggleCompleted: function () {
-			this.model.toggle(app.user.auth_token);
+			this.model.toggle(this.auth_token);
 		},
 		updateGroup: function (e) {
 			var $this = $(e.currentTarget);
 			this.model.set('group', $this.val());
-			this.model.save({auth_token: app.user.auth_token});
+			this.model.save({auth_token: this.auth_token});
 		},
 		// Switch this view into `"editing"` mode, displaying the input field.
 		edit: function () {
@@ -158,7 +152,7 @@ var app = app || {};
 
 		// Remove the item, destroy the model from *localStorage* and delete its view.
 		clear: function () {
-			this.model.destroy({headers: {'Auth-Token' : app.user.auth_token}});
+			this.model.destroy({headers: {'Auth-Token' : this.auth_token}});
 		}
 	});
 })(jQuery);

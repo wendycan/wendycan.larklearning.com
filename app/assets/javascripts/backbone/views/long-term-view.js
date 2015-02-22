@@ -8,7 +8,7 @@ var app = app || {};
   // --------------
 
   // The DOM element for a todo item...
-  app.LongTermView = Backbone.View.extend({
+  app.LongTermView = app.BaseView.extend({
 
     template: _.template($('#t-long-term').html()),
 

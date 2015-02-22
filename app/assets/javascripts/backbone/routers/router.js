@@ -12,11 +12,11 @@ var app = app || {};
 			'order/*filter': 'setFilter',
 			'todos' : 'setTodos',
 			'history' : 'setHistory',
-			'long_term' : 'setLongTerm',
+			'long_term' : 'setLongTerm'
 		},
 
 		initialize: function () {
-
+			this.account = new app.Account();
 		},
 
 		setFilter: function (param) {
@@ -29,18 +29,15 @@ var app = app || {};
 		},
 
 		setTodos: function () {
-			var todos_view = new app.AppView();
-			todos_view.render();
+			var todos_view = new app.TodosView(this);
 		},
 
 		setHistory: function () {
-			var history_view = new app.HistoryView();
-			history_view.render();
+			var history_view = new app.HistoryView(this);
 		},
 
 		setLongTerm: function () {
-			var long_term_view = new app.LongTermView();
-			long_term_view.render();
+			var long_term_view = new app.LongTermView(this);
 		}
 	});
 

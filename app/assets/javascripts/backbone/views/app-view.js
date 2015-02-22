@@ -8,7 +8,7 @@ var app = app || {};
 	// ---------------
 
 	// Our overall **AppView** is the top-level piece of UI.
-	app.AppView = Backbone.View.extend({
+	app.TodosView = app.BaseView.extend({
 
 		// Instead of generating a new element, bind to the existing skeleton of
 		// the App already present in the HTML.
@@ -24,10 +24,7 @@ var app = app || {};
 			'click #toggle-all': 'toggleAllComplete'
 		},
 
-		// At initialization we bind to the relevant events on the `Todos`
-		// collection, when items are added or changed. Kick things off by
-		// loading any preexisting todos that might be saved in *localStorage*.
-		initialize: function () {
+		render: function () {
 			$('#todoapp').html(_.template($('#t-todos').html()));
 			this.allCheckbox = this.$('#toggle-all')[0];
 			this.$input = this.$('#new-todo');
@@ -40,28 +37,16 @@ var app = app || {};
 			this.listenTo(app.todos, 'reset', this.addAll);
 			this.listenTo(app.todos, 'change:completed', this.filterOne);
 			this.listenTo(app.todos, 'filter', this.filterAll);
-			this.listenTo(app.todos, 'all', this.render);
-			app.user = {};
-			// Suppresses 'add' events with {reset: true} and prevents the app view
-			// from being re-rendered for every model. Only renders when the 'reset'
-			// event is triggered at the end of the fetch.
-			// console.log(app.todos);
-			$.ajax({
-				url: '/todos/index',
-				dataType: 'json',
-				success: function (data) {
-					app.user = data;
-					app.todos.fetch({
-						reset: true,
-						headers: {'Auth-Token' : app.user.auth_token}
-					});
-				}
+			this.listenTo(app.todos, 'all', this.renderTodos);
+
+			app.todos.fetch({
+				reset: true,
+				headers: {'Auth-Token' : this.account.get('auth_token')}
 			});
 		},
-
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
-		render: function () {
+		renderTodos: function () {
 			var completed = app.todos.completed().length;
 			var remaining = app.todos.remaining().length;
 
@@ -94,7 +79,7 @@ var app = app || {};
 		// Add a single todo item to the list by creating a view for it, and
 		// appending its element to the `<ul>`.
 		addOne: function (todo) {
-			var view = new app.TodoView({ model: todo });
+			var view = new app.TodoView({ model: todo, auth_token: this.account.get('auth_token') });
 			this.$list.append(view.render().el);
 		},
 
@@ -128,7 +113,7 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.todos.create(this.newAttributes(), {headers: {'Auth-Token' : app.user.auth_token}});
+				app.todos.create(this.newAttributes(), {headers: {'Auth-Token' : this.account.get('auth_token')}});
 				this.$input.val('');
 			}
 		},
@@ -139,7 +124,7 @@ var app = app || {};
 			app.todos.each(function (todo) {
 				todo.save({
 					completed: completed
-				}, {headers: {'Auth-Token' : app.user.auth_token}});
+				}, {headers: {'Auth-Token' : this.account.get('auth_token')}});
 			});
 		}
 	});

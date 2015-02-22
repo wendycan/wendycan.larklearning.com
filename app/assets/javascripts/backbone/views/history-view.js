@@ -8,7 +8,7 @@ var app = app || {};
   // --------------
 
   // The DOM element for a todo item...
-  app.HistoryView = Backbone.View.extend({
+  app.HistoryView = app.BaseView.extend({
 
     // The DOM events specific to an item.
     events: {
@@ -19,12 +19,6 @@ var app = app || {};
       // 'keypress .edit': 'updateOnEnter',
       // 'keydown .edit': 'revertOnEscape',
       // 'blur .edit': 'close'
-    },
-
-    initialize: function () {
-      // this.listenTo(this.model, 'change', this.render);
-      // this.listenTo(this.model, 'destroy', this.remove);
-      // this.listenTo(this.model, 'visible', this.toggleVisible);
     },
 
     // Re-render the titles of the todo item.
