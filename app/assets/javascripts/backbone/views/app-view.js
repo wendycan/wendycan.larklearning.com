@@ -82,7 +82,7 @@ var app = app || {};
 		// appending its element to the `<ul>`.
 		addOne: function (todo) {
 			var view = new app.TodoView({ model: todo});
-			this.$list.append(view.render().el);
+			this.$list.prepend(view.render().el);
 		},
 
 		// Add all items in the **Todos** collection at once.

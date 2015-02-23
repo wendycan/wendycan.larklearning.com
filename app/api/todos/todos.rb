@@ -8,7 +8,7 @@ module Todos
           todos = @current_user.todos
           paging = params[:paging]
           if paging
-            {total_count: todos.count , todos: todos = todos.paginate(:page => params[:page])}
+            {total_count: todos.count , todos: todos = todos.order("created_at DESC").paginate(:page => params[:page])}
           else
             todos = @current_user.todos.where("created_at > ?", Date.today)
           end
