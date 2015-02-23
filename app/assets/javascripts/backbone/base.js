@@ -39,6 +39,11 @@ app.api_sync = function (method, model, options) {
 
     alertMsg: function (type, msg) {
       $('.alert-container').html(_.template($("#t-alert-" + type).html())({msg: msg}));
+      $('.close-alert').on('click', this.clearAlert);
+    },
+
+    clearAlert: function (e) {
+      $(this).parent('.alert-box').remove();
     },
 
     clearMsg: function () {

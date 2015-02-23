@@ -107,6 +107,8 @@
 %script{id: 't-alert-success', type: 'text/template'}
   .alert-box.success{'data-alert' => true}
     <%= msg %>
+    %a.close.close-alert
+      &times;
 
 = javascript_include_tag "app-backbone"
 
