@@ -15,7 +15,7 @@ var app = app || {};
       this.editor.setTheme("ace/theme/ambiance");
       this.editor.getSession().setMode(new MarkdownMode());
       var text;
-      if (this.account.get('long_term').length > 1) {
+      if ( !this.account.get('long_term') || this.account.get('long_term').length > 1) {
         text = this.account.get('long_term');
       } else {
         text = "在这里添加您的长期目标。\n\n* 支持 markdown 格式\n* 点击保存，即可保存到云端。";
