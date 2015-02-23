@@ -58,7 +58,7 @@ app.api_sync = function (method, model, options) {
 
     handleDate: function (date) {
       var d = new Date(date);
-      var d_s = d.getHours() + ':' +d.getMinutes() + ' ' + d.getMonth() + 1 + '月' + d.getDate() + '日 ';
+      var d_s = d.getHours() + ':' +d.getMinutes() + ' ' + (d.getMonth() + 1) + '月' + d.getDate() + '日 ';
       return d_s;
     }
   });
