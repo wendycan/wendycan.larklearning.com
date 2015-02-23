@@ -21,7 +21,7 @@ var app = app || {};
         text = this.account.get('long_term');
       }
       this.editor.getSession().setValue(text);
-
+      this.editor.setFontSize(15);
       var converter = new Showdown.converter();
       var html = converter.makeHtml(this.editor.getSession().getValue());
       $('#long-term-result').html(html);
