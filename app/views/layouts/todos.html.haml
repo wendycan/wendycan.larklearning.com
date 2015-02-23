@@ -13,11 +13,11 @@
     .top-bar-section
       %ul.right
         %li
-          %a{:href => "#todos"} Todos
+          %a.todos{:href => "#todos"} Todos
         %li
-          %a{:href => "#history"} 历史记录
+          %a.history{:href => "#history"} 历史记录
         %li
-          %a{:href => "#long_term"} 长期目标
+          %a.long-term{:href => "#long_term"} 长期目标
         %li
           = link_to '登出', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
   //= render :partial => 'layouts/hint'

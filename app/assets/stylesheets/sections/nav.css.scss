@@ -1,6 +1,8 @@
 .todos .top-bar {
   height: 3rem;
-
+  .current {
+    color: $primary;
+  }
   .name {
     height: 3rem;
 

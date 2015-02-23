@@ -30,14 +30,20 @@ var app = app || {};
 
 		setTodos: function () {
 			var todos_view = new app.TodosView(this);
+			$('.todos .top-bar li a').removeClass('current');
+			$('.todos .top-bar li a.todos').addClass('current');
 		},
 
 		setHistory: function () {
 			var history_view = new app.HistoryView(this);
+			$('.todos .top-bar li a').removeClass('current');
+			$('.todos .top-bar li a.history').addClass('current');
 		},
 
 		setLongTerm: function () {
 			var long_term_view = new app.LongTermView(this);
+			$('.todos .top-bar li a').removeClass('current');
+			$('.todos .top-bar li a.long-term').addClass('current');
 		}
 	});
 
