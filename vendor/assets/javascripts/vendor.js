@@ -10,3 +10,8 @@
 //= require backbone.paginator/lib/backbone.paginator
 //= require paginator
 //= require moment/moment
+//= require ace-builds/src/ace
+//= require ace-builds/src/mode-markdown
+//= require ace-builds/src/theme-ambiance
+//= require moment/moment
+//= require showdown/compressed/Showdown.min

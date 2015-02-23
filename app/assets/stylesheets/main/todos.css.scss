@@ -3,6 +3,11 @@ input[type="checkbox"] {
   outline: none;
 }
 
+#long-term-edit {
+  width: 100%;
+  height: 600px;
+}
+
 .todos table {
   tr th, tr td {
     text-align: center;

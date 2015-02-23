@@ -15,7 +15,9 @@
     "underscore": "~1.7.0",
     "backbone.paginator": "~2.0",
     "pixi": "2.2.3",
-    "async": "0.9.2"
+    "async": "0.9.2",
+    "ace-builds": "~1.1.8",
+    "showdown": "~0.3.4"
   },
   "private": true
 }

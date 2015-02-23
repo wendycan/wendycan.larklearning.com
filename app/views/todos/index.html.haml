@@ -1,6 +1,6 @@
 .wrap
   .row
-    .large-10.columns-large-center
+    .large-12.columns
       #todoapp
 
 %script{id: 't-todos', type: 'text/template'}
@@ -94,7 +94,12 @@
 
 
 %script{id: 't-long-term', type: 'text/template'}
-  %h3 敬请期待
+  .row
+    .large-6.columns
+      #long-term-edit
+    .large-6.columns
+      #long-term-result
+
 
 = javascript_include_tag "app-backbone"
 
