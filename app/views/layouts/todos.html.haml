@@ -21,6 +21,8 @@
         %li
           = link_to '登出', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
   //= render :partial => 'layouts/hint'
-
+  .row
+    .large-12.columns
+      .alert-container
   = yield
   = render :partial => 'layouts/footer'

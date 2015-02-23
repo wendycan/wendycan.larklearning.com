@@ -99,7 +99,14 @@
       #long-term-edit
     .large-6.columns
       #long-term-result
+  .row
+    .large-6.columns.text-right
+      .button.tiny#long-term-save
+        保存
 
+%script{id: 't-alert-success', type: 'text/template'}
+  .alert-box.success{'data-alert' => true}
+    <%= msg %>
 
 = javascript_include_tag "app-backbone"
 

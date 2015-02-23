@@ -38,7 +38,7 @@ app.api_sync = function (method, model, options) {
     },
 
     alertMsg: function (type, msg) {
-      $('.alert-container').html(_.template($("#t-alert-#{type}").html())({msg: msg}));
+      $('.alert-container').html(_.template($("#t-alert-" + type).html())({msg: msg}));
     },
 
     clearMsg: function () {
