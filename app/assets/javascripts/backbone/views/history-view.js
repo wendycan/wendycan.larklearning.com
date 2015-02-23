@@ -20,6 +20,7 @@ var app = app || {};
           paging: true
         },
         success: function (records) {
+          $('.loading').remove();
           _this.renderRecords();
           _this.renerPaginator();
         }

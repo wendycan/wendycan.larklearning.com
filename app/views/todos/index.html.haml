@@ -2,6 +2,8 @@
   .row
     .large-12.columns
       #todoapp
+        %p.text-center
+          %i.fa.fa-spinner.fa-spin.fa-3x
 
 %script{id: 't-todos', type: 'text/template'}
   .todos-body
@@ -20,6 +22,8 @@
       %input#toggle-all{type: 'checkbox'}
       %label{'for' => 'toggle-all'} Mark all as complete
       %ul#todo-list
+      .loading.text-center
+        %i.fa.fa-spinner.fa-spin.fa-3x
     %footer#footer
 
 %script{id: 'item-template', type: 'text/template'}
@@ -74,6 +78,8 @@
         %th.distance 用时
         %th.completed 是否完成
     %tbody#records
+  .loading.text-center
+    %i.fa.fa-spinner.fa-spin.fa-3x
   #paginator
 
 %script{id: 't-record', type: 'text/template'}

@@ -40,7 +40,10 @@ var app = app || {};
 			this.listenTo(app.todos, 'all', this.renderTodos);
 
 			app.todos.fetch({
-				reset: true
+				reset: true,
+				success: function () {
+					$('.loading').remove();
+				}
 			});
 		},
 		// Re-rendering the App just means refreshing the statistics -- the rest
