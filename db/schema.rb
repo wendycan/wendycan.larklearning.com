@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219124310) do
+ActiveRecord::Schema.define(version: 20150223045254) do
 
   create_table "leafs", force: true do |t|
     t.string   "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20150219124310) do
     t.datetime "updated_at"
     t.boolean  "has_todos"
     t.string   "authentication_token"
+    t.text     "long_term"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true

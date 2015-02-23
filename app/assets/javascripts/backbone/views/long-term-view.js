@@ -25,16 +25,36 @@ var app = app || {};
     render: function () {
       $('#todoapp').html(_.template($('#t-long-term').html()));
       var editor = ace.edit('long-term-edit');
-      editor.setTheme("ace/theme/ambiance");
+      var _this = this;
       var MarkdownMode = require("ace/mode/markdown").Mode;
+      editor.setTheme("ace/theme/ambiance");
       editor.getSession().setMode(new MarkdownMode());
+      editor.getSession().setValue(this.account.get('long_term'));
+
       var converter = new Showdown.converter();
+      var html = converter.makeHtml(editor.getSession().getValue());
+      $('#long-term-result').html(html);
+
       editor.on('change', function (e) {
-        var html = converter.makeHtml(editor.getSession().getValue());
+        html = converter.makeHtml(editor.getSession().getValue());
         $('#long-term-result').html(html);
+        _this.updateLongTerm(editor.getSession().getValue());
       });
+
       return this;
     },
-
+    updateLongTerm: function (value) {
+      $.ajax({
+        url: '/api/v1/todos/long_term',
+        type: 'PUT',
+        data: {
+          long_term: value,
+          auth_token: this.account.get('auth_token')
+        },
+        success: function (data) {
+          console.log(data);
+        }
+      });
+    }
   });
 })(jQuery);

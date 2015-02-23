@@ -1,6 +1,5 @@
 module Todos
   class Todos < Grape::API
-
     resource :todos do
       desc 'Get all todos'
       get do
@@ -15,6 +14,17 @@ module Todos
           end
         else
           {errors: 'user not found'}
+        end
+      end
+
+      desc 'Update long_term'
+      put 'long_term' do
+        authenticate!
+        @current_user.long_term = params[:long_term]
+        if @current_user.save
+          @current_user
+        else
+          {errors: 'user update failed'}
         end
       end
 
@@ -34,7 +44,8 @@ module Todos
           status 204
         end
 
-        desc 'Update a domain'
+
+        desc 'Update a todo'
         put do
           authenticate!
           todo = Todo.find(params[:id])

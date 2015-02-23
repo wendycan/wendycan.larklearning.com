@@ -27,6 +27,7 @@ module Todos
         User.find_by(authentication_token: token) if token.present?
       end
     end
+
     mount Todos
   end
 end
