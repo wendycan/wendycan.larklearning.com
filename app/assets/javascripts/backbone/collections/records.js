@@ -18,7 +18,7 @@ var app = app || {};
     sync: app.api_sync,
 
     state: {
-      pageSize: 5
+      pageSize: 10
     },
 
     queryParams: {
