@@ -101,18 +101,24 @@
 
 
 %script{id: 't-long-term', type: 'text/template'}
-  .row
-    .large-6.columns
+  .row#long-term-area.long-term-area
+    .large-6.columns#long-term-edit-area
       #long-term-edit
-    .large-6.columns
-      #long-term-result
-  .row
-    .large-6.columns.text-right
       .button.tiny#long-term-save
         保存
+    .large-6.columns
+      #long-term-result
+      .button.tiny#long-term-edit-btn
+        编辑
 
 %script{id: 't-alert-success', type: 'text/template'}
   .alert-box.success{'data-alert' => true}
+    <%= msg %>
+    %a.close.close-alert
+      &times;
+
+%script{id: 't-alert-error', type: 'text/template'}
+  .alert-box.warning{'data-alert' => true}
     <%= msg %>
     %a.close.close-alert
       &times;

@@ -2,7 +2,9 @@ button,
 input[type="checkbox"] {
   outline: none;
 }
-
+#todoapp {
+  min-height: 550px;
+}
 #long-term-edit {
   width: 100%;
   height: 510px;
@@ -12,10 +14,15 @@ input[type="checkbox"] {
   margin-top: 5px;
 }
 
+.long-term-area {
+  position: relative;
+}
+
 .todos table {
   tr th, tr td {
     text-align: center;
   }
+
   .id {
     width: 5%;
   }
