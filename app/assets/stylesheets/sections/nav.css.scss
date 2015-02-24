@@ -3,6 +3,9 @@
   .current {
     color: $primary;
   }
+  .top-bar-section .dropdown li {
+    text-indent: 10px;
+  }
   .name {
     height: 3rem;
 

@@ -3,23 +3,27 @@
   = render :partial => 'layouts/head'
 
 %body.todos
-  %nav.top-bar{'data-topbar' => true, 'role' => 'navigation'}
+  %nav.top-bar{:'data-topbar' => true, role: 'navigation'}
     %ul.title-area
       %li.name
         %h1
           %a{:href => "#"}
             = image_tag 'cherish.png'
             Cherish
-    .top-bar-section
+    %section.top-bar-section
       %ul.right
-        %li
-          %a.todos{:href => "#todos"} Todos
-        %li
-          %a.history{:href => "#history"} 历史记录
-        %li
-          %a.long-term{:href => "#long_term"} 长期目标
-        %li
-          = link_to '登出', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
+        %li.todos
+          %a{:href => "#todos"} Todos
+        %li.history
+          %a{:href => "#history"} 历史记录
+        %li.long-term
+          %a{:href => "#long_term"} 长期目标
+        %li.has-dropdown
+          %a{:href => "#"}
+            = @current_user.email
+          %ul.dropdown
+            %li
+              = link_to '登出', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
   //= render :partial => 'layouts/hint'
   .row
     .large-12.columns

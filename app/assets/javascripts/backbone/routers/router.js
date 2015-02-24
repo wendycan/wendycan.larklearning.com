@@ -30,20 +30,20 @@ var app = app || {};
 
 		setTodos: function () {
 			var todos_view = new app.TodosView(this);
-			$('.todos .top-bar li a').removeClass('current');
-			$('.todos .top-bar li a.todos').addClass('current');
+			$('.todos .top-bar li').removeClass('active');
+			$('.todos .top-bar li.todos').addClass('active');
 		},
 
 		setHistory: function () {
 			var history_view = new app.HistoryView(this);
-			$('.todos .top-bar li a').removeClass('current');
-			$('.todos .top-bar li a.history').addClass('current');
+			$('.todos .top-bar li').removeClass('active');
+			$('.todos .top-bar li.history').addClass('active');
 		},
 
 		setLongTerm: function () {
 			var long_term_view = new app.LongTermView(this);
-			$('.todos .top-bar li a').removeClass('current');
-			$('.todos .top-bar li a.long-term').addClass('current');
+			$('.todos .top-bar li').removeClass('active');
+			$('.todos .top-bar li.long-term').addClass('active');
 		}
 	});
 

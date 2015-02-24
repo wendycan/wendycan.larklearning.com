@@ -23,9 +23,10 @@ $topbar-bg-color: $gray-bg;
 $topbar-bg: $gray-bg;
 
 
-$topbar-dropdown-bg: white;
+$topbar-dropdown-bg: $gray-bg;
 $topbar-dropdown-link-color: $gray-text;
-$topbar-dropdown-link-bg: black;
+$topbar-dropdown-link-bg: $gray-bg;
+$topbar-dropdown-link-bg-hover: $gray-bg;
 $topbar-dropdown-link-weight: normal;
 $topbar-dropdown-toggle-size: 5px;
 $topbar-dropdown-toggle-color: $gray-text;
@@ -35,6 +36,7 @@ $topbar-dropdown-toggle-alpha: 0.4;
 $topbar-link-color: $gray-text;
 $topbar-link-color-hover: $primary;
 $topbar-link-color-active: $primary;
+$topbar-link-color-active-hover: $primary;
 $topbar-link-weight: bold;
 $topbar-link-font-size: rem-calc(17);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
