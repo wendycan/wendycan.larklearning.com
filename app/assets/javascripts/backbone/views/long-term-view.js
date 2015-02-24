@@ -63,15 +63,13 @@ var app = app || {};
         },
         success: function (data) {
           _this.alertMsg('success', '保存成功');
-          setTimeout(function () {
-            $('#long-term-area').animate({
-              left: - $('#long-term-area').width()/2,
-            }, 450);
+          $('#long-term-area').animate({
+            left: - $('#long-term-area').width()/2,
           }, 450);
           setTimeout(function () {
             $('#long-term-edit-area').hide();
             $('#long-term-edit-btn').show();
-          }, 950);
+          }, 450);
         },
         error: function (e) {
           _this.alertMsg('error', '保存失败，请重试');
