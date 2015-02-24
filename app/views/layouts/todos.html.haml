@@ -22,6 +22,8 @@
           %a{:href => "#"}
             = @current_user.email
           %ul.dropdown
+            / %li
+            /   = link_to '设置', new_password_path
             %li
               = link_to '登出', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
   //= render :partial => 'layouts/hint'
