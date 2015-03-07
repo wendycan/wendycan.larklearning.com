@@ -3,11 +3,32 @@ module Todos
     resource :bills do
       desc 'Get all bills'
       get do
-        paging = params[:paging]
-        if paging
-          {total_count: bills.count , bills: bills = bills.order("created_at DESC").paginate(:page => params[:page])}
+        authenticate!
+        if !@current_user.nil?
+          paging = params[:paging]
+          if paging
+            {total_count: bills.count , bills: bills = bills.order("created_at DESC").paginate(:page => params[:page])}
+          else
+            bills = Bill.all.where("created_at > ?", Date.today)
+          end
         else
-          bills = Bill.all.where("created_at > ?", Date.today)
+          {errors: 'bills not found'}
+        end
+      end
+
+      post do
+        authenticate!
+        bill = Bill.new(params[:bills])
+        bill.title = params[:title]
+        bill.people = params[:people]
+        bill.way = params[:way]
+        bill.group = params[:group]
+        bill.bank = params[:bank]
+        bill.money = params[:money]
+        if bill.save
+          bill
+        else
+          {errors: 'bill create failed'}
         end
       end
     end
