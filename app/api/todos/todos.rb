@@ -1,5 +1,17 @@
 module Todos
   class Todos < Grape::API
+    resource :bills do
+      desc 'Get all bills'
+      get do
+        paging = params[:paging]
+        if paging
+          {total_count: bills.count , bills: bills = bills.order("created_at DESC").paginate(:page => params[:page])}
+        else
+          bills = Bill.all.where("created_at > ?", Date.today)
+        end
+      end
+    end
+
     resource :todos do
       desc 'Get all todos'
       get do
