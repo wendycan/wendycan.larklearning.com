@@ -13,6 +13,14 @@
 
 %script{id: 't-new-bill', type: 'text/template'}
   %h2 New
+  %form#new-bill
+    %input#title{placeholder: 'What needs to be done?', autofocus: true, name: 'title'}
+    %input#people{placeholder: 'What needs to be done?', autofocus: true, name: 'people'}
+    %input#way{placeholder: 'What needs to be done?', autofocus: true, name: 'way'}
+    %input#group{placeholder: 'What needs to be done?', autofocus: true, name: 'group'}
+    %input#bank{placeholder: 'What needs to be done?', autofocus: true, name: 'bank'}
+    %input#money{placeholder: 'What needs to be done?', autofocus: true, name: 'money'}
+    .button.tiny#new-bill-btn 提交
 
 %script{id: 't-alert-success', type: 'text/template'}
   .alert-box.success{'data-alert' => true}
