@@ -15,6 +15,7 @@ LeavesCom::Application.routes.draw do
   get 'tools/ecg'
 
   get 'todos/index'
+  get 'bills/index'
 
   resources :leaves, only: [:index, :show]
   resources :projects, only: [:index, :show]

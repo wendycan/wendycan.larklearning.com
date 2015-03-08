@@ -1,0 +1,36 @@
+- content_for :title do
+  = 'Bills'
+
+.row
+  .large-12.columns
+    #billsapp
+      %p.text-center
+        %i.fa.fa-spinner.fa-spin.fa-3x
+
+%script{id: 't-bills', type: 'text/template'}
+  .bills-body
+    %h2 Bills
+
+%script{id: 't-new-bill', type: 'text/template'}
+  %h2 New
+
+%script{id: 't-alert-success', type: 'text/template'}
+  .alert-box.success{'data-alert' => true}
+    <%= msg %>
+    %a.close.close-alert
+      &times;
+
+%script{id: 't-alert-error', type: 'text/template'}
+  .alert-box.warning{'data-alert' => true}
+    <%= msg %>
+    %a.close.close-alert
+      &times;
+
+= javascript_include_tag "bills-backbone"
+
+= content_for :js_ext do
+  :javascript
+    $(document).ready(function () {
+      var router = new app.BillsRouter;
+      Backbone.history.start();
+    })

@@ -1,0 +1,32 @@
+!!!5
+%head
+  = render :partial => 'layouts/head'
+
+%body.todos
+  %nav.top-bar{:'data-topbar' => true, role: 'navigation'}
+    %ul.title-area
+      %li.name
+        %h1
+          %a{:href => "#"}
+            = image_tag 'cherish.png'
+            Bills
+    %section.top-bar-section
+      %ul.right
+        %li.new-bill
+          %a{:href => "#"} Bill
+        %li.bills
+          %a{:href => "#bills"} Bills
+        %li.has-dropdown
+          %a{:href => "#"}
+            = @current_user.email
+          %ul.dropdown
+            / %li
+            /   = link_to '设置', new_password_path
+            %li
+              = link_to '登出', destroy_user_session_path, :method => 'delete', data: { confirm: '确定登出？'}
+  //= render :partial => 'layouts/hint'
+  .row
+    .large-12.columns
+      .alert-container
+  = yield
+  = render :partial => 'layouts/footer'
