@@ -30,25 +30,38 @@ var app = app || {};
 		},
 
 		setTodos: function () {
-			var todos_view = new app.TodosView(this);
+			if (app.todos_view) {
+				app.todos_view.undelegateEvents();
+			}
+			app.todos_view = new app.TodosView(this);
 			$('.todos .top-bar li').removeClass('active');
 			$('.todos .top-bar li.todos').addClass('active');
 		},
 
 		setHistory: function () {
-			var history_view = new app.HistoryView(this);
+			if(app.history_view) {
+				app.history_view.undelegateEvents();
+			}
+			app.history_view = new app.HistoryView(this);
 			$('.todos .top-bar li').removeClass('active');
 			$('.todos .top-bar li.history').addClass('active');
 		},
 
 		setLongTerm: function () {
-			var long_term_view = new app.LongTermView(this);
+			if(app.long_term_view) {
+				app.long_term_view.undelegateEvents();
+			}
+			app.long_term_view = new app.LongTermView(this);
 			$('.todos .top-bar li').removeClass('active');
 			$('.todos .top-bar li.long-term').addClass('active');
 		},
 
 		setOthers: function () {
-			var others_view = new app.OthersView(this);
+			if(app.others_view) {
+				app.others_view.undelegateEvents();
+				app.others_view.undelegateSocketEvents();
+			}
+			app.others_view = new app.OthersView(this);
 			$('.todos .top-bar li').removeClass('active');
 			$('.todos .top-bar li.others').addClass('active');
 		}

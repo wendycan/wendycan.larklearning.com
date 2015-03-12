@@ -5,39 +5,33 @@ var app = app || {};
   'use strict';
 
   app.OthersView = app.BaseView.extend({
+    el: $('#todoapp'),
 
-    template: _.template($('#t-others').html()),
-
+    events: {
+      'submit #chart-form' : 'handleSubmit'
+    },
+    socket_events: {
+       "todo message": "addTodoMessage",
+       "chart message": "addChartMessage"
+    },
     render: function () {
       $('#todoapp').html(_.template($('#t-others').html()));
-      console.log('handleMessage');
-      this.handleMessage();
-
-      $('#chart-form').on('submit', function (e) {
-        e.preventDefault();
-
-        var text = $(this).find('input').val();
-        if (text.length > 0) {
-          var data = {
-            text: $(this).find('input').val(),
-            username: app.username,
-            time: (new Date()).toString()
-          };
-          app.socket.emit('add chart', JSON.stringify(data));
-          $(this).find('input').val('');
-        }
-      })
     },
 
-    handleMessage: function () {
-      var _this = this;
-      app.socket.on('todo message', function (msg) {
-        _this.addTodoMessage(msg);
+    handleSubmit: function (e) {
+      e.preventDefault();
+      var $this = $(e.currentTarget);
 
-      });
-      app.socket.on('chart message', function (msg) {
-        _this.addChartMessage(msg);
-      })
+      var text = $this.find('input').val();
+      if (text.length > 0) {
+        var data = {
+          text: $this.find('input').val(),
+          username: app.username,
+          time: (new Date()).toString()
+        };
+        app.socket.emit('add chart', JSON.stringify(data));
+        $this.find('input').val('');
+      }
     },
 
     addTodoMessage: function (msg) {
