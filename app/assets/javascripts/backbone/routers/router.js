@@ -12,7 +12,8 @@ var app = app || {};
 			'order/*filter': 'setFilter',
 			'todos' : 'setTodos',
 			'history' : 'setHistory',
-			'long_term' : 'setLongTerm'
+			'long_term' : 'setLongTerm',
+			'others' : 'setOthers'
 		},
 
 		initialize: function () {
@@ -44,6 +45,12 @@ var app = app || {};
 			var long_term_view = new app.LongTermView(this);
 			$('.todos .top-bar li').removeClass('active');
 			$('.todos .top-bar li.long-term').addClass('active');
+		},
+
+		setOthers: function () {
+			var others_view = new app.OthersView(this);
+			$('.todos .top-bar li').removeClass('active');
+			$('.todos .top-bar li.others').addClass('active');
 		}
 	});
 

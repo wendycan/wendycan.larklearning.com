@@ -15,3 +15,4 @@
 //= require ace-builds/src/theme-ambiance
 //= require moment/moment
 //= require showdown/compressed/Showdown.min
+//= require socket.io.js

@@ -115,7 +115,12 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				app.todos.create(this.newAttributes());
+				var title = this.newAttributes().title
+				app.todos.create(this.newAttributes(), {
+					success: function () {
+						app.socket.emit('new todo', title);
+					}
+				});
 				this.$input.val('');
 			}
 		},

@@ -14,6 +14,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
+  socket_prefix: 'http://socket-wendycan-local.com:3001'
   # primary_locale: zh-CN
   # client_id: 29820114e0d6b532504a
   # client_secret: 925a561c2bb7375f3499340f8b78a804a711b939
@@ -30,6 +31,7 @@ test:
 
 production: &production
   <<: *defaults
+  socket_prefix: 'http://socket.wendycan.org:3001'
   # api_prefix: http://api.dotide.com/v1
   # primary_locale: zh-CN
   # client_id: 4c5c42de44e89692fa5d
