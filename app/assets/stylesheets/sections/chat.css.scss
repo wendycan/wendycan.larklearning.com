@@ -1,0 +1,36 @@
+.chat-message {
+  ul {
+    margin:0;
+  }
+
+  li {
+    list-style: none;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  li.todo-message {
+    background-color: $gray-bg;
+    padding: 5px 15px;
+  }
+
+  li.chat-message {
+    background-color: #e0effc;
+  }
+
+  li.chat-my-message {
+    background-color: #f0f0f0;
+  }
+}
+
+.chat-form {
+  button {
+    height: 37px;
+    width: 100%;
+  }
+}

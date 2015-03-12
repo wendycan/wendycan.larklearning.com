@@ -33,8 +33,8 @@ var app = app || {};
       var _this = this;
       app.socket.on('todo message', function (msg) {
         _this.addTodoMessage(msg);
-      });
 
+      });
       app.socket.on('chart message', function (msg) {
         _this.addChartMessage(msg);
       })
@@ -47,7 +47,11 @@ var app = app || {};
 
     addChartMessage: function (msg) {
       var data = $.parseJSON(msg);
-      $("#message-list").prepend(_.template($('#t-chart-message').html())(data))
+      if (data.username == app.username) {
+        $("#message-list").prepend(_.template($('#t-chart-my-message').html())(data));
+      } else {
+        $("#message-list").prepend(_.template($('#t-chart-message').html())(data));
+      }
     }
   });
 })(jQuery);

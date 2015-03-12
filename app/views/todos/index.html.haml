@@ -125,23 +125,43 @@
       &times;
 
 %script{id: 't-others', type: 'text/template'}
-  %h3 动态
-  %ul#message-list
-  .chat
-    %form#chart-form
-      %input{type: 'text'}
-      %button.button.tiny{type:'submit'} 提交
+  .chat-message
+    %ul#message-list
+  .chat-form
+    %form#chart-form.row.collapse
+      .large-10.columns
+        %input{type: 'text'}
+      .large-2.columns
+        %button.button.tiny{type:'submit'} 发送
+
 %script{id: 't-message', type: 'text/template'}
-  %li
-    <%= username %>
-    <%= status %>
+  %li.todo-message
+    %strong
+      <%= username %>
+    %small
+      <%= status %>
     <%= title %>
-    <%= time %>
+    %small
+      <%= time %>
+
 %script{id: 't-chart-message', type: 'text/template'}
-  %li
-    <%= username %>
-    <%= text %>
-    <%= time %>
+  %li.chat-message
+    %strong
+      <%= username %>
+    %small
+      <%= time %>
+    %p
+      <%= text %>
+
+%script{id: 't-chart-my-message', type: 'text/template'}
+  %li.chat-my-message.text-right
+    %strong
+      我
+    %small
+      <%= time %>
+    %p
+      <%= text %>
+
 = javascript_include_tag "app-backbone"
 
 = content_for :js_ext do
