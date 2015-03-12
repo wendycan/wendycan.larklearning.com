@@ -26,7 +26,7 @@ app.api_sync = function (method, model, options) {
         this.account.fetch_account({
           success: function (data) {
             app.auth_token = data.auth_token;
-            app.username = data.email;
+            app.username = data.username;
             _this.render();
           },
           error: function () {
