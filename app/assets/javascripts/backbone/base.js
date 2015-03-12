@@ -29,6 +29,9 @@ app.api_sync = function (method, model, options) {
             app.username = data.username;
             app.joiners = [app.username];
             _this.render();
+            if (_this.socket_events && _.size(_this.socket_events) > 0) {
+              _this.delegateSocketEvents(_this.socket_events);
+            }
           },
           error: function () {
             window.location.href = '/users/sign_in';
@@ -36,9 +39,6 @@ app.api_sync = function (method, model, options) {
         });
       } else {
         _this.render();
-      }
-      if (this.socket_events && _.size(this.socket_events) > 0) {
-        this.delegateSocketEvents(this.socket_events);
       }
     },
 

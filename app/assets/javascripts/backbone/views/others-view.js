@@ -10,14 +10,21 @@ var app = app || {};
     events: {
       'submit #chart-form' : 'handleSubmit'
     },
+
     socket_events: {
        "todo message" : "addTodoMessage",
        "chart message" : "addChartMessage",
        "join message" : "addJoninMessage",
        "leave message" : "addLeaveMessage"
     },
+
     render: function () {
       $('#todoapp').html(_.template($('#t-others').html()));
+      // this.updateJoiners();
+    },
+
+    updateJoiners: function () {
+      $('.alert-container').html(_.template($('#t-joiners').html())({users: app.joiners.join(',')}));
     },
 
     handleSubmit: function (e) {
@@ -60,11 +67,20 @@ var app = app || {};
 
     addJoninMessage: function () {
       var msg = app.username + '   加入';
+      if (app.joiners.indexOf(app.username) < 0) {
+        app.joiners.push(app.username);
+        this.updateJoiners();
+      }
       $("#message-list").prepend(_.template($('#t-alert-success').html())({msg: msg}));
     },
 
     addLeaveMessage: function () {
       var msg = app.username + '   离开';
+      if (app.joiners.indexOf(app.username) > 0) {
+        var index = app.joiners.indexOf(app.username);
+        app.joiners.splice(index);
+        this.updateJoiners();
+      }
       $("#message-list").prepend(_.template($('#t-alert-error').html())({msg: msg}));
     }
   });

@@ -130,6 +130,11 @@
       %input{type: 'text'}
       %button.button.tiny{type:'submit'} 发送
 
+%script{id: 't-joiners', type: 'text/template'}
+  .chat-joiners.text-center
+    <%= users %>
+    在线
+
 %script{id: 't-message', type: 'text/template'}
   %li.todo-message
     %strong <%= username %>
