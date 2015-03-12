@@ -27,6 +27,7 @@ app.api_sync = function (method, model, options) {
           success: function (data) {
             app.auth_token = data.auth_token;
             app.username = data.username;
+            app.joiners = [app.username];
             _this.render();
           },
           error: function () {

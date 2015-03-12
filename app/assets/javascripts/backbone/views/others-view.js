@@ -11,8 +11,10 @@ var app = app || {};
       'submit #chart-form' : 'handleSubmit'
     },
     socket_events: {
-       "todo message": "addTodoMessage",
-       "chart message": "addChartMessage"
+       "todo message" : "addTodoMessage",
+       "chart message" : "addChartMessage",
+       "join message" : "addJoninMessage",
+       "leave message" : "addLeaveMessage"
     },
     render: function () {
       $('#todoapp').html(_.template($('#t-others').html()));
@@ -54,6 +56,16 @@ var app = app || {};
       } else {
         $("#message-list").prepend(_.template($('#t-chart-message').html())(data));
       }
+    },
+
+    addJoninMessage: function () {
+      var msg = app.username + '   加入';
+      $("#message-list").prepend(_.template($('#t-alert-success').html())({msg: msg}));
+    },
+
+    addLeaveMessage: function () {
+      var msg = app.username + '   离开';
+      $("#message-list").prepend(_.template($('#t-alert-error').html())({msg: msg}));
     }
   });
 })(jQuery);

@@ -113,16 +113,14 @@
         编辑
 
 %script{id: 't-alert-success', type: 'text/template'}
-  .alert-box.success{'data-alert' => true}
-    <%= msg %>
-    %a.close.close-alert
-      &times;
+  %li.no-padding
+    .alert-box.success{'data-alert' => true}
+      <%= msg %>
 
 %script{id: 't-alert-error', type: 'text/template'}
-  .alert-box.warning{'data-alert' => true}
-    <%= msg %>
-    %a.close.close-alert
-      &times;
+  %li.no-padding
+    .alert-box.warning{'data-alert' => true}
+      <%= msg %>
 
 %script{id: 't-others', type: 'text/template'}
   .chat-message
