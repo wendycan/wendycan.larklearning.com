@@ -63,6 +63,14 @@ var app = app || {};
         },
         success: function (data) {
           _this.alertMsg('success', '保存成功');
+          var msg = {
+            title: '长期目标',
+            username: app.username,
+            time: (new Date()).toString(),
+            status: 'update',
+            type: 'status'
+          };
+          app.socket.emit('todo changed', JSON.stringfy(msg));
           $('#long-term-area').animate({
             left: - $('#long-term-area').width()/2,
           }, 450);

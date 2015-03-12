@@ -24,9 +24,11 @@ var app = app || {};
 		sync: app.api_sync,
 
 		// Toggle the `completed` state of this todo item.
-		toggle: function () {
+		toggle: function (success) {
 			this.save({
 				completed: !this.get('completed')
+			}, {
+				success: success
 			});
 		}
 	});

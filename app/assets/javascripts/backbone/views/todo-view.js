@@ -56,7 +56,7 @@ var app = app || {};
 					start_date.setHours($input.val().split(':')[0]);
 					start_date.setMinutes($input.val().split(':')[1]);
 					_this.model.set({start_at: start_date.toISOString()});
-					_this.model.save();
+					_this.model.save('start_at', start_date.toISOString(), {success: _this.todoChanged});
 				}
 			});
 			var end_input = $(this.$el.find('.time-pickers input')[1]).datetimepicker({
@@ -67,7 +67,7 @@ var app = app || {};
 					end_date.setHours($input.val().split(':')[0]);
 					end_date.setMinutes($input.val().split(':')[1]);
 					_this.model.set({end_at: end_date.toISOString()});
-					_this.model.save();
+					_this.model.save('end_at', end_date.toISOString(), {success: _this.todoChanged});
 				}
 			});
 			this.$el.toggleClass('completed', this.model.get('completed'));
@@ -75,7 +75,16 @@ var app = app || {};
 			this.$input = this.$('.edit');
 			return this;
 		},
-
+		todoChanged: function () {
+			var msg = {
+				title: '任务',
+				username: app.username,
+				time: (new Date()).toString(),
+				status: 'update',
+				type: 'status'
+			};
+			app.socket.emit('todo changed', JSON.stringify(msg));
+		},
 		toggleVisible: function () {
 			this.$el.toggleClass('hidden', this.isHidden());
 		},
@@ -88,12 +97,20 @@ var app = app || {};
 
 		// Toggle the `"completed"` state of the model.
 		toggleCompleted: function () {
-			this.model.toggle();
+			var msg = {
+				title: this.model.get('title'),
+				username: app.username,
+				time: (new Date()).toString(),
+				status: this.model.get('completed')? 'uncomplete': 'complete',
+				type: 'status'
+			};
+			this.model.toggle(function () {
+				app.socket.emit('todo changed', JSON.stringify(msg))
+			});
 		},
 		updateGroup: function (e) {
 			var $this = $(e.currentTarget);
-			this.model.set('group', $this.val());
-			this.model.save();
+			this.model.save('group', $this.val(), {success: this.todoChanged});
 		},
 		// Switch this view into `"editing"` mode, displaying the input field.
 		edit: function () {
@@ -115,7 +132,7 @@ var app = app || {};
 			}
 
 			if (trimmedValue) {
-				this.model.save({ title: trimmedValue });
+				this.model.save('title', trimmedValue, {success: this.todoChanged});
 
 				if (value !== trimmedValue) {
 					// Model values changes consisting of whitespaces only are
@@ -155,7 +172,18 @@ var app = app || {};
 		},
 		// Remove the item, destroy the model from *localStorage* and delete its view.
 		clear: function () {
-			this.model.destroy();
+			var msg = {
+				title: this.model.get('title'),
+				username: app.username,
+				time: (new Date()).toString(),
+				status: 'delete',
+				type: 'status'
+			};
+			this.model.destroy({
+				success: function () {
+					app.socket.emit('todo changed', JSON.stringify(msg));
+				}
+			});
 		}
 	});
 })(jQuery);

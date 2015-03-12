@@ -127,9 +127,21 @@
 %script{id: 't-others', type: 'text/template'}
   %h3 动态
   %ul#message-list
-
+  .chat
+    %form#chart-form
+      %input{type: 'text'}
+      %button.button.tiny{type:'submit'} 提交
 %script{id: 't-message', type: 'text/template'}
-  %li <%= msg %>
+  %li
+    <%= username %>
+    <%= status %>
+    <%= title %>
+    <%= time %>
+%script{id: 't-chart-message', type: 'text/template'}
+  %li
+    <%= username %>
+    <%= text %>
+    <%= time %>
 = javascript_include_tag "app-backbone"
 
 = content_for :js_ext do

@@ -12,18 +12,42 @@ var app = app || {};
       $('#todoapp').html(_.template($('#t-others').html()));
       console.log('handleMessage');
       this.handleMessage();
+
+      $('#chart-form').on('submit', function (e) {
+        e.preventDefault();
+
+        var text = $(this).find('input').val();
+        if (text.length > 0) {
+          var data = {
+            text: $(this).find('input').val(),
+            username: app.username,
+            time: (new Date()).toString()
+          };
+          app.socket.emit('add chart', JSON.stringify(data));
+          $(this).find('input').val('');
+        }
+      })
     },
 
     handleMessage: function () {
       var _this = this;
-      app.socket.on('new todo message', function (msg) {
-        console.log(msg);
-        _this.addNewMessage(msg);
+      app.socket.on('todo message', function (msg) {
+        _this.addTodoMessage(msg);
+      });
+
+      app.socket.on('chart message', function (msg) {
+        _this.addChartMessage(msg);
       })
     },
 
-    addNewMessage: function (msg) {
-      $("#message-list").append(_.template($('#t-message').html())({msg: msg}))
+    addTodoMessage: function (msg) {
+      var data = $.parseJSON(msg);
+      $("#message-list").prepend(_.template($('#t-message').html())(data))
+    },
+
+    addChartMessage: function (msg) {
+      var data = $.parseJSON(msg);
+      $("#message-list").prepend(_.template($('#t-chart-message').html())(data))
     }
   });
 })(jQuery);

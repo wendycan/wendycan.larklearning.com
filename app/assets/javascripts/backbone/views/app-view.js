@@ -115,10 +115,17 @@ var app = app || {};
 		// persisting it to *localStorage*.
 		createOnEnter: function (e) {
 			if (e.which === ENTER_KEY && this.$input.val().trim()) {
-				var title = this.newAttributes().title
+				console.log(this.newAttributes());
+				var msg = {
+					title: this.newAttributes().title,
+					username: app.username,
+					time: (new Date()).toString(),
+					status: 'new',
+					type: 'status'
+				};
 				app.todos.create(this.newAttributes(), {
 					success: function () {
-						app.socket.emit('new todo', title);
+						app.socket.emit('todo changed', JSON.stringify(msg));
 					}
 				});
 				this.$input.val('');
@@ -129,8 +136,19 @@ var app = app || {};
 			var completed = this.allCheckbox.checked;
 
 			app.todos.each(function (todo) {
+				var msg = {
+					title: 'all',
+					username: app.username,
+					time: (new Date()).toString(),
+					status: 'complete',
+					type: 'status'
+				};
 				todo.save({
 					completed: completed
+				}, {
+					success: function () {
+						app.socket.emit('todo changed', JSON.stringify(msg))
+					}
 				});
 			});
 		}
