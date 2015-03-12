@@ -6,31 +6,86 @@
   li {
     list-style: none;
     padding: 15px;
+    position: relative;
     border-radius: 5px;
     margin-bottom: 10px;
 
     p {
       margin-bottom: 0;
     }
+
+    small i {
+      font-size: 13px;
+      padding-left: 5px;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      border-top: solid 15px transparent;
+      border-bottom: solid 15px transparent;
+    }
   }
 
   li.todo-message {
-    background-color: $gray-bg;
     padding: 5px 15px;
+    background-color: $gray-bg;
+
+    &:before {
+      left: -6px;
+      top: 2px;
+      border-right: solid 15px $gray-bg;
+    }
+  }
+  li.todo-my-message {
+    padding: 5px 15px;
+    background-color: $gray-bg;
+  }
+  li.todo-my-message:before {
+    right: -5px;
+    top: 2px;
+    border-left: solid 10px $gray-bg;
   }
 
   li.chat-message {
     background-color: #e0effc;
+
+    &:before {
+      left: -6px;
+      top: 2px;
+      border-right: solid 10px #e0effc;
+    }
   }
 
   li.chat-my-message {
     background-color: #f0f0f0;
+
+    &:before {
+      right: -5px;
+      top: 2px;
+      border-left: solid 10px #f0f0f0;
+    }
   }
 }
 
 .chat-form {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 50px;
+
+  input, button {
+    height: 50px;
+  }
+  input {
+    float: left;
+    font-size: 20px;
+    width: 90%;
+  }
   button {
-    height: 37px;
-    width: 100%;
+    float: right;
+    width: 10%;
   }
 }

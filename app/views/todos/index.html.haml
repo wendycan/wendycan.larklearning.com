@@ -128,39 +128,45 @@
   .chat-message
     %ul#message-list
   .chat-form
-    %form#chart-form.row.collapse
-      .large-10.columns
-        %input{type: 'text'}
-      .large-2.columns
-        %button.button.tiny{type:'submit'} 发送
+    %form#chart-form
+      %input{type: 'text'}
+      %button.button.tiny{type:'submit'} 发送
 
 %script{id: 't-message', type: 'text/template'}
   %li.todo-message
-    %strong
-      <%= username %>
+    %strong <%= username %>
     %small
       <%= status %>
     <%= title %>
     %small
+      %i.fa.fa-clock-o
+      <%= time %>
+
+%script{id: 't-my-message', type: 'text/template'}
+  %li.todo-my-message.text-right
+    %strong 我
+    %small
+      <%= status %>
+    <%= title %>
+    %small
+      %i.fa.fa-clock-o
       <%= time %>
 
 %script{id: 't-chart-message', type: 'text/template'}
   %li.chat-message
-    %strong
-      <%= username %>
+    %strong <%= username %>
     %small
+      %i.fa.fa-clock-o
       <%= time %>
-    %p
-      <%= text %>
+    %p <%= text %>
 
 %script{id: 't-chart-my-message', type: 'text/template'}
   %li.chat-my-message.text-right
-    %strong
-      我
+    %strong 我
     %small
+      %i.fa.fa-clock-o
       <%= time %>
-    %p
-      <%= text %>
+    %p <%= text %>
 
 = javascript_include_tag "app-backbone"
 

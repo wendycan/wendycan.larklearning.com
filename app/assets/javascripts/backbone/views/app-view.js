@@ -120,7 +120,7 @@ var app = app || {};
 					title: this.newAttributes().title,
 					username: app.username,
 					time: (new Date()).toString(),
-					status: 'new',
+					status: '添加任务',
 					type: 'status'
 				};
 				app.todos.create(this.newAttributes(), {
@@ -140,7 +140,7 @@ var app = app || {};
 					title: 'all',
 					username: app.username,
 					time: (new Date()).toString(),
-					status: 'complete',
+					status: '完成任务',
 					type: 'status'
 				};
 				todo.save({

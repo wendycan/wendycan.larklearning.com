@@ -80,7 +80,7 @@ var app = app || {};
 				title: '任务',
 				username: app.username,
 				time: (new Date()).toString(),
-				status: 'update',
+				status: '更新任务',
 				type: 'status'
 			};
 			app.socket.emit('todo changed', JSON.stringify(msg));
@@ -101,7 +101,7 @@ var app = app || {};
 				title: this.model.get('title'),
 				username: app.username,
 				time: (new Date()).toString(),
-				status: this.model.get('completed')? 'uncomplete': 'complete',
+				status: this.model.get('completed')? '未完成任务': '完成任务',
 				type: 'status'
 			};
 			this.model.toggle(function () {
@@ -176,7 +176,7 @@ var app = app || {};
 				title: this.model.get('title'),
 				username: app.username,
 				time: (new Date()).toString(),
-				status: 'delete',
+				status: '删除任务',
 				type: 'status'
 			};
 			this.model.destroy({

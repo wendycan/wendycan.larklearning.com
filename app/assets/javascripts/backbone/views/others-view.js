@@ -42,11 +42,19 @@ var app = app || {};
 
     addTodoMessage: function (msg) {
       var data = $.parseJSON(msg);
-      $("#message-list").prepend(_.template($('#t-message').html())(data))
+      var date = new Date(data.time);
+      data.time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+      if (data.username == app.username) {
+        $("#message-list").prepend(_.template($('#t-my-message').html())(data));
+      } else {
+        $("#message-list").prepend(_.template($('#t-message').html())(data));
+      }
     },
 
     addChartMessage: function (msg) {
       var data = $.parseJSON(msg);
+      var date = new Date(data.time);
+      data.time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
       if (data.username == app.username) {
         $("#message-list").prepend(_.template($('#t-chart-my-message').html())(data));
       } else {
