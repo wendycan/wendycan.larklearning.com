@@ -6,6 +6,11 @@
     #todoapp
       %p.text-center
         %i.fa.fa-spinner.fa-spin.fa-3x
+%ul.hide
+  %li#audio-login
+    = image_tag("hint-login.mp3")
+  %li#audio-new-message
+    = image_tag("hint-new-message.mp3")
 
 %script{id: 't-todos', type: 'text/template'}
   .todos-body

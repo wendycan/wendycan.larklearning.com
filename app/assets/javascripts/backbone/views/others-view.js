@@ -25,7 +25,8 @@ var app = app || {};
         app.socket.emit('join chat', app.username);
       }
       this.delegateSocketEvents(this.socket_events);
-
+      this.audio_login = new Audio($('#audio-login img').attr('src'));
+      this.audio_new_message = new Audio($('#audio-new-message img').attr('src'));
       window.onhashchange = function () {
         app.socket.emit('leave page');
         window.onhashchange = null;
@@ -74,6 +75,7 @@ var app = app || {};
       if (data.username == app.username) {
         $("#message-list").prepend(_.template($('#t-chart-my-message').html())(data));
       } else {
+        this.audio_new_message.play();
         $("#message-list").prepend(_.template($('#t-chart-message').html())(data));
       }
     },
@@ -88,6 +90,9 @@ var app = app || {};
       app.joiners = data_o.users;
       if (index >= 0) {
         app.joiners[index] = '我';
+      }
+      if (app.username != name) {
+        this.audio_login.play();
       }
       this.updateJoiners();
 
