@@ -79,13 +79,17 @@ var app = app || {};
       $("#message-list").prepend(_.template($('#t-alert-success').html())({msg: name + '   加入'}));
     },
 
-    addLeaveMessage: function () {
-      var msg ='1 人离开';
-      // if (app.joiners.indexOf(app.username) > 0) {
-      //   var index = app.joiners.indexOf(app.username);
-      //   app.joiners.splice(index);
-      //   this.updateJoiners();
-      // }
+    addLeaveMessage: function (msg) {
+      console.log(msg);
+      if (msg == app.username) {
+        msg = '我';
+      }
+      if (app.joiners.indexOf(msg) > 0) {
+        var index = app.joiners.indexOf(msg);
+        app.joiners.splice(index);
+        this.updateJoiners();
+      }
+      var msg = msg + '离开';
       $("#message-list").prepend(_.template($('#t-alert-error').html())({msg: msg}));
     }
   });
