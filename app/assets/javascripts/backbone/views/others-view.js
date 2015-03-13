@@ -103,6 +103,7 @@ var app = app || {};
     },
 
     addLeaveMessage: function (msg) {
+      if (!msg) {return;};
       if (msg == app.username) {
         msg = '我';
       }
