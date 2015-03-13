@@ -67,26 +67,29 @@ var app = app || {};
       }
     },
 
-    addJoninMessage: function (msg) {
-      var name = msg;
+    addJoninMessage: function (data) {
+      var data_o = $.parseJSON(data);
+      var name = data_o.currentUser;
       if(name == app.username) {
         name = '我';
       }
-      if (app.joiners.indexOf(msg) < 0) {
-        app.joiners.push(name);
-        this.updateJoiners();
+      var index = data_o.users.indexOf(app.username);
+      app.joiners = data_o.users;
+      if (index >= 0) {
+        app.joiners[index] = '我';
       }
+      this.updateJoiners();
+
       $("#message-list").prepend(_.template($('#t-alert-success').html())({msg: name + '   加入'}));
     },
 
     addLeaveMessage: function (msg) {
-      console.log(msg);
       if (msg == app.username) {
         msg = '我';
       }
-      if (app.joiners.indexOf(msg) > 0) {
+      if (app.joiners.indexOf(msg) >= 0) {
         var index = app.joiners.indexOf(msg);
-        app.joiners.splice(index);
+        app.joiners.splice(index, 1);
         this.updateJoiners();
       }
       var msg = msg + '离开';
