@@ -8,7 +8,8 @@ var app = app || {};
     el: $('#todoapp'),
 
     events: {
-      'submit #chart-form' : 'handleSubmit'
+      'submit #chart-form' : 'handleSubmit',
+      'click #audio-setting' : 'handleSettingBtn'
     },
 
     socket_events: {
@@ -67,15 +68,17 @@ var app = app || {};
     addChartMessage: function (msg) {
       var data = $.parseJSON(msg);
       var date = new Date(data.time);
-      document.title = '新消息';
-      setTimeout(function () {
-        document.title = '动态';
-      }, 5000);
       data.time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
       if (data.username == app.username) {
         $("#message-list").prepend(_.template($('#t-chart-my-message').html())(data));
       } else {
-        this.audio_new_message.play();
+        document.title = '新消息';
+        setTimeout(function () {
+          document.title = '动态';
+        }, 5000);
+        if ($('#audio-setting').hasClass('fa-volume-up')) {
+          this.audio_new_message.play();
+        }
         $("#message-list").prepend(_.template($('#t-chart-message').html())(data));
       }
     },
@@ -91,7 +94,7 @@ var app = app || {};
       if (index >= 0) {
         app.joiners[index] = '我';
       }
-      if (app.username != name) {
+      if (app.username != name && $('#audio-setting').hasClass('fa-volume-up')) {
         this.audio_login.play();
       }
       this.updateJoiners();
@@ -112,6 +115,14 @@ var app = app || {};
       }
       var msg = msg + '离开';
       $("#message-list").prepend(_.template($('#t-alert-error').html())({msg: msg}));
+    },
+
+    handleSettingBtn: function (e) {
+      if ($('#audio-setting').hasClass('fa-volume-off')) {
+        $('#audio-setting').removeClass('fa-volume-off').addClass('fa-volume-up');
+      } else {
+        $('#audio-setting').removeClass('fa-volume-up').addClass('fa-volume-off');
+      }
     }
   });
 })(jQuery);

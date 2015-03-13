@@ -96,3 +96,16 @@
   font-size: 14px;
   padding: 7px;
 }
+
+.chat-settings {
+  text-align: right;
+  i {
+    font-size: 23px;
+    color: #9bc95e;
+    cursor: pointer;
+
+    &.fa-volume-off {
+      color: $gray-text;
+    }
+  }
+}
