@@ -20,7 +20,9 @@ var app = app || {};
 
     render: function () {
       $('#todoapp').html(_.template($('#t-others').html()));
-      // this.updateJoiners();
+      if (app.username) {
+        app.socket.emit('join chat', app.username);
+      }
     },
 
     updateJoiners: function () {
@@ -65,22 +67,25 @@ var app = app || {};
       }
     },
 
-    addJoninMessage: function () {
-      var msg = app.username + '   加入';
-      if (app.joiners.indexOf(app.username) < 0) {
-        app.joiners.push(app.username);
+    addJoninMessage: function (msg) {
+      var name = msg;
+      if(name == app.username) {
+        name = '我';
+      }
+      if (app.joiners.indexOf(msg) < 0) {
+        app.joiners.push(name);
         this.updateJoiners();
       }
-      $("#message-list").prepend(_.template($('#t-alert-success').html())({msg: msg}));
+      $("#message-list").prepend(_.template($('#t-alert-success').html())({msg: name + '   加入'}));
     },
 
     addLeaveMessage: function () {
-      var msg = app.username + '   离开';
-      if (app.joiners.indexOf(app.username) > 0) {
-        var index = app.joiners.indexOf(app.username);
-        app.joiners.splice(index);
-        this.updateJoiners();
-      }
+      var msg ='1 人离开';
+      // if (app.joiners.indexOf(app.username) > 0) {
+      //   var index = app.joiners.indexOf(app.username);
+      //   app.joiners.splice(index);
+      //   this.updateJoiners();
+      // }
       $("#message-list").prepend(_.template($('#t-alert-error').html())({msg: msg}));
     }
   });

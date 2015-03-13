@@ -27,7 +27,7 @@ app.api_sync = function (method, model, options) {
           success: function (data) {
             app.auth_token = data.auth_token;
             app.username = data.username;
-            app.joiners = [app.username];
+            app.joiners = [];
             _this.render();
             if (_this.socket_events && _.size(_this.socket_events) > 0) {
               _this.delegateSocketEvents(_this.socket_events);
