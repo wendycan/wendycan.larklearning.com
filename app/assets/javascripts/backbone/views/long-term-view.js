@@ -10,13 +10,10 @@ var app = app || {};
 
     el: $('#todoapp'),
 
-    events: {
-      'click #long-term-edit-btn' : 'showEditor',
-      'click #long-term-save' : 'updateLongTerm'
-    },
-
     render: function () {
       $('#todoapp').html(_.template($('#t-long-term').html()));
+      $('#long-term-save').on('click', this, this.updateLongTerm);
+      $('#long-term-edit-btn').on('click', this, this.showEditor);
       $('#long-term-area').css('left', - $('#long-term-area').width()/2);
       $('#long-term-edit-area').hide();
       this.editor = ace.edit('long-term-edit');
