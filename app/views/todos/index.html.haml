@@ -132,8 +132,9 @@
 
 %script{id: 't-joiners', type: 'text/template'}
   .chat-joiners.text-center
-    <%= users %>
-    在线
+    %span.label.success
+      <%= users %>
+      在线
 
 %script{id: 't-message', type: 'text/template'}
   %li.todo-message

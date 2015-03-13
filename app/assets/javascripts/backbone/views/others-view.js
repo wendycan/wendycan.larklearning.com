@@ -19,6 +19,7 @@ var app = app || {};
     },
 
     render: function () {
+      document.title = '动态';
       $('#todoapp').html(_.template($('#t-others').html()));
       if (app.username) {
         app.socket.emit('join chat', app.username);
@@ -59,6 +60,10 @@ var app = app || {};
     addChartMessage: function (msg) {
       var data = $.parseJSON(msg);
       var date = new Date(data.time);
+      document.title = '新消息';
+      setTimeout(function () {
+        document.title = '动态';
+      }, 5000);
       data.time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
       if (data.username == app.username) {
         $("#message-list").prepend(_.template($('#t-chart-my-message').html())(data));
