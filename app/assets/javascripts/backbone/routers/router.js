@@ -30,6 +30,7 @@ var app = app || {};
 		},
 
 		setTodos: function () {
+			this.clearAlert();
 			if (app.todos_view) {
 				app.todos_view.undelegateEvents();
 			}
@@ -39,6 +40,7 @@ var app = app || {};
 		},
 
 		setHistory: function () {
+			this.clearAlert();
 			if(app.history_view) {
 				app.history_view.undelegateEvents();
 			}
@@ -48,6 +50,7 @@ var app = app || {};
 		},
 
 		setLongTerm: function () {
+			this.clearAlert();
 			if(app.long_term_view) {
 				app.long_term_view.undelegateEvents();
 			}
@@ -57,6 +60,7 @@ var app = app || {};
 		},
 
 		setOthers: function () {
+			this.clearAlert();
 			if(app.others_view) {
 				app.others_view.undelegateEvents();
 				app.others_view.undelegateSocketEvents();
@@ -64,6 +68,10 @@ var app = app || {};
 			app.others_view = new app.OthersView(this);
 			$('.todos .top-bar li').removeClass('active');
 			$('.todos .top-bar li.others').addClass('active');
+		},
+
+		clearAlert: function () {
+			$('.alert-container').html('');
 		}
 	});
 

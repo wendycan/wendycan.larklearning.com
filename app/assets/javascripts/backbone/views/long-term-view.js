@@ -8,14 +8,15 @@ var app = app || {};
 
     template: _.template($('#t-long-term').html()),
 
-    // events: {
-    //   'click #long-term-edit-btn' : 'showEditor' // have no effect
-    // },
+    el: $('#todoapp'),
+
+    events: {
+      'click #long-term-edit-btn' : 'showEditor',
+      'click #long-term-save' : 'updateLongTerm'
+    },
 
     render: function () {
       $('#todoapp').html(_.template($('#t-long-term').html()));
-      $('#long-term-save').on('click', this, this.updateLongTerm);
-      $('#long-term-edit-btn').on('click', this, this.showEditor);
       $('#long-term-area').css('left', - $('#long-term-area').width()/2);
       $('#long-term-edit-area').hide();
       this.editor = ace.edit('long-term-edit');
@@ -70,7 +71,7 @@ var app = app || {};
             status: '更新任务',
             type: 'status'
           };
-          app.socket.emit('todo changed', JSON.stringfy(msg));
+          app.socket.emit('todo changed', JSON.stringify(msg));
           $('#long-term-area').animate({
             left: - $('#long-term-area').width()/2,
           }, 450);

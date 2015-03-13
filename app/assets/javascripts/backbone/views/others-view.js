@@ -24,6 +24,12 @@ var app = app || {};
       if (app.username) {
         app.socket.emit('join chat', app.username);
       }
+      this.delegateSocketEvents(this.socket_events);
+
+      window.onhashchange = function () {
+        app.socket.emit('leave page');
+        window.onhashchange = null;
+      };
     },
 
     updateJoiners: function () {
@@ -95,7 +101,9 @@ var app = app || {};
       if (app.joiners.indexOf(msg) >= 0) {
         var index = app.joiners.indexOf(msg);
         app.joiners.splice(index, 1);
-        this.updateJoiners();
+        if (window.location.hash == '#others') {
+          this.updateJoiners();
+        }
       }
       var msg = msg + '离开';
       $("#message-list").prepend(_.template($('#t-alert-error').html())({msg: msg}));
