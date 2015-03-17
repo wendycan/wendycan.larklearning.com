@@ -57,22 +57,22 @@ var app = app || {};
 
       var array = [202, 111, 46, 3];
 
-      for (var i = 100; i >= 0; i--) {
-        array[1] = Math.floor(Math.random() * 300);
-        var ip = array.join('.');
+      // for (var i = 100; i >= 0; i--) {
+      //   array[1] = Math.floor(Math.random() * 300);
+      //   var ip = array.join('.');
 
-        this.parseAddress(ip, function (data) {
-          var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
-          _this.chartMarkerCluster.addLayer(marker);
-          _this.map.addLayer(_this.chartMarkerCluster);
-        });
-      };
+      //   this.parseAddress(ip, function (data) {
+      //     var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
+      //     _this.chartMarkerCluster.addLayer(marker);
+      //     _this.map.addLayer(_this.chartMarkerCluster);
+      //   });
+      // };
 
-      // this.parseAddress(data.ip, function (data) {
-      //   var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
-      //   _this.chartMarkerCluster.addLayer(marker);
-      //   _this.map.addLayer(_this.chartMarkerCluster);
-      // });
+      this.parseAddress(data.ip, function (data) {
+        var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
+        _this.chartMarkerCluster.addLayer(marker);
+        _this.map.addLayer(_this.chartMarkerCluster);
+      });
     },
 
     addTodoLocation: function (msg) {
@@ -83,22 +83,22 @@ var app = app || {};
 
       var array = [202, 111, 46, 3];
 
-      for (var i = 100; i >= 0; i--) {
-        array[2] = Math.floor(Math.random() * 300);
-        var ip = array.join('.');
+      // for (var i = 100; i >= 0; i--) {
+      //   array[2] = Math.floor(Math.random() * 300);
+      //   var ip = array.join('.');
 
-        this.parseAddress(ip, function (data) {
-          var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
-          _this.todoMarkerCluster.addLayer(marker);
-          _this.map.addLayer(_this.todoMarkerCluster);
-        });
-      };
+      //   this.parseAddress(ip, function (data) {
+      //     var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
+      //     _this.todoMarkerCluster.addLayer(marker);
+      //     _this.map.addLayer(_this.todoMarkerCluster);
+      //   });
+      // };
 
-      // this.parseAddress(data.ip, function (data) {
-      //   var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
-      //   _this.todoMarkerCluster.addLayer(marker);
-      //   _this.map.addLayer(_this.todoMarkerCluster);
-      // });
+      this.parseAddress(data.ip, function (data) {
+        var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
+        _this.todoMarkerCluster.addLayer(marker);
+        _this.map.addLayer(_this.todoMarkerCluster);
+      });
     },
 
     buildMarker: function (latlng) {
