@@ -8,7 +8,7 @@ var app = app || {};
     el: $('#todoapp'),
 
     socket_events: {
-       "locate message" : "addLocateMessage"
+      "chart message" : "addLocation"
     },
 
     render: function () {
@@ -20,27 +20,32 @@ var app = app || {};
 
     initMap: function () {
       this.map = L.map('map').setView([38, 105], 4);
-      // add an OpenStreetMap tile layer
-      var myIcon = L.icon({
-        iconUrl: $('#map-marker img').attr('src'),
-        iconSize: [50, 50]
-      });
 
-      L.marker([43.89833761, 125.31364243], {icon: myIcon}).addTo(this.map);
       L.tileLayer('http://{s}.tiles.mapbox.com/v3/dotide.hg6ngn4g/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(this.map);
     },
 
-    addLocateMessage: function (msg) {
+    addLocation: function (msg) {
+      var _this = this;
       var data = $.parseJSON(msg);
       var date = new Date(data.time);
       data.time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-      if (data.username == app.username) {
-        $("#message-list").prepend(_.template($('#t-my-message').html())(data));
-      } else {
-        $("#message-list").prepend(_.template($('#t-message').html())(data));
-      }
+      $.ajax({
+        url: 'http://api.map.baidu.com/location/ip?ak=ArxtOqfbIdWt6btGuNaGeGTG&ip=202.198.16.3&coor=bd09ll',
+        type: 'GET',
+        dataType: 'jsonp',
+        success: function (data) {
+          var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
+          marker.addTo(_this.map);
+        }
+      })
+    },
+
+    buildMarker: function (latlng) {
+      var iconUrl = $('#circle img').attr('src')
+      var marker = L.marker(latlng, {icon: L.icon({iconUrl: iconUrl, iconSize: [35, 35]})});
+      return marker;
     }
   });
 })(jQuery);
