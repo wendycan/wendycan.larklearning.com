@@ -30,7 +30,7 @@ var app = app || {};
     },
 
     initControls: function () {
-      L.control.layers({"Chat": this.chartMarkerCluster, "Todos": this.todoMarkerCluster}).addTo(this.map);
+      L.control.layers({"聊天": this.chartMarkerCluster, "任务": this.todoMarkerCluster}, null, {}).addTo(this.map);
     },
 
     parseAddress: function (address, callback) {
