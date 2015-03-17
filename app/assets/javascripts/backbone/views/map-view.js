@@ -39,8 +39,6 @@ var app = app || {};
         type: 'GET',
         dataType: 'jsonp',
         success: function (data) {
-          console.log(address);
-          console.log(data);
           if (data.status == 0) {
             callback(data);
           }

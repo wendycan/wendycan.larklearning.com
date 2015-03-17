@@ -17,10 +17,16 @@ input[type="checkbox"] {
 .long-term-area {
   position: relative;
 }
+
 #map {
   width: 100%;
   height: 600px;
 }
+
+.leaflet-control-layers-toggle {
+  background-image: url(layers.png);
+}
+
 .todos table {
   tr th, tr td {
     text-align: center;
