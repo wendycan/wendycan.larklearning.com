@@ -20,10 +20,26 @@ var app = app || {};
 
     initMap: function () {
       this.map = L.map('map').setView([38, 105], 4);
+      this.markerCluster = new L.MarkerClusterGroup();
 
       L.tileLayer('http://{s}.tiles.mapbox.com/v3/dotide.hg6ngn4g/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(this.map);
+    },
+
+    parseAddress: function (address, callback) {
+      $.ajax({
+        url: 'http://api.map.baidu.com/location/ip?ak=ArxtOqfbIdWt6btGuNaGeGTG&ip=' + address + '&coor=bd09ll',
+        type: 'GET',
+        dataType: 'jsonp',
+        success: function (data) {
+          console.log(address);
+          console.log(data);
+          if (data.status == 0) {
+            callback(data);
+          }
+        }
+      });
     },
 
     addLocation: function (msg) {
@@ -31,20 +47,30 @@ var app = app || {};
       var data = $.parseJSON(msg);
       var date = new Date(data.time);
       data.time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
-      $.ajax({
-        url: 'http://api.map.baidu.com/location/ip?ak=ArxtOqfbIdWt6btGuNaGeGTG&ip=202.198.16.3&coor=bd09ll',
-        type: 'GET',
-        dataType: 'jsonp',
-        success: function (data) {
+
+      var array = [202, 111, 46, 3];
+
+      for (var i = 100; i >= 0; i--) {
+        array[1] = Math.floor(Math.random() * 300);
+        var ip = array.join('.');
+
+        this.parseAddress(ip, function (data) {
           var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
-          marker.addTo(_this.map);
-        }
-      })
+          _this.markerCluster.addLayer(marker);
+          _this.map.addLayer(_this.markerCluster);
+        });
+      };
+
+      // this.parseAddress(data.ip, function (data) {
+      //   var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
+      //   _this.markerCluster.addLayer(marker);
+      //   _this.map.addLayer(_this.markerCluster);
+      // });
     },
 
     buildMarker: function (latlng) {
       var iconUrl = $('#circle img').attr('src')
-      var marker = L.marker(latlng, {icon: L.icon({iconUrl: iconUrl, iconSize: [35, 35]})});
+      var marker = L.marker(latlng, {icon: L.icon({iconUrl: iconUrl, iconSize: [20, 20]})});
       return marker;
     }
   });

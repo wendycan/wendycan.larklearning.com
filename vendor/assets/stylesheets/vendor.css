@@ -2,4 +2,5 @@
  *= require rickshaw/rickshaw
  *= require datetimepicker/jquery.datetimepicker
  *= require leaflet/dist/leaflet
+ *= require leaflet.markercluster/dist/MarkerCluster.Default
  */
