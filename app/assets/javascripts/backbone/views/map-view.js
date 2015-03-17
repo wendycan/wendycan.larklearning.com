@@ -8,7 +8,8 @@ var app = app || {};
     el: $('#todoapp'),
 
     socket_events: {
-      "chart message" : "addLocation"
+      "chart message" : "addChatLocation",
+      "todo message" : "addTodoLocation"
     },
 
     render: function () {
@@ -16,14 +17,21 @@ var app = app || {};
       $('#todoapp').html(_.template($('#t-map').html()));
       this.delegateSocketEvents(this.socket_events);
       this.initMap();
+      this.initControls();
     },
 
     initMap: function () {
       this.map = L.map('map').setView([38, 105], 4);
-      this.markerCluster = new L.MarkerClusterGroup();
+      this.chartMarkerCluster = new L.MarkerClusterGroup();
+      this.todoMarkerCluster = new L.MarkerClusterGroup();
       L.tileLayer('http://{s}.tiles.mapbox.com/v4/wendycan.lg0aokoa/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid2VuZHljYW4iLCJhIjoiUmoxT09JTSJ9.Jz6Mfm-_ZLj9EkCtJ5Asog#6/33.605/104.656', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(this.map);
+    },
+
+    initControls: function () {
+      this.legend = new L.Control.Legend();
+      L.control.layers({"Chat": this.chartMarkerCluster, "Todos": this.todoMarkerCluster}).addTo(this.map);
     },
 
     parseAddress: function (address, callback) {
@@ -41,7 +49,7 @@ var app = app || {};
       });
     },
 
-    addLocation: function (msg) {
+    addChatLocation: function (msg) {
       var _this = this;
       var data = $.parseJSON(msg);
       var date = new Date(data.time);
@@ -55,15 +63,41 @@ var app = app || {};
 
         this.parseAddress(ip, function (data) {
           var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
-          _this.markerCluster.addLayer(marker);
-          _this.map.addLayer(_this.markerCluster);
+          _this.chartMarkerCluster.addLayer(marker);
+          _this.map.addLayer(_this.chartMarkerCluster);
         });
       };
 
       // this.parseAddress(data.ip, function (data) {
       //   var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
-      //   _this.markerCluster.addLayer(marker);
-      //   _this.map.addLayer(_this.markerCluster);
+      //   _this.chartMarkerCluster.addLayer(marker);
+      //   _this.map.addLayer(_this.chartMarkerCluster);
+      // });
+    },
+
+    addTodoLocation: function (msg) {
+      var _this = this;
+      var data = $.parseJSON(msg);
+      var date = new Date(data.time);
+      data.time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+
+      var array = [202, 111, 46, 3];
+
+      for (var i = 100; i >= 0; i--) {
+        array[2] = Math.floor(Math.random() * 300);
+        var ip = array.join('.');
+
+        this.parseAddress(ip, function (data) {
+          var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
+          _this.todoMarkerCluster.addLayer(marker);
+          _this.map.addLayer(_this.todoMarkerCluster);
+        });
+      };
+
+      // this.parseAddress(data.ip, function (data) {
+      //   var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
+      //   _this.todoMarkerCluster.addLayer(marker);
+      //   _this.map.addLayer(_this.todoMarkerCluster);
       // });
     },
 
