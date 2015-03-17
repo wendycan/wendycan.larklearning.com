@@ -179,6 +179,10 @@
       <%= time %>
     %p <%= text %>
 
+%script{id: 't-map', type: 'text/template'}
+  %h4 Map
+  #map{style: 'width: 500px;height: 400px;'}
+
 = javascript_include_tag "app-backbone"
 
 = content_for :js_ext do

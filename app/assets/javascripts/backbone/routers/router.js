@@ -13,7 +13,8 @@ var app = app || {};
 			'todos' : 'setTodos',
 			'history' : 'setHistory',
 			'long_term' : 'setLongTerm',
-			'others' : 'setOthers'
+			'others' : 'setOthers',
+			'map' : 'setMap'
 		},
 
 		initialize: function () {
@@ -68,6 +69,17 @@ var app = app || {};
 			app.others_view = new app.OthersView(this);
 			$('.todos .top-bar li').removeClass('active');
 			$('.todos .top-bar li.others').addClass('active');
+		},
+
+		setMap: function () {
+			this.clearAlert();
+			if(app.others_view) {
+				app.others_view.undelegateEvents();
+				app.others_view.undelegateSocketEvents();
+			}
+			app.map_view = new app.MapView(this);
+			$('.todos .top-bar li').removeClass('active');
+			$('.todos .top-bar li.map').addClass('active');
 		},
 
 		clearAlert: function () {
