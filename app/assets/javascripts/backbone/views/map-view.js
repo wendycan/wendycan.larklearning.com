@@ -30,7 +30,6 @@ var app = app || {};
     },
 
     initControls: function () {
-      this.legend = new L.Control.Legend();
       L.control.layers({"Chat": this.chartMarkerCluster, "Todos": this.todoMarkerCluster}).addTo(this.map);
     },
 
