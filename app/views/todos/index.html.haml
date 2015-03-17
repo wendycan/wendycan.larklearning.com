@@ -11,7 +11,8 @@
     = image_tag("hint-login.mp3")
   %li#audio-new-message
     = image_tag("hint-new-message.mp3")
-
+  %li#map-marker
+    = image_tag("marker.gif")
 %script{id: 't-todos', type: 'text/template'}
   .todos-body
     #header
@@ -181,7 +182,7 @@
 
 %script{id: 't-map', type: 'text/template'}
   %h4 Map
-  #map{style: 'width: 500px;height: 400px;'}
+  #map
 
 = javascript_include_tag "app-backbone"
 

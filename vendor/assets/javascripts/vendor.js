@@ -16,3 +16,4 @@
 //= require moment/moment
 //= require showdown/compressed/Showdown.min
 //= require socket.io.js
+//= require leaflet/dist/leaflet-src

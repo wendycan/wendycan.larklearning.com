@@ -17,8 +17,19 @@ var app = app || {};
       this.delegateSocketEvents(this.socket_events);
       this.initMap();
     },
-    initMap: function () {
 
+    initMap: function () {
+      this.map = L.map('map').setView([38, 105], 4);
+      // add an OpenStreetMap tile layer
+      var myIcon = L.icon({
+        iconUrl: $('#map-marker img').attr('src'),
+        iconSize: [50, 50]
+      });
+
+      L.marker([43.89833761, 125.31364243], {icon: myIcon}).addTo(this.map);
+      L.tileLayer('http://{s}.tiles.mapbox.com/v3/dotide.hg6ngn4g/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(this.map);
     },
 
     addLocateMessage: function (msg) {
