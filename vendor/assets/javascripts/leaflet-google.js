@@ -1,7 +1,6 @@
 /*
  * L.TileLayer is used for standard xyz-numbered tile layers.
  */
-
 L.Google = L.Class.extend({
   includes: L.Mixin.Events,
 
@@ -80,6 +79,7 @@ L.Google = L.Class.extend({
       var size = this._map.getSize();
       this._container.style.width = size.x + 'px';
       this._container.style.height = size.y + 'px';
+      this._container.style.zIndex = 0;
     }
   },
 
