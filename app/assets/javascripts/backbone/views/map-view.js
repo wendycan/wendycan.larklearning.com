@@ -28,8 +28,7 @@ var app = app || {};
       this.mapboxLayer = L.tileLayer('http://{s}.tiles.mapbox.com/v4/wendycan.lg0aokoa/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid2VuZHljYW4iLCJhIjoiUmoxT09JTSJ9.Jz6Mfm-_ZLj9EkCtJ5Asog#6/33.605/104.656', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       });
-      this.map.addLayer(this.googleLayer);
-      // this.googleLayer.addTo(this.map);
+      this.map.addLayer(this.mapboxLayer);
     },
 
     initControls: function () {
