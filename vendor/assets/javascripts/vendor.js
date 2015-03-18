@@ -19,3 +19,4 @@
 //= require leaflet/dist/leaflet-src
 //= require leaflet.markercluster/dist/leaflet.markercluster-src
 //= require leaflet-google
+//= require leaflet-baidu
