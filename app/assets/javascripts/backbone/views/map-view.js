@@ -28,11 +28,14 @@ var app = app || {};
       this.mapboxLayer = L.tileLayer('http://{s}.tiles.mapbox.com/v4/wendycan.lg0aokoa/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid2VuZHljYW4iLCJhIjoiUmoxT09JTSJ9.Jz6Mfm-_ZLj9EkCtJ5Asog#6/33.605/104.656', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       });
+      this.openstreetLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      });
       this.map.addLayer(this.mapboxLayer);
     },
 
     initControls: function () {
-      L.control.layers({"Mapbox": this.mapboxLayer, "Google": this.googleLayer},
+      L.control.layers({"Mapbox": this.mapboxLayer, "Google Map": this.googleLayer, "OpenStreetMap": this.openstreetLayer},
         {"聊天": this.chartMarkerCluster, "任务": this.todoMarkerCluster}).addTo(this.map);
     },
 
@@ -57,11 +60,12 @@ var app = app || {};
 
       var array = [202, 111, 46, 3];
 
-      for (var i = 100; i >= 0; i--) {
+      for (var i = 10; i >= 0; i--) {
         array[1] = Math.floor(Math.random() * 300);
         var ip = array.join('.');
-
         this.parseAddress(ip, function (data) {
+          console.log(i);
+          console.log(data);
           var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
           _this.chartMarkerCluster.addLayer(marker);
           _this.map.addLayer(_this.chartMarkerCluster);
