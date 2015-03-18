@@ -26,8 +26,8 @@ app.api_sync = function (method, model, options) {
         this.account.fetch_account({
           success: function (data) {
             document.cookie="username=" + data.username;
-            app.socket = io(window.app.SocketPrefix + '/todos');
             app.auth_token = data.auth_token;
+            app.socket = io(window.app.SocketPrefix + '/todos', {query: 'token=' + app.auth_token});
             app.username = data.username;
             app.joiners = [];
             // if (_this.socket_events && _.size(_this.socket_events) > 0) {
