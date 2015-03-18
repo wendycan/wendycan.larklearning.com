@@ -18,3 +18,4 @@
 //= require socket.io.js
 //= require leaflet/dist/leaflet-src
 //= require leaflet.markercluster/dist/leaflet.markercluster-src
+//= require leaflet-google

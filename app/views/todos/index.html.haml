@@ -183,6 +183,7 @@
 %script{id: 't-map', type: 'text/template'}
   #map
 
+= javascript_include_tag "http://maps.google.com/maps/api/js?v=3.2&sensor=false"
 = javascript_include_tag "app-backbone"
 
 = content_for :js_ext do
