@@ -120,10 +120,7 @@ L.CRS.BEPSG3857 = L.extend({}, L.CRS, {
      * @return {Object} pixel coordinate calculated for latLng
      */
     latLngToPoint: function (latlng, zoom) { // (LatLng, Number) -> Point
-        console.log('before');
-        console.log(latlng);
         var projectedPoint = this.projection.project(latlng);
-        console.log(projectedPoint);
         return this.transformation._transform(projectedPoint, zoom);
     },
 
@@ -137,8 +134,6 @@ L.CRS.BEPSG3857 = L.extend({}, L.CRS, {
      */
     pointToLatLng: function (point, zoom) { // (Point, Number[, Boolean]) -> LatLng
         var untransformedPoint = this.transformation.untransform(point, zoom);
-        console.log('after');
-        console.log(this.projection.unproject(untransformedPoint));
         return this.projection.unproject(untransformedPoint);
     },
 
@@ -155,9 +150,9 @@ L.CRS.BEPSG3857 = L.extend({}, L.CRS, {
  */
 L.Baidu = L.TileLayer.extend({
     options: {
-        subdomains: ['online1', 'online2', 'online3']
-        // //TODO: decode utf8 characters in attribution
-        // attribution: '漏 2014 Baidu - GS(2012)6003;- Data 漏 <a target="_blank" href="http://www.navinfo.com/">NavInfo</a> & <a target="_blank" href="http://www.cennavi.com.cn/">CenNavi</a> & <a target="_blank" href="http://www.365ditu.com/">DaoDaoTong</a>',
+        subdomains: ['online1', 'online2', 'online3'],
+        //TODO: decode utf8 characters in attribution
+        attribution: '© 2014 Baidu - GS(2012)6003;- Data © <a target="_blank" href="http://www.navinfo.com/">NavInfo</a> & <a target="_blank" href="http://www.cennavi.com.cn/">CenNavi</a> & <a target="_blank" href="http://www.365ditu.com/">DaoDaoTong</a>',
     },
 
     /**
@@ -271,7 +266,7 @@ L.map = function (id, options) {
         var newCenter = this.containerPointToLatLng(viewHalf.add(centerOffset));
         var oldCenterLat = this.getCenter().lat;
         //add offset rather than minus it
-        newCenter.lat = -(oldCenterLat - newCenter.lat) + oldCenterLat;
+        newCenter.lat = oldCenterLat - newCenter.lat + oldCenterLat;
         return this.setView(newCenter, zoom, {zoom: options});
     };
 

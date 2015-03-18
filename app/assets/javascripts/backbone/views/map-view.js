@@ -17,31 +17,28 @@ var app = app || {};
       $('#todoapp').html(_.template($('#t-map').html()));
       this.delegateSocketEvents(this.socket_events);
       this.initMap();
-      // this.initControls();
+      this.initControls();
     },
 
     initMap: function () {
-      this.map = L.map('map', {'crs': L.CRS.BEPSG3857,'baidu': true}).setView([39.915, 116.404], 18);
+      // this.map = L.map('map', {'crs': L.CRS.BEPSG3857,'baidu': true}).setView([39.915, 116.404], 18);
+      this.map = L.map('map', {'baidu': true}).setView([30.915, 110.404], 4);
       window.map = this.map;
       this.chartMarkerCluster = new L.MarkerClusterGroup();
       this.todoMarkerCluster = new L.MarkerClusterGroup();
       // this.googleLayer = new L.Google('ROADMAP');
-      // this.mapboxLayer = L.tileLayer('http://{s}.tiles.mapbox.com/v4/wendycan.lg0aokoa/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid2VuZHljYW4iLCJhIjoiUmoxT09JTSJ9.Jz6Mfm-_ZLj9EkCtJ5Asog#6/33.605/104.656', {
-      //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      // });
-      // this.openstreetLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      //     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      // });
+      this.mapboxLayer = L.tileLayer('http://{s}.tiles.mapbox.com/v4/wendycan.lg0aokoa/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoid2VuZHljYW4iLCJhIjoiUmoxT09JTSJ9.Jz6Mfm-_ZLj9EkCtJ5Asog#6/33.605/104.656', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      });
+      this.openstreetLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      });
       this.baiduLayer = new L.Baidu('wEdGBRYrr5t1tF9X9cGbSmkB', {zIndex: 0});
-      var _this = this;
-      this.map.on('zoomend', function () {
-        console.log(_this.marker);
-      })
-      this.map.addLayer(this.baiduLayer);
+      this.map.addLayer(this.mapboxLayer);
     },
 
     initControls: function () {
-      L.control.layers({"Mapbox": this.mapboxLayer/*, "Google Map": this.googleLayer*/, "OpenStreetMap": this.openstreetLayer, "Baidu Map": this.baiduLayer},
+      L.control.layers({"Mapbox": this.mapboxLayer/*, "Google Map": this.googleLayer*/, "OpenStreetMap": this.openstreetLayer},
         {"聊天": this.chartMarkerCluster, "任务": this.todoMarkerCluster}).addTo(this.map);
     },
 
@@ -66,28 +63,18 @@ var app = app || {};
 
       var array = [202, 111, 46, 3];
 
-      // for (var i = 1; i >= 0; i--) {
-      //   array[1] = Math.floor(Math.random() * 300);
-      //   var ip = array.join('.');
-      //   this.parseAddress(ip, function (data) {
-      //     console.log(i);
-      //     console.log(data);
-      //     var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
-      //     _this.chartMarkerCluster.addLayer(marker);
-      //     _this.map.addLayer(marker);
-      //     // _this.map.addLayer(_this.chartMarkerCluster);
-      //   });
-      // };
-      _this.marker = _this.buildMarker([39.915, 116.404]);
-      _this.marker.addTo(this.map);
+      for (var i = 100; i >= 0; i--) {
+        array[1] = Math.floor(Math.random() * 300);
+        var ip = array.join('.');
+        this.parseAddress(ip, function (data) {
+          var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
+          _this.chartMarkerCluster.addLayer(marker);
+          _this.map.addLayer(_this.chartMarkerCluster);
+        });
+      };
+      // _this.marker = _this.buildMarker([39.915, 116.404]);
+      // _this.marker.addTo(this.map);
       // L.marker([39.915, 116.404]).addTo(this.map);
-
-      // this.parseAddress('202.112.46.3', function (data) {
-      //   console.log(data);
-      //   var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
-      //   _this.chartMarkerCluster.addLayer(marker);
-      //   _this.map.addLayer(marker);
-      // });
 
       // this.parseAddress(data.ip, function (data) {
       //   var marker = _this.buildMarker([data.content.point.y, data.content.point.x]);
