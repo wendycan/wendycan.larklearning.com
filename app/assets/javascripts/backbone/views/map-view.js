@@ -110,7 +110,7 @@ var app = app || {};
     },
 
     buildMarker: function (latlng) {
-      var iconUrl = $('#circle img').data('src')
+      var iconUrl = $('#circle img').attr('src')
       var marker = L.marker(latlng, {icon: L.icon({iconUrl: iconUrl, iconSize: [20, 20]})});
       return marker;
     }

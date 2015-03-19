@@ -26,8 +26,8 @@ var app = app || {};
         app.socket.emit('join chat', app.username);
       }
       this.delegateSocketEvents(this.socket_events);
-      this.audio_login = new Audio($('#audio-login img').data('src'));
-      this.audio_new_message = new Audio($('#audio-new-message img').data('src'));
+      this.audio_login = new Audio($('#audio-login img').attr('src'));
+      this.audio_new_message = new Audio($('#audio-new-message img').attr('src'));
       window.onhashchange = function () {
         app.socket.emit('leave page');
         window.onhashchange = null;
