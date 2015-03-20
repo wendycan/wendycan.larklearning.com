@@ -15,7 +15,7 @@
 //= require ace-builds/src/theme-ambiance
 //= require moment/moment
 //= require showdown/compressed/Showdown.min
-//= require socket.io.js
+//= require socket.io-client/socket.io
 //= require leaflet/dist/leaflet-src
 //= require leaflet.markercluster/dist/leaflet.markercluster-src
 //= require leaflet-google
