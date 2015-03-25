@@ -28,6 +28,9 @@ var app = app || {};
       this.delegateSocketEvents(this.socket_events);
       this.audio_login = new Audio($('#audio-login img').attr('src'));
       this.audio_new_message = new Audio($('#audio-new-message img').attr('src'));
+      this.favicon = new Favico({
+        animation: 'popFade'
+      });
       window.onhashchange = function () {
         app.socket.emit('leave page');
         window.onhashchange = null;
@@ -49,6 +52,7 @@ var app = app || {};
           username: app.username,
           time: (new Date()).toString()
         };
+        favicon.reset();
         app.socket.emit('add chart', JSON.stringify(data));
         $this.find('input').val('');
       }
@@ -76,6 +80,7 @@ var app = app || {};
         setTimeout(function () {
           document.title = '动态';
         }, 5000);
+        favicon.badge(1);
         if ($('#audio-setting').hasClass('fa-volume-up')) {
           this.audio_new_message.play();
         }
