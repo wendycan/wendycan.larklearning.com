@@ -52,7 +52,7 @@ var app = app || {};
           username: app.username,
           time: (new Date()).toString()
         };
-        favicon.reset();
+        this.favicon.reset();
         app.socket.emit('add chart', JSON.stringify(data));
         $this.find('input').val('');
       }
@@ -80,7 +80,7 @@ var app = app || {};
         setTimeout(function () {
           document.title = '动态';
         }, 5000);
-        favicon.badge(1);
+        this.favicon.badge(1);
         if ($('#audio-setting').hasClass('fa-volume-up')) {
           this.audio_new_message.play();
         }
