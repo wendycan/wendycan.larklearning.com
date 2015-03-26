@@ -20,4 +20,5 @@
 //= require leaflet.markercluster/dist/leaflet.markercluster-src
 //= require leaflet-google
 //= require leaflet-baidu
-//= require favico.js/favico.js
+//= require favico.js/favico
+//= require jquery-visibility

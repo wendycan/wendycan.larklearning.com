@@ -31,10 +31,15 @@ var app = app || {};
       this.favicon = new Favico({
         animation: 'popFade'
       });
+      this.message_count = 0;
       window.onhashchange = function () {
         app.socket.emit('leave page');
         window.onhashchange = null;
       };
+      var _this = this;
+      $(document).on('show', function() {
+        _this.favicon.reset();
+      });
     },
 
     updateJoiners: function () {
@@ -52,7 +57,6 @@ var app = app || {};
           username: app.username,
           time: (new Date()).toString()
         };
-        this.favicon.reset();
         app.socket.emit('add chart', JSON.stringify(data));
         $this.find('input').val('');
       }
@@ -76,11 +80,11 @@ var app = app || {};
       if (data.username == app.username) {
         $("#message-list").prepend(_.template($('#t-chart-my-message').html())(data));
       } else {
-        document.title = '新消息';
-        setTimeout(function () {
-          document.title = '动态';
-        }, 5000);
-        this.favicon.badge(1);
+        if(document.visibilityState == 'visible'){
+          this.favicon.reset();
+        } else {
+          this.favicon.badge(++this.message_count);
+        }
         if ($('#audio-setting').hasClass('fa-volume-up')) {
           this.audio_new_message.play();
         }
