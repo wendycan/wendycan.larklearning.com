@@ -1,11 +1,21 @@
 $(document).ready ->
   $(document).foundation();
   src_list = []
+  effects = ['wave', 'points', 'circle', 'nature']
+
   $('#audio-assets').find('audio').each (index, item)->
     src_list.push item.src
 
   fancy_music = new FancyMusic(src_list[0])
 
+  $('#select-music').on 'change', ->
+    effect_name = effects[$('#select-effect').val()]
+    fancy_music = new FancyMusic src_list[$(this).val()], {
+      effectName: effect_name
+    }
+
+  $('#select-effect').on 'change', ->
+    fancy_music.setEffect effects[$(this).val()]
 
   $(document).on 'open.graphmodal.reveal', '[data-reveal]', ->
     fancy_music.start()
@@ -16,11 +26,12 @@ $(document).ready ->
   # analyser.getByteTimeDomainData(dataArray)
 
 class FancyMusic
-  constructor: (src)->
+  constructor: (src, config)->
     @initValue()
     @loadAudio(src)
 
   initValue: ->
+    $('#wave-graph').empty()
     @audioContext = new (window.AudioContext || window.webkitAudioContext)()
     @audioBufferSourceNode = undefined
     @analyser = @audioContext.createAnalyser()
@@ -29,13 +40,17 @@ class FancyMusic
     @data = new Uint8Array(@analyser.frequencyBinCount)
     @isReady = false
     @frameId = undefined
+    @effect_name = 'wave'
     @graph = new Rickshaw.Graph
       element: document.querySelector("#wave-graph")
       series: [{
-        color: 'steelblue'
+        color: '#008CBA'
         data: [{x:0,y:0}]
       }]
     # @interval_id = undefined
+
+  setEffect: (name)->
+    @effect_name = name
 
   loadAudio: (src)->
     request = new XMLHttpRequest()
@@ -54,7 +69,10 @@ class FancyMusic
   start: =>
     if @isReady
       this.buildNodes()
-      @draw()
+      if @effect_name == 'wave'
+        @draw()
+      else
+        @draw()
       @audioBufferSourceNode.start(0)
     else
       setTimeout(@start, 100)

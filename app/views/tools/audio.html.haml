@@ -1,14 +1,39 @@
 .audio
   .wrap
     .row
-      %h4 FancyMusic
+      %h4.text-center Fancy Music
       %br
+      .large-2.columns
+        %label
+          %h5 选择音乐
+      .large-10.columns
+        %select#select-music
+          %option{:value => "0"} 琵琶语
+          %option{:value => "1"} 爱的罗曼史
+          %option{:value => "2"} 测试
+          %option{:value => "3"} 测试
+          %option{:value => "4"} 测试
+          %option{:value => "5"} 杜鹃
     .row
-      %a#submit{:href => "#", 'data-reveal-id' => 'graphModal'} 播放
+      .large-2.columns
+        %label
+          %h5 选择效果
+      .large-10.columns
+        %select#select-effect
+          %option{:value => "0"} 波形
+          %option{:value => "1"} 点集
+          %option{:value => "2"} 图形
+          %option{:value => "3"} 自然
+    %br
+    %br
+    %br
+    .row.text-center
+      %a#submit.button{:href => "#", 'data-reveal-id' => 'graphModal'} 播放
 
     .reveal-modal#graphModal{'data-reveal' => true, 'aria-labelledby' => true, 'aria-hidden' => true, role: 'dialog'}
       .graph-modal
         #wave-graph
+      %a.close-reveal-modal{'aria-label' => 'close'} &#215;
 
 %ul.hide#audio-assets
   %li.music-1
