@@ -84,7 +84,7 @@ class FancyMusic
   buildNodes: =>
     @audioBufferSourceNode = @audioContext.createBufferSource()
     @audioBufferSourceNode.buffer = @buffer
-    # @audioBufferSourceNode.loop = true
+    @audioBufferSourceNode.loop = true
     @buildAnalyseNode()
 
   buildAnalyseNode: ->

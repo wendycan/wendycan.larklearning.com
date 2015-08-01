@@ -3,27 +3,30 @@
     .row
       %h4.text-center Fancy Music
       %br
-      .large-2.columns
-        %label
-          %h5 选择音乐
-      .large-10.columns
-        %select#select-music
-          %option{:value => "0"} 琵琶语
-          %option{:value => "1"} 渭城曲
-          %option{:value => "2"} 桃花渡
-          %option{:value => "3"} 亘古的思念
-          %option{:value => "4"} 爱的罗曼史
-          %option{:value => "5"} Light Returning
     .row
-      .large-2.columns
-        %label
-          %h5 选择效果
-      .large-10.columns
-        %select#select-effect
-          %option{:value => "0"} 波形
-          %option{:value => "1"} 点集
-          %option{:value => "2"} 图形
-          %option{:value => "3"} 自然
+      .large-10.columns.large-centered
+        .row
+          .large-2.columns
+            %label
+              %h5 选择音乐
+          .large-10.columns
+            %select#select-music
+              %option{:value => "0"} 琵琶语
+              %option{:value => "1"} 渭城曲
+              %option{:value => "2"} 桃花渡
+              %option{:value => "3"} 亘古的思念
+              %option{:value => "4"} 爱的罗曼史
+              %option{:value => "5"} Light Returning
+        .row
+          .large-2.columns
+            %label
+              %h5 选择效果
+          .large-10.columns
+            %select#select-effect
+              %option{:value => "0"} 波形
+              %option{:value => "1"} 点集
+              %option{:value => "2"} 图形
+              %option{:value => "3"} 自然
     %br
     %br
     %br
