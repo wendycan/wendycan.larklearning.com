@@ -2,7 +2,7 @@ $(document).ready ->
   src_list = []
   $('#audio-assets').find('audio').each (index, item)->
     src_list.push item.src
-  fancy_music = new FancyMusic(src_list[2])
+  fancy_music = new FancyMusic(src_list[0])
   # analyser.getByteTimeDomainData(dataArray)
 
 class FancyMusic
