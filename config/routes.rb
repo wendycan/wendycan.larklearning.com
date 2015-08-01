@@ -13,6 +13,7 @@ LeavesCom::Application.routes.draw do
 
   get 'tools/index'
   get 'tools/ecg'
+  get 'tools/audio'
 
   get 'todos/index'
   get 'todos/show'

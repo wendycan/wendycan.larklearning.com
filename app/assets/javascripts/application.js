@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require vendor
+//= require audio
 //= require temp
 
 $(document).foundation();
