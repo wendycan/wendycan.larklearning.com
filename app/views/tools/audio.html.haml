@@ -9,11 +9,11 @@
       .large-10.columns
         %select#select-music
           %option{:value => "0"} 琵琶语
-          %option{:value => "1"} 爱的罗曼史
-          %option{:value => "2"} 测试
-          %option{:value => "3"} 测试
-          %option{:value => "4"} 测试
-          %option{:value => "5"} 杜鹃
+          %option{:value => "1"} 渭城曲
+          %option{:value => "2"} 桃花渡
+          %option{:value => "3"} 亘古的思念
+          %option{:value => "4"} 爱的罗曼史
+          %option{:value => "5"} Light Returning
     .row
       .large-2.columns
         %label
@@ -37,14 +37,14 @@
 
 %ul.hide#audio-assets
   %li.music-1
-    = audio_tag("music-1.mp3")
+    = image_tag("music-0.mp3")
   %li.music-2
-    = audio_tag("music-2.mp3")
+    = image_tag("music-1.mp3")
   %li.music-3
-    = audio_tag("music-3.mp3")
+    = image_tag("music-2.mp3")
   %li.music-4
-    = audio_tag("music-4.mp3")
+    = image_tag("music-3.mp3")
   %li.music-4
-    = audio_tag("music-5.mp3")
+    = image_tag("music-4.mp3")
   %li.music-5
-    = audio_tag("test.mp3")
+    = image_tag("music-5.mp3")

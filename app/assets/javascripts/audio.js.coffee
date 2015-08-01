@@ -3,14 +3,14 @@ $(document).ready ->
   src_list = []
   effects = ['wave', 'points', 'circle', 'nature']
 
-  $('#audio-assets').find('audio').each (index, item)->
+  $('#audio-assets').find('img').each (index, item)->
     src_list.push item.src
-
-  fancy_music = new FancyMusic(src_list[0])
+  audio_context = new (window.AudioContext || window.webkitAudioContext)
+  fancy_music = new FancyMusic audio_context, src_list[0]
 
   $('#select-music').on 'change', ->
     effect_name = effects[$('#select-effect').val()]
-    fancy_music = new FancyMusic src_list[$(this).val()], {
+    fancy_music = new FancyMusic audio_context, src_list[$(this).val()], {
       effectName: effect_name
     }
 
@@ -26,13 +26,13 @@ $(document).ready ->
   # analyser.getByteTimeDomainData(dataArray)
 
 class FancyMusic
-  constructor: (src, config)->
-    @initValue()
+  constructor: (audioContext, src, config)->
+    @initValue(audioContext)
     @loadAudio(src)
 
-  initValue: ->
+  initValue: (audioContext)->
     $('#wave-graph').empty()
-    @audioContext = new (window.AudioContext || window.webkitAudioContext)()
+    @audioContext = audioContext
     @audioBufferSourceNode = undefined
     @analyser = @audioContext.createAnalyser()
     @analyser.fftSize = 1024
