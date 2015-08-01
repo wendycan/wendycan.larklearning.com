@@ -36,6 +36,9 @@
     .reveal-modal#graphModal{'data-reveal' => true, 'aria-labelledby' => true, 'aria-hidden' => true, role: 'dialog'}
       .graph-modal
         #wave-graph
+        .loading
+          %i.fa.fa-spinner.fa-spin
+          %p 努力加载中……
       %a.close-reveal-modal{'aria-label' => 'close'} &#215;
 
 %ul.hide#audio-assets

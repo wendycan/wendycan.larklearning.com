@@ -6,13 +6,26 @@ $(document).ready ->
   $('#audio-assets').find('img').each (index, item)->
     src_list.push item.src
   audio_context = new (window.AudioContext || window.webkitAudioContext)
-  fancy_music = new FancyMusic audio_context, src_list[0]
+  fancy_music = new FancyMusic audio_context,
+    src_list[0],
+    {
+      loaded: ->
+        $('#wave-graph').addClass('has-bottom-border')
+        $('.audio .loading').hide()
+    }
 
   $('#select-music').on 'change', ->
+    $('#wave-graph').removeClass('has-bottom-border')
+    $('.audio .loading').show()
     effect_name = effects[$('#select-effect').val()]
-    fancy_music = new FancyMusic audio_context, src_list[$(this).val()], {
-      effectName: effect_name
-    }
+    fancy_music = new FancyMusic audio_context,
+      src_list[$(this).val()],
+      {
+        effectName: effect_name
+        loaded: ->
+          $('#wave-graph').addClass('has-bottom-border')
+          $('.audio .loading').hide()
+      }
 
   $('#select-effect').on 'change', ->
     fancy_music.setEffect effects[$(this).val()]
@@ -28,7 +41,7 @@ $(document).ready ->
 class FancyMusic
   constructor: (audioContext, src, config)->
     @initValue(audioContext)
-    @loadAudio(src)
+    @loadAudio(src, config && config.loaded)
 
   initValue: (audioContext)->
     $('#wave-graph').empty()
@@ -41,18 +54,12 @@ class FancyMusic
     @isReady = false
     @frameId = undefined
     @effect_name = 'wave'
-    @graph = new Rickshaw.Graph
-      element: document.querySelector("#wave-graph")
-      series: [{
-        color: '#008CBA'
-        data: [{x:0,y:0}]
-      }]
     # @interval_id = undefined
 
   setEffect: (name)->
     @effect_name = name
 
-  loadAudio: (src)->
+  loadAudio: (src, callback)->
     request = new XMLHttpRequest()
     request.open('GET', src, true)
     request.responseType = 'arraybuffer'
@@ -62,13 +69,21 @@ class FancyMusic
       @audioContext.decodeAudioData audioData, (buffer)=>  # audioData: binary
         @buffer = buffer
         @isReady = true
+        callback()
         # @interval_id = setInterval @draw, 1000
 
     request.send()
 
   start: =>
+    $('#wave-graph').empty()
     if @isReady
       this.buildNodes()
+      @graph = new Rickshaw.Graph
+        element: document.querySelector("#wave-graph")
+        series: [{
+          color: '#008CBA'
+          data: [{x:0,y:0}]
+        }]
       if @effect_name == 'wave'
         @draw()
       else

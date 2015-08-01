@@ -24,6 +24,28 @@
     height: 200px;
     width: 500px;
     margin: 0 auto;
-    border-bottom: solid 2px #008CBA;
+  }
+
+  .loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    height: 150px;
+    color: #00698f;
+    text-align: center;
+
+    i {
+      font-size: 50px;
+      color: #008cba;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .has-bottom-border {
+    border-bottom: solid 2px #008cba;
   }
 }
