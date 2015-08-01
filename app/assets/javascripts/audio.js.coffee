@@ -1,27 +1,48 @@
 $(document).ready ->
-  urlList = []
-  audios = []
-  context = new (window.AudioContext || window.webkitAudioContext)()
+  src_list = []
   $('#audio-assets').find('audio').each (index, item)->
-    urlList.push item.src
-  audio = new Audio()
-  sound = ''
-  audio.addEventListener 'canplay', ->
-    sound = context.createMediaElementSource(audio)
-    sound.connect(context.destination)  # destination: 音频要最终输出的目标,所有节点中的最后一个节点应该再连接到audioContext.destination才能听到声音。
-  audio.src = urlList[0]
-
-  # audioCtx = new (window.AudioContext || window.webkitAudioContext)()
-  # analyser = context.createAnalyser()
-  # analyser.fftSize = 1024
-  # bufferLength = analyser.frequencyBinCount
-  # dataArray = new Uint8Array(bufferLength)
+    src_list.push item.src
+  fancy_music = new FancyMusic(src_list[0])
   # analyser.getByteTimeDomainData(dataArray)
-  # window.ana = analyser
-  window.context = context
 
-  # draw = ->
-  #   drawVisual = requestAnimationFrame(draw)
-  #   analyser.getByteTimeDomainData(dataArray)
+class FancyMusic
+  constructor: (src)->
+    @initValue()
+    @loadAudio(src)
 
-  # draw()
+  initValue: ->
+    @audioContext = new (window.AudioContext || window.webkitAudioContext)()
+    @audioBufferSourceNode = @audioContext.createBufferSource()
+    @analyser = @audioContext.createAnalyser()
+    @analyser.fftSize = 128
+    @data = new Uint8Array(@analyser.frequencyBinCount)
+
+  loadAudio: (src)->
+    request = new XMLHttpRequest()
+    request.open('GET', src, true)
+    request.responseType = 'arraybuffer'
+
+    request.onload = =>
+      audioData = request.response
+      @audioContext.decodeAudioData audioData, (buffer)=>  # audioData: binary
+        @buildSourceNode(buffer)
+        @buildAnalyseNode()
+        setInterval @draw, 1000
+        # requestAnimationFrame(@draw)
+
+    request.send()
+
+  buildSourceNode: (buffer)->
+    @audioBufferSourceNode.buffer = buffer
+    @audioBufferSourceNode.loop = true
+    @audioBufferSourceNode.start(0)
+
+  buildAnalyseNode: ->
+    @audioBufferSourceNode.connect(@analyser)
+    # destination: 音频要最终输出的目标,最后一个节点应该再连接到 audioContext.destination 才能听到声音。
+    @analyser.connect(@audioContext.destination)
+    window.analyser = @analyser
+
+  draw: =>
+    @analyser.getByteFrequencyData(@data)
+    console.log(@data)
