@@ -4,7 +4,11 @@
       %h4 FancyMusic
       %br
     .row
-      #wave
+      %a#submit{:href => "#", 'data-reveal-id' => 'graphModal'} 播放
+
+    .reveal-modal#graphModal{'data-reveal' => true, 'aria-labelledby' => true, 'aria-hidden' => true, role: 'dialog'}
+      .graph-modal
+        #wave-graph
 
 %ul.hide#audio-assets
   %li.music-1

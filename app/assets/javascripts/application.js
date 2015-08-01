@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require pixi/bin/pixi.dev
 //= require vendor
 //= require audio
 //= require temp
