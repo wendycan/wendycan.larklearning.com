@@ -2,7 +2,7 @@ $(document).ready ->
   src_list = []
   $('#audio-assets').find('audio').each (index, item)->
     src_list.push item.src
-  fancy_music = new FancyMusic(src_list[0])
+  fancy_music = new FancyMusic(src_list[2])
   # analyser.getByteTimeDomainData(dataArray)
 
 class FancyMusic
@@ -14,8 +14,9 @@ class FancyMusic
     @audioContext = new (window.AudioContext || window.webkitAudioContext)()
     @audioBufferSourceNode = @audioContext.createBufferSource()
     @analyser = @audioContext.createAnalyser()
-    @analyser.fftSize = 128
+    # @analyser.fftSize = 128
     @data = new Uint8Array(@analyser.frequencyBinCount)
+    # @interval_id = undefined
 
   loadAudio: (src)->
     request = new XMLHttpRequest()
@@ -26,15 +27,16 @@ class FancyMusic
       audioData = request.response
       @audioContext.decodeAudioData audioData, (buffer)=>  # audioData: binary
         @buildSourceNode(buffer)
+        window.buffer = buffer
         @buildAnalyseNode()
-        setInterval @draw, 1000
-        # requestAnimationFrame(@draw)
+        # @interval_id = setInterval @draw, 1000
+        requestAnimationFrame(@draw)
 
     request.send()
 
   buildSourceNode: (buffer)->
     @audioBufferSourceNode.buffer = buffer
-    @audioBufferSourceNode.loop = true
+    # @audioBufferSourceNode.loop = true
     @audioBufferSourceNode.start(0)
 
   buildAnalyseNode: ->
@@ -45,4 +47,5 @@ class FancyMusic
 
   draw: =>
     @analyser.getByteFrequencyData(@data)
-    console.log(@data)
+    requestAnimationFrame(@draw)
+    # console.log(@data)
