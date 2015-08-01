@@ -2,4 +2,9 @@
   .wrap
     .row
       %h2 音乐
-      = audio_tag("music.mp3", controls: true, loop: true, id: 'audio')
+
+%ul.hide#audio-assets
+  %li.music-1
+    = audio_tag("music-1.mp3", controls: true, loop: true)
+  %li.music-2
+    = audio_tag("music-2.mp3", controls: true, loop: true)
