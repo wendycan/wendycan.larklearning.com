@@ -1,7 +1,6 @@
 $(document).ready ->
   $(document).foundation();
   src_list = []
-  effects = ['wave', 'points', 'circle', 'nature']
 
   $('#audio-assets').find('img').each (index, item)->
     src_list.push item.src
@@ -17,7 +16,7 @@ $(document).ready ->
   $('#select-music').on 'change', ->
     $('#wave-graph').removeClass('has-bottom-border')
     $('.audio .loading').show()
-    effect_name = effects[$('#select-effect').val()]
+    effect_name = $('#select-effect').val()
     fancy_music = new FancyMusic audio_context,
       src_list[$(this).val()],
       {
@@ -28,7 +27,7 @@ $(document).ready ->
       }
 
   $('#select-effect').on 'change', ->
-    fancy_music.setEffect effects[$(this).val()]
+    fancy_music.setEffect $(this).val()
 
   $(document).on 'open.graphmodal.reveal', '[data-reveal]', ->
     fancy_music.start()
@@ -84,10 +83,11 @@ class FancyMusic
           color: '#008CBA'
           data: [{x:0,y:0}]
         }]
-      if @effect_name == 'wave'
-        @draw()
-      else
-        @draw()
+      switch @effect_name
+        when 'wave' then @draw()
+        when 'points' then @drawPoints()
+        when 'circle' then @drawCircle()
+        when 'nature' then @drawNature()
       @audioBufferSourceNode.start(0)
     else
       setTimeout(@start, 100)
@@ -119,3 +119,12 @@ class FancyMusic
     @graph.render()
     @frameId = requestAnimationFrame(@draw)
     # console.log(@data)
+
+  drawPoints: ->
+    console.log('points')
+
+  drawCircle: ->
+    console.log('nature')
+
+  drawNature: ->
+    console.log('nature')
