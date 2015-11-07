@@ -121,7 +121,13 @@ class FancyMusic
     # console.log(@data)
 
   drawPoints: ->
-    console.log('points')
+    src = $($('#icon-assets').find('li')[0]).find('img').attr('src')
+    ballTexture = new PIXI.Texture.fromImage(src)
+    # w = 500
+    # h = 200
+    # renderer = PIXI.autoDetectRenderer(w, h)
+    # stage = new PIXI.Stage
+    # document.body.appendChild(renderer.view)
 
   drawCircle: ->
     console.log('nature')

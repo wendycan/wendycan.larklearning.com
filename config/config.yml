@@ -31,7 +31,7 @@ test:
 
 production: &production
   <<: *defaults
-  socket_prefix: 'http://transfer.wendycan.org:3002'
+  socket_prefix: 'http://transfer.larklearning.com:3002'
   # api_prefix: http://api.dotide.com/v1
   # primary_locale: zh-CN
   # client_id: 4c5c42de44e89692fa5d
