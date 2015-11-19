@@ -1,6 +1,6 @@
-#Leaves.com
+# wendy.larklearning.com
 
-Install
+This is my personal website. 
 ------
 
 You should install gems.
