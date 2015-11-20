@@ -10,6 +10,7 @@ class Capture
     @b_width = Math.floor(@$user_canvas.width/@cols)
     @b_height = Math.floor(@$user_canvas.height/@rows)
     @context = @$user_canvas.getContext('2d')
+    @selected = []
 
   init: ->
     @createVideo()
@@ -20,9 +21,82 @@ class Capture
   bindEvents: ->
     $('.submit-btn').on 'click', @handleClick
 
+    xPad = 1
+    yPad = 1
+    startXOffset = 1
+    startYOffset = 1
+    @$user_canvas.addEventListener 'mouseup', (event)=>
+      mouseX
+      mouseY
+      x
+      y
+      if event.pageX || event.pageY
+        x = event.pageX;
+        y = event.pageY;
+      else
+        x = e.clientX + document.body.scrollLeft +
+          document.documentElement.scrollLeft
+        y = e.clientY + document.body.scrollTop +
+          document.documentElement.scrollTop
+
+      x -= $(@$user_canvas).offset().left
+      y -= $(@$user_canvas).offset().top
+      mouseX = x
+      mouseY = y
+      @selected = []
+      for i in [0... @cols]
+        for j in [0...@rows]
+          board_x = i * @b_width
+          board_y = j * @b_height
+
+          boards = @r_boards.filter (b)->
+            if b.pos_row is i and b.pos_col is j
+              true
+          board = boards[0]
+
+          if (mouseY >= board_y) && (mouseY <= board_y + @b_height) && (mouseX >= board_x) && (mouseX <= board_x + @b_width)
+            if board.selected
+              board.selected = false
+            else
+              board.selected = true
+          if board.selected
+            @selected.push
+              row: j,
+              col: i
+      if @selected.length is 2
+        selected1 = @selected[0]
+        selected2 = @selected[1]
+        board1 = board2 = null
+        for board, index in @r_boards
+          if board.pos_col is selected1.col and board.pos_row is selected1.row
+            board1 = {index: index, board: board}
+          if board.pos_col is selected2.col and board.pos_row is selected2.row
+            board2 = {index: index, board: board}
+          board.selected = false
+
+        temp_data = board1.board.imageData
+        right_col = board1.board.right_col
+        right_row = board1.board.right_row
+        @r_boards[board1.index].imageData = board2.board.imageData
+        @r_boards[board1.index].right_row = board2.board.right_row
+        @r_boards[board1.index].right_col = board2.board.right_col
+        @r_boards[board2.index].imageData = temp_data
+        @r_boards[board2.index].right_col = temp_data.right_col
+        @r_boards[board2.index].right_row = temp_data.right_row
+
+      @updateCanvasFromBoards()
+      @renderSelectedStatus()
+
+  renderSelectedStatus: ->
+    if @selected.length > 1
+      return
+    for item in @selected
+      @context.strokeStyle = 'red'
+      @context.strokeRect(item.col * @b_width, item.row * @b_height, @b_width, @b_height)
+
   handleClick: =>
     clearInterval(@interval_id)
-    @buildBoards()
+    @buildBoardsData()
     @randomBoards()
     # window.open(@$user_canvas.toDataURL(), "canavsImage", "left=0,top=0,width=" + @$user_canvas.width + ",height=" + @$user_canvas.height + ",toolbar=0,resizable=0")
 
@@ -38,32 +112,36 @@ class Capture
           temp_i = Math.floor(Math.random()*@rows)
           temp_j = Math.floor(Math.random()*@cols)
           for board, index in @boards
-            if board.finalRow is temp_i and board.finalCol is temp_j
+            if board.pos_row is temp_i and board.pos_col is temp_j
               found = true
               @boards.splice(index, 1)
               break
           break if found
 
         @r_boards.push
-          finalRow: temp_i
-          finalCol: temp_j
+          pos_row: temp_i
+          pos_col: temp_j
           rightRow: i
           rightCol: j
           selected: false
           imageData: @context.getImageData(j * @b_width, i * @b_height, @b_width, @b_height)
+      console.log @r_boards
+      @updateCanvasFromBoards()
 
+  updateCanvasFromBoards: ->
     for board in @r_boards
-      @context.putImageData(board.imageData, board.finalCol * @b_width, board.finalRow * @b_height)
+      @context.strokeStyle = '#d5d5d5'
+      @context.putImageData(board.imageData, board.pos_col * @b_width, board.pos_row * @b_height)
+      @context.strokeRect(board.pos_col * @b_width, board.pos_row * @b_height-1, @b_width, @b_height)
 
-  buildBoards: ->
+  buildBoardsData: ->
     @boards = []
     for i in [0...@rows]
       for j in [0...@cols]
         @boards.push
-          finalRow: i
-          finalCol: j
+          pos_row: i
+          pos_col: j
           selected: false
-
 
   initContent: ->
 
