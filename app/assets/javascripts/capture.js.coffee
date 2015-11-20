@@ -4,6 +4,9 @@ class Capture
     @$video = null
     @interval_id = null
     @init()
+    @boards = []
+    @cols = 2
+    @rows = 2
 
   init: ->
     @createVideo()
@@ -12,8 +15,46 @@ class Capture
     @bindEvents()
 
   bindEvents: ->
-    $('.submit-btn').on 'click', =>
-      window.open(@$user_canvas.toDataURL(), "canavsImage", "left=0,top=0,width=" + @$user_canvas.width + ",height=" + @$user_canvas.height + ",toolbar=0,resizable=0")
+    $('.submit-btn').on 'click', @handleClick
+
+  handleClick: =>
+    clearInterval(@interval_id)
+    @buildBoards()
+    @randomBoards()
+    # window.open(@$user_canvas.toDataURL(), "canavsImage", "left=0,top=0,width=" + @$user_canvas.width + ",height=" + @$user_canvas.height + ",toolbar=0,resizable=0")
+
+  randomBoards: ->
+    @r_boards = []
+
+    for i in [0...@rows]
+      for j in [0...@cols]
+        found = false
+        temp_i = 0
+        temp_j = 0
+        loop
+          temp_i = Math.floor(Math.random()*@rows)
+          temp_j = Math.floor(Math.random()*@cols)
+          for board, index in @boards
+            if board.finalRow is temp_i and board.finalCol is temp_j
+              found = true
+              @boards.splice(index, 1)
+              break
+          break if found
+
+        @r_boards.push
+          finalRow: temp_i
+          finalCol: temp_j
+          selected: false
+
+  buildBoards: ->
+    @boards = []
+    for i in [0...@rows]
+      for j in [0...@cols]
+        @boards.push
+          finalRow: i
+          finalCol: j
+          selected: false
+
 
   initContent: ->
 
