@@ -7,6 +7,9 @@ class Capture
     @boards = []
     @cols = 2
     @rows = 2
+    @b_width = Math.floor(@$user_canvas.width/@cols)
+    @b_height = Math.floor(@$user_canvas.height/@rows)
+    @context = @$user_canvas.getContext('2d')
 
   init: ->
     @createVideo()
@@ -45,6 +48,13 @@ class Capture
           finalRow: temp_i
           finalCol: temp_j
           selected: false
+
+    for board in @r_boards
+      board.imageData = @context.getImageData(board.finalCol*@b_width, board.finalRow*@b_height, @b_width, @b_height)
+
+    for board in @r_boards
+      @context.putImageData(board.imageData, 0, 0)
+
 
   buildBoards: ->
     @boards = []
