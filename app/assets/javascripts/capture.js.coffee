@@ -1,17 +1,28 @@
 class Capture
   constructor: ->
-    @$user_canvas = $('canvas.user')[0]
-    @$video = $('video')[0]
+    @$user_canvas = $('canvas')[0]
+    @$video = null
     @interval_id = null
     @init()
 
   init: ->
-    $('.submit-btn').on 'click', =>
-      window.open(@$user_canvas.toDataURL(), "canavsImage", "left=0,top=0,width=" + @$user_canvas.width + ",height=" + @$user_canvas.height + ",toolbar=0,resizable=0")
+    @createVideo()
     @startVideo()
     @drawCanvas()
+    @bindEvents()
+
+  bindEvents: ->
+    $('.submit-btn').on 'click', =>
+      window.open(@$user_canvas.toDataURL(), "canavsImage", "left=0,top=0,width=" + @$user_canvas.width + ",height=" + @$user_canvas.height + ",toolbar=0,resizable=0")
 
   initContent: ->
+
+  createVideo: ->
+    @$video = document.createElement("video")
+    videoDiv = document.createElement('div')
+    document.body.appendChild(videoDiv)
+    videoDiv.appendChild(@$video)
+    videoDiv.setAttribute("style", "display:none;")
 
   drawCanvas: ->
     if !@canvasSupport()
@@ -22,11 +33,11 @@ class Capture
 
   drawScreen: =>
     context = @$user_canvas.getContext('2d')
-    context.fillStyle = '#ffffaa';
+    context.fillStyle = '#ffffff';
     context.fillRect(0, 0, @$user_canvas.width, @$user_canvas.height)
-    context.strokeStyle = '#000000'
-    context.strokeRect(5, 5, @$user_canvas.width - 10, @$user_canvas.height - 10)
-    context.drawImage(@$video, 10, 10)
+    context.strokeStyle = '#d5d5d5'
+    context.strokeRect(0, 0, @$user_canvas.width, @$user_canvas.height)
+    context.drawImage(@$video, 0, 0, @$user_canvas.width, @$user_canvas.height)
 
   canvasSupport: ->
     Modernizr.canvas
@@ -35,7 +46,7 @@ class Capture
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
     navigator.getUserMedia {
       video: true,
-      audio: true
+      audio: false
     }, @mediaSuccess, @mediaFail
 
   mediaSuccess: (userMedia)=>

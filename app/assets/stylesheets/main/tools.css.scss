@@ -51,15 +51,11 @@
 }
 
 .capture {
-  canvas {
-    width: 700px;
-    height: 500px;
-  }
   .user-content {
     position: relative;
     height: 500px;
   }
-  .user {
+  canvas {
     position: absolute;
     left: 0;
     right: 0;
@@ -67,9 +63,5 @@
     bottom: 0;
     margin: auto;
     border: solid 1px #d5d5d5;
-  }
-
-  .captured {
-    display: none;
   }
 }
