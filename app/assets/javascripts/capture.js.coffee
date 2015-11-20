@@ -47,14 +47,13 @@ class Capture
         @r_boards.push
           finalRow: temp_i
           finalCol: temp_j
+          rightRow: i
+          rightCol: j
           selected: false
+          imageData: @context.getImageData(j * @b_width, i * @b_height, @b_width, @b_height)
 
     for board in @r_boards
-      board.imageData = @context.getImageData(board.finalCol*@b_width, board.finalRow*@b_height, @b_width, @b_height)
-
-    for board in @r_boards
-      @context.putImageData(board.imageData, 0, 0)
-
+      @context.putImageData(board.imageData, board.finalCol * @b_width, board.finalRow * @b_height)
 
   buildBoards: ->
     @boards = []
