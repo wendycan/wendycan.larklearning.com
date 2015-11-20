@@ -14,6 +14,7 @@ LeavesCom::Application.routes.draw do
   get 'tools/index'
   get 'tools/ecg'
   get 'tools/audio'
+  get 'tools/capture'
 
   get 'todos/index'
   get 'todos/show'

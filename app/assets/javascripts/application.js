@@ -17,5 +17,6 @@
 //= require vendor
 //= require audio
 //= require temp
+//= require capture
 
 $(document).foundation();
