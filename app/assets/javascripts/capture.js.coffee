@@ -11,6 +11,9 @@ class Capture
     @b_height = Math.floor(@$user_canvas.height/@rows)
     @context = @$user_canvas.getContext('2d')
     @selected = []
+    @success_message = '机智若你，无人堪比！'
+    @finished = false
+    $('.puzzling').hide()
 
   init: ->
     @createVideo()
@@ -19,7 +22,8 @@ class Capture
     @bindEvents()
 
   bindEvents: ->
-    $('.submit-btn').on 'click', @handleClick
+    $('.submit-btn').on 'click', @handleSubmitClick
+    $('.restart-btn').on 'click', @handleRestartClick
 
     xPad = 1
     yPad = 1
@@ -81,11 +85,22 @@ class Capture
         @r_boards[board1.index].right_row = board2.board.right_row
         @r_boards[board1.index].right_col = board2.board.right_col
         @r_boards[board2.index].imageData = temp_data
-        @r_boards[board2.index].right_col = temp_data.right_col
-        @r_boards[board2.index].right_row = temp_data.right_row
+        @r_boards[board2.index].right_col = right_col
+        @r_boards[board2.index].right_row = right_row
+        @finished = true
+        for board in @r_boards
+          if board.right_row isnt board.pos_row or board.right_col isnt board.pos_col
+            @finished = false
 
       @updateCanvasFromBoards()
       @renderSelectedStatus()
+      if @finished
+        @renderResult()
+
+  handleRestartClick: =>
+    $('.puzzling').hide()
+    $('.capturing').show()
+    @drawCanvas()
 
   renderSelectedStatus: ->
     if @selected.length > 1
@@ -94,7 +109,21 @@ class Capture
       @context.strokeStyle = 'red'
       @context.strokeRect(item.col * @b_width, item.row * @b_height, @b_width, @b_height)
 
-  handleClick: =>
+  renderResult: ->
+    @context.font = "35px serif"
+    metrics = @context.measureText @success_message
+    textWidth = metrics.width
+    xPosition = @$user_canvas.width/2 - textWidth/2
+    yPosition = @$user_canvas.height/2
+    @context.fillStyle = "rgba(0,0,0,.6)"
+    @context.fillRect 0, 0, @$user_canvas.width, @$user_canvas.height
+    @context.fillStyle = "#cd9947"
+    @context.fillText @success_message, xPosition, yPosition
+
+  handleSubmitClick: =>
+    $('.capturing').hide()
+    $('.puzzling').show()
+
     clearInterval(@interval_id)
     @buildBoardsData()
     @randomBoards()
@@ -121,18 +150,17 @@ class Capture
         @r_boards.push
           pos_row: temp_i
           pos_col: temp_j
-          rightRow: i
-          rightCol: j
+          right_row: i
+          right_col: j
           selected: false
           imageData: @context.getImageData(j * @b_width, i * @b_height, @b_width, @b_height)
-      console.log @r_boards
-      @updateCanvasFromBoards()
+    @updateCanvasFromBoards()
 
   updateCanvasFromBoards: ->
     for board in @r_boards
       @context.strokeStyle = '#d5d5d5'
       @context.putImageData(board.imageData, board.pos_col * @b_width, board.pos_row * @b_height)
-      @context.strokeRect(board.pos_col * @b_width, board.pos_row * @b_height-1, @b_width, @b_height)
+      @context.strokeRect(board.pos_col * @b_width, board.pos_row * @b_height, @b_width, @b_height)
 
   buildBoardsData: ->
     @boards = []
@@ -155,6 +183,8 @@ class Capture
   drawCanvas: ->
     if !@canvasSupport()
       return
+    @finished = false
+    @selected = []
     @drawScreen()
     @$video.play()
     @interval_id = setInterval(@drawScreen, 100)

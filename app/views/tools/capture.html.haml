@@ -1,15 +1,22 @@
 .capture
   .wrap
     .row
-      %h4.text-center 拼拼你自己
+      %h4.text-center 拼拼
       %br
     .row
       .large-12.columns.user-content
         %canvas{width:"660", height:"500"}
-    .row
+    .row.collapse.capturing
+      %br
+      .large-6.columns.text-right
+        .button.submit-btn.tiny.radius 确认
+      .large-6.columns.text-left
+        %span &nbsp;
+        .label.secondary 确保你的图像处于屏幕中央
+    .row.puzzling
+      %br
       .large-12.columns.text-center
-        %br
-        .button.submit-btn.small.radius 确认
+        .button.restart-btn.tiny.radius 重新再来
     .row.hide
       .large-12.columns
         %video
