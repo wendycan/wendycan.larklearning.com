@@ -136,7 +136,7 @@ class Capture
     @buildBoardsData()
     @randomBoards()
 
-  uploadImg: ->
+  uploadImg: =>
     $.ajax
       url: '/tools/upload'
       data:
