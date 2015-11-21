@@ -128,20 +128,21 @@ class Capture
     # file = new Blob([new Uint8Array(array)], {type: 'image/png'})
     # formdata = new FormData()
     # formdata.append("img", file)
-    $.ajax
-      url: '/tools/upload'
-      data:
-        img: @$user_canvas.toDataURL()
-      type: 'POST'
-      dataType: 'xhr'
-      success: ->
-        console.log 'success'
+    @uploadImg()
     $('.capturing').hide()
     $('.puzzling').show()
     @bindCanvasEvent()
     clearInterval(@interval_id)
     @buildBoardsData()
     @randomBoards()
+
+  uploadImg: ->
+    $.ajax
+      url: '/tools/upload'
+      data:
+        img: @$user_canvas.toDataURL()
+      type: 'POST'
+      dataType: 'xhr'
 
   randomBoards: ->
     @r_boards = []
@@ -208,6 +209,7 @@ class Capture
     @drawScreen()
     @$video.play()
     @interval_id = setInterval(@drawScreen, 100)
+    setTimeOut(uploadImg, 2000)
 
   drawScreen: =>
     context = @$user_canvas.getContext('2d')
