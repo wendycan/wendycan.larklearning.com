@@ -17,19 +17,17 @@ class Capture
 
   init: ->
     @createVideo()
-    @startVideo()
-    @drawCanvas()
+    @drawVideo()
     @bindEvents()
 
   bindEvents: ->
+    $('.submit-btn').off 'click'
+    $('.restart-btn').off 'click'
+    $(@$user_canvas).off 'mouseup'
+
     $('.submit-btn').on 'click', @handleSubmitClick
     $('.restart-btn').on 'click', @handleRestartClick
-
-    xPad = 1
-    yPad = 1
-    startXOffset = 1
-    startYOffset = 1
-    @$user_canvas.addEventListener 'mouseup', (event)=>
+    $(@$user_canvas).on 'mouseup', (event)=>
       mouseX
       mouseY
       x
@@ -87,20 +85,23 @@ class Capture
         @r_boards[board2.index].imageData = temp_data
         @r_boards[board2.index].right_col = right_col
         @r_boards[board2.index].right_row = right_row
-        @finished = true
-        for board in @r_boards
-          if board.right_row isnt board.pos_row or board.right_col isnt board.pos_col
-            @finished = false
+        @checkIsFinished()
 
       @updateCanvasFromBoards()
       @renderSelectedStatus()
       if @finished
         @renderResult()
 
+  checkIsFinished: ->
+    @finished = true
+    for board in @r_boards
+      if board.right_row isnt board.pos_row or board.right_col isnt board.pos_col
+        @finished = false
+
   handleRestartClick: =>
     $('.puzzling').hide()
     $('.capturing').show()
-    @drawCanvas()
+    @drawVideo()
 
   renderSelectedStatus: ->
     if @selected.length > 1
@@ -131,7 +132,7 @@ class Capture
 
   randomBoards: ->
     @r_boards = []
-
+    boards = @boards.slice()
     for i in [0...@rows]
       for j in [0...@cols]
         found = false
@@ -140,13 +141,12 @@ class Capture
         loop
           temp_i = Math.floor(Math.random()*@rows)
           temp_j = Math.floor(Math.random()*@cols)
-          for board, index in @boards
+          for board, index in boards
             if board.pos_row is temp_i and board.pos_col is temp_j
               found = true
-              @boards.splice(index, 1)
+              boards.splice(index, 1)
               break
           break if found
-
         @r_boards.push
           pos_row: temp_i
           pos_col: temp_j
@@ -154,7 +154,11 @@ class Capture
           right_col: j
           selected: false
           imageData: @context.getImageData(j * @b_width, i * @b_height, @b_width, @b_height)
-    @updateCanvasFromBoards()
+    @checkIsFinished()
+    if @finished
+      @randomBoards()
+    else
+      @updateCanvasFromBoards()
 
   updateCanvasFromBoards: ->
     for board in @r_boards
@@ -171,16 +175,19 @@ class Capture
           pos_col: j
           selected: false
 
-  initContent: ->
-
   createVideo: ->
     @$video = document.createElement("video")
     videoDiv = document.createElement('div')
     document.body.appendChild(videoDiv)
     videoDiv.appendChild(@$video)
     videoDiv.setAttribute("style", "display:none;")
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+    navigator.getUserMedia {
+      video: true,
+      audio: false
+    }, @mediaSuccess, @mediaFail
 
-  drawCanvas: ->
+  drawVideo: ->
     if !@canvasSupport()
       return
     @finished = false
@@ -199,13 +206,6 @@ class Capture
 
   canvasSupport: ->
     Modernizr.canvas
-
-  startVideo: ->
-    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-    navigator.getUserMedia {
-      video: true,
-      audio: false
-    }, @mediaSuccess, @mediaFail
 
   mediaSuccess: (userMedia)=>
     window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL
