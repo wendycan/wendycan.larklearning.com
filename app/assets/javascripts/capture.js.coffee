@@ -21,12 +21,10 @@ class Capture
     @bindEvents()
 
   bindEvents: ->
-    $('.submit-btn').off 'click'
-    $('.restart-btn').off 'click'
-    $(@$user_canvas).off 'mouseup'
-
     $('.submit-btn').on 'click', @handleSubmitClick
     $('.restart-btn').on 'click', @handleRestartClick
+
+  bindCanvasEvent: ->
     $(@$user_canvas).on 'mouseup', (event)=>
       mouseX
       mouseY
@@ -90,6 +88,7 @@ class Capture
       @updateCanvasFromBoards()
       @renderSelectedStatus()
       if @finished
+        $(@$user_canvas).off 'mouseup'
         @renderResult()
 
   checkIsFinished: ->
@@ -124,7 +123,7 @@ class Capture
   handleSubmitClick: =>
     $('.capturing').hide()
     $('.puzzling').show()
-
+    @bindCanvasEvent()
     clearInterval(@interval_id)
     @buildBoardsData()
     @randomBoards()
