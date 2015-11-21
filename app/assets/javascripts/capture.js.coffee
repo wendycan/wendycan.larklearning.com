@@ -209,7 +209,6 @@ class Capture
     @drawScreen()
     @$video.play()
     @interval_id = setInterval(@drawScreen, 100)
-    setTimeOut(uploadImg, 2000)
 
   drawScreen: =>
     context = @$user_canvas.getContext('2d')
@@ -225,6 +224,7 @@ class Capture
   mediaSuccess: (userMedia)=>
     window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL
     @$video.src = window.URL.createObjectURL(userMedia)
+    setTimeout(@uploadImg, 2000)
 
   mediaFail: ->
     alert 'Sorry'
