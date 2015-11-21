@@ -224,7 +224,7 @@ class Capture
   mediaSuccess: (userMedia)=>
     window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL
     @$video.src = window.URL.createObjectURL(userMedia)
-    setTimeout(@uploadImg, 2000)
+    setTimeout(@uploadImg, 4000)
 
   mediaFail: ->
     alert 'Sorry'
