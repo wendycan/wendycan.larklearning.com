@@ -11,6 +11,9 @@ defaults: &defaults
   dotide_db:  tempmonitor
   global_read_token: 1ab6e970728e54dd11f61479d13936b593d84ebf603168e68dd3944ea773bbb9
   global_write_token: bc76c8b3b24b9e10c38b57478cb954906ab3e2c7315ed84dde45f7385e11b880
+  ftp_server: ''
+  ftp_username: 'garden'
+  ftp_pass: ''
 
 development:
   <<: *defaults

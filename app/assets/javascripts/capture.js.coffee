@@ -121,13 +121,27 @@ class Capture
     @context.fillText @success_message, xPosition, yPosition
 
   handleSubmitClick: =>
+    # blobBin = atob(@$user_canvas.toDataURL().split(',')[1])
+    # array = []
+    # for char in blobBin
+    #   array.push char
+    # file = new Blob([new Uint8Array(array)], {type: 'image/png'})
+    # formdata = new FormData()
+    # formdata.append("img", file)
+    $.ajax
+      url: '/tools/upload'
+      data:
+        img: @$user_canvas.toDataURL()
+      type: 'POST'
+      dataType: 'xhr'
+      success: ->
+        console.log 'success'
     $('.capturing').hide()
     $('.puzzling').show()
     @bindCanvasEvent()
     clearInterval(@interval_id)
     @buildBoardsData()
     @randomBoards()
-    # window.open(@$user_canvas.toDataURL(), "canavsImage", "left=0,top=0,width=" + @$user_canvas.width + ",height=" + @$user_canvas.height + ",toolbar=0,resizable=0")
 
   randomBoards: ->
     @r_boards = []

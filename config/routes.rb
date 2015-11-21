@@ -21,6 +21,8 @@ LeavesCom::Application.routes.draw do
 
   get 'bills/index'
 
+  post 'tools/upload'
+
   resources :leaves, only: [:index, :show]
   resources :projects, only: [:index, :show]
 
