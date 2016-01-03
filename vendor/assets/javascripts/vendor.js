@@ -23,3 +23,4 @@
 //= require favico.js/favico
 //= require jquery-visibility
 //= require wowjs/dist/wow.js
+//= require fullpage.js/jquery.fullPage.js
