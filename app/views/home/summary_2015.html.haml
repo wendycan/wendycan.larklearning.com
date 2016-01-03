@@ -2,12 +2,26 @@
   .row.small-12
     #fullpage
       .section.first-color
-        %h3 从 2015 到 2016
-        %p 时光荏苒，岁月如梭，匆匆的一年就过去了。此刻，回望过去的一年，展望刚刚开始的新的一年。
+        %h4 从 2015 迈入 2016
+        .wow.fadeIn
+          %p “人生天地之间，若白驹过隙，忽然而已……”
+          %p 匆匆地一年过去了
+          %p 此刻，回望过去，展望刚刚开始的新的一年
+      .section.forth-color
+        %h4 回顾 2015
+        %ul.wow.fadeIn
+          %li 获得的技能
+          %li 养成的好习惯
+          %li 尚未摆脱的恶习
+          %li 读过的书
+          %li 去过的地方
+          %li 结交二三好友
+          %li 点滴记录
+          %li 屋内重构
       .section.second-color
-        %h3 获得的技能
+        %h4 获得的技能
         %p.wow.slideInLeft 主要分为以下几个方面
-        .wow.slideInLeft
+        .wow.fadeIn
           %span.label.round.success 刀
           %span.label.round.success 食
           %span.label.round.success 布
@@ -18,21 +32,30 @@
           %span.label.round.success 发
           %span.label.round.success 技
       .section.second-color
-        %h3 刀
-        %p.wow.slideInLeft 刀刀已经可以听懂并在大多数情况下执行以下指令
-        .wow.slideInLeft
+        %h3.wow.bounceIn 刀
+        %p.wow.fadeIn 刀刀已经可以听懂并在大多数情况下执行以下指令
+        .wow.fadeIn
           %span.label.round sit
           %span.label.round stand
           %span.label.round byebye
-        %p.wow.slideInLeft 当以 wendy 式口吻重复“你干嘛呢”“谁干的”时，刀刀会意识到自己做了其不该做的事情，并下自觉垂下头来，做无辜状，并偷瞟你。
+        %p.wow.slideInLeft 当以 wendy 式口吻重复“你干嘛呢”“谁干的”时，刀刀会意识到自己做了其不该做的事情，并下自觉垂下头来，做无辜状，并偷瞟你
+        %ul.small-block-grid-2
+          %li
+            = image_tag("summary/dao_4.png")
+          %li
+            = image_tag("summary/dao_2.png")
       .section.second-color
-        %h3 食
-        %p.wow.slideInLeft 新学烘焙技术，可以做出好吃的蔓越莓饼干和焦糖布丁
-        %p.wow.slideInLeft 熟悉并实现各种陕西大饼的制作，包括葱油饼、菜合等
-        %p.wow.slideInLeft 熟悉并实现各种陕西面食的制作，包括凉鱼、臊子面、泡馍、疙瘩汤、麻食等
-        %p.wow.slideInLeft 中式菜更上一层楼，红烧肉、麻辣豆腐、香锅皆获好评，凉拌菜已炉火纯青
+        = image_tag("summary/dao_1.png")
+      .section.second-color
+        = image_tag("summary/dao_3.png")
+      .section.second-color
+        %h3.wow.bounceIn 食
+        %p.wow.fadeIn 新学烘焙技术，可以做出好吃的蔓越莓饼干和焦糖布丁
+      .section.second-color
         = image_tag("summary/food_1.png")
+        %p.wow.slideInLeft 熟悉并实现各种陕西大饼的制作，包括葱油饼、菜合等
       .section.second-color
+        %p.wow.slideInLeft 熟悉并实现各种陕西面食的制作，包括凉鱼、臊子面、泡馍、疙瘩汤、麻食等
         = image_tag("summary/food_2.png")
       .section.second-color
         %ul.small-block-grid-2
@@ -40,10 +63,11 @@
             = image_tag("summary/food_3.png")
           %li
             = image_tag("summary/food_4.png")
+        %p.wow.slideInLeft 中式菜更上一层楼，红烧肉、麻辣豆腐、香锅皆获好评，凉拌菜已炉火纯青
       .section.second-color
-        %h3 布
-        %p.wow.slideInLeft 抱枕、枕头、被罩、窗帘等日常布艺品皆可如法炮制，另外可以根据屋内布局设计并实现有新意的布艺作品。
-        %ul.small-block-grid-2
+        %h3.wow.bounceIn 布
+        %p.wow.fadeIn 抱枕、枕头、被罩、窗帘等日常布艺品皆可如法炮制，另外可以根据屋内布局设计并实现有新意的布艺作品
+        %ul.small-block-grid-2.wow.fadeIn
           %li
             = image_tag("summary/cloth_1.png")
           %li
@@ -57,9 +81,9 @@
           %li
             = image_tag("summary/cloth_5.png")
       .section.second-color
-        %h3 印
-        %p.wow.slideInLeft 可提供拍摄并打印证件照服务，并自行生产拖地卡
-        %ul.small-block-grid-2
+        %h3.wow.bounceIn 印
+        %p.wow.fadeIn 可提供拍摄并打印证件照服务，并自行生产拖地卡
+        %ul.small-block-grid-2.wow.fadeIn
           %li
             = image_tag("summary/print_2.png")
           %li
@@ -67,8 +91,8 @@
       .section.second-color
         = image_tag("summary/print_1.png")
       .section.second-color
-        %h3 花
-        %p.wow.slideInLeft 植物
+        %h3.wow.bounceIn 花
+        %p.wow.fadeIn 植物
         = image_tag("summary/flower_3.png")
       .section.second-color
         %ul.small-block-grid-1
@@ -77,53 +101,54 @@
           %li
             = image_tag("summary/flower_2.png")
       .section.second-color
-        %h3 体
-        %p.wow.slideInLeft 瑜伽修行已4个半个月，保持每周两节的瑜伽课的学习，并在课下收录三枚徒弟传授瑜伽，同时编写瑜伽一百零八式秘籍。
-        %p.wow.slideInLeft 保持每周一次的游泳量，已熟悉水下环境，并可偶尔游行。
+        %h3.wow.bounceIn 体
+        %p.wow.fadeIn 瑜伽修行已4个半个月，保持每周两节的瑜伽课的学习，并在课下收录三枚徒弟传授瑜伽，同时编写瑜伽一百零八式秘籍
+        %p.wow.fadeIn 保持每周一次的游泳量，已熟悉水下环境，并可偶尔游行
         %ul.small-block-grid-2
           %li
             = image_tag("summary/yoga_1.png")
           %li
             = image_tag("summary/yoga_3.png")
       .section.second-color
-        %h3 乐
-        %p.wow.slideInLeft 彻底放弃电子琴，进军古筝，已熟悉基本理论，并能弹奏几首小曲。
+        %h3.wow.bounceIn 乐
+        %p.wow.fadeIn 彻底放弃电子琴，进军古筝，已熟悉基本理论，并能弹奏几首小曲
         = image_tag("summary/music_1.png")
       .section.second-color
         = image_tag("summary/music_2.png")
       .section.second-color
-        %h3 发
-        %p.wow.slideInLeft 洗剪吹技术已成熟，并为四个头实践了剪的服务，其中包括一个狗头，三个人头。
+        %h3.wow.bounceIn 发
+        %p.wow.fadeIn 洗剪吹技术已成熟，并为四个头实践了剪的服务，其中包括一个狗头，三个人头
       .section.second-color
-        %h3 技
-        %p.wow.slideInLeft 很高兴告诉你，我还在继续前端开发中……
-        %p.wow.slideInLeft 除了基本技能提升，以下是新使用的东东
+        %h3.wow.bounceIn 技
+        %p.wow.fadeIn 很高兴告诉你，我还在继续前端开发中……
+        %p.wow.fadeIn 除了基本技能提升，以下是新使用的东东
         .wow.slideInLeft
           %ul
-            %li.slideInLeft SVG 和 Canvas
-            %li.slideInLeft React
-            %li.slideInLeft Vue
-            %li.slideInLeft Fabric
-        %p 有点一事无成，懈怠过多。
+            %li SVG 和 Canvas
+            %li React
+            %li Vue
+            %li Fabric
+        %p 有点一事无成，懈怠过多
       .section.third-color
-        %h3 养成的好习惯
+        %h4 养成的好习惯
         .wow.bounceInUp
           %ul
             %li 每天遛狗，刮风下雨无障碍
             %li 每天写日记
             %li 电视已远离生活
       .section.forth-color
-        %h3 尚未摆脱的恶习
-        .wow.bounceInUp
+        %h4 尚未摆脱的恶习
+        .wow.fadeIn
           %ul
             %li 早起的习惯，一年之中起起落落
             %li 严于律人，宽以待己
       .section.second-color
-        %h3 读过的书
-        .wow.bounceInUp
+        %h4 读过的书
+        .wow.fadeIn
           %ul
             %li 我是一只粉笔 - 叶庆炳
             %li 额尔古纳河右岸 - 迟子建
+            %li 画火御寒 - 流沙河
             %li 农历 - 郭文斌
             %li 基督山伯爵 -  大仲马
             %li 巨流河（繁、简） - 齐邦媛
@@ -137,8 +162,8 @@
             %li SVG 精髓
             %li ECMAScript 6 入门
       .section.third-color
-        %h3 去过的地方
-        .wow.bounceInUp
+        %h4 去过的地方
+        .wow.fadeInRight
           %ul
             %li 西安(秦兵马俑，骊山)
             %li 南京(紫金山)
@@ -147,13 +172,17 @@
             %li 深圳
             %li 上海
       .section.forth-color
-        %h3 结交了二三好友
+        %h4 结交二三好友
+        %ul.wow.fadeInRight
+          %li 一个有点挫的人
+          %li 一个不怎么挫的人
       .section.second-color
-        %h3 发生的故事
-        %p 动物们
-        %p 屋内重构
+        %h4 点滴记录
+        %ul.wow.fadeInRight
+          %li 刀刀，花园
+          %li 屋内重构
       .section.second-color
-        %h3 两只猫和一只狗的故事
+        %h4 遇见两只猫与一只狗
         = image_tag("summary/animal_1.png")
       .section.second-color
         %ul.small-block-grid-2
@@ -169,8 +198,9 @@
             = image_tag("summary/animal_5.png")
           %li
             = image_tag("summary/animal_6.png")
+        = image_tag("summary/animal_8.png")
       .section.second-color
-        %h3 屋内重构
+        %h4 屋内重构
         = image_tag("summary/room_1.png")
       .section.second-color
         = image_tag("summary/room_2.png")
@@ -180,6 +210,33 @@
             = image_tag("summary/room_3.png")
           %li
             = image_tag("summary/room_4.png")
+      .section.forth-color
+        %h4 展望 2016
+      .section.forth-color
+        %h4 要提升的技能
+        %ul.wow.fadeIn
+          %li React Native
+          %li Web 动画实践
+          %li Web 3D
+          %li Web 安全
+      .section.forth-color
+        %h4 要读的书
+        .wow.fadeIn
+          %ul
+            %li 雪国
+            %li 自私的基因
+            %li 平凡的世界
+            %li 思考的乐趣
+            %li 线上幽灵
+            %li 国史大纲
+            %li 雅舍小品
+            %li 朱光潜散文 美是一生的修行
+            %li 百年孤独
+            %li 野火集
+            %li 城南旧事
+            %li 无限小 一个危险的数学理论如何形塑现代世界
+            %li 计算机程序的构造和解释
+            %li 莫泊桑短篇小说集
 
 = content_for :js_ext do
   :javascript

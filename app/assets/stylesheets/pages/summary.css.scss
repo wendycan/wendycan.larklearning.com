@@ -1,5 +1,11 @@
 .summary {
   text-align: left;
+  h3 {
+    font-size: 50px;
+  }
+  h4 {
+    font-size: 30px;
+  }
   p {
     margin: 3px 0;
   }
@@ -7,15 +13,15 @@
     padding: 0 10px;
   }
   .first-color {
-    background-color: #E1F8C9;
+    background: image-url("texture_2.jpg");
   }
   .second-color {
-    background-color: #B8E3E0;
+    background: image-url("texture_1.jpg");
   }
   .third-color {
-    background-color: #FFE4CF;
+    background: image-url("texture_3.jpg");
   }
   .forth-color {
-    background-color: #F6C8D8;
+    background: image-url("texture_4.jpg");
   }
 }
