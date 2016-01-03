@@ -1,5 +1,9 @@
 .summary {
   text-align: left;
+  .circle-border img {
+    border-radius: 50%;
+    width: 100px;
+  }
   h3 {
     font-size: 50px;
   }
