@@ -1,7 +1,7 @@
 $(document).ready ->
   $(document).foundation();
   src_list = []
-
+  if $('#audio-assets').find('img').length <= 0 then return
   $('#audio-assets').find('img').each (index, item)->
     src_list.push item.src
   audio_context = new (window.AudioContext || window.webkitAudioContext)

@@ -4,6 +4,8 @@ LeavesCom::Application.routes.draw do
 
   get 'home/index'
   get 'home/sales'
+  get 'home/2015'
+
   get 'projects/stars', :path => 'stars'
   get 'info/profile'
   get 'data/companies'

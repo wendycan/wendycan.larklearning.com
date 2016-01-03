@@ -22,3 +22,4 @@
 //= require leaflet-baidu
 //= require favico.js/favico
 //= require jquery-visibility
+//= require wowjs/dist/wow.js
