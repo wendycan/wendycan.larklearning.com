@@ -1,4 +1,4 @@
-# source 'http://ruby.taobao.org'
+source 'https://ruby.taobao.org/'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.9'
@@ -33,9 +33,9 @@ gem 'foundation-rails', '~> 5.5.0'
 gem 'font-awesome-sass', '~> 4.3.0'
 
 gem 'sunspot_rails'
-group :development do
-  gem 'sunspot_solr'
-end
+# group :development do
+#   gem 'sunspot_solr'
+# end
 gem 'progress_bar'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
