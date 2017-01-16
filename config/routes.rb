@@ -33,6 +33,8 @@ LeavesCom::Application.routes.draw do
   mount Leaves::Api => '/'
   mount Todos::Api => '/api'
 
+  get '/.well-known/acme-challenge/:id' => 'pages#letsencrypt'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
